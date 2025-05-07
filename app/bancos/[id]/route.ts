@@ -24,7 +24,7 @@ export async function UPDATE(req: Req, { params }: { params: Promise<{ id: strin
   }    
 }
 
-export async function DELETE(req: Req, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(req: Req, { params }: { params: Promise<{ id: string }> }) {
   console.log("borrar banco");  
   try {
       const id = (await params).id;
