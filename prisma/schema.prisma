@@ -10,3 +10,52 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model banco {
+  id      String   @id @default(uuid()) @map("_id")
+  capital Float
+  duedate DateTime
+  logo    String
+  name    String
+  period  DateTime
+  tna     Float
+}
+
+model fijo {
+  id      String   @id @default(uuid()) @map("_id")
+  capital Int
+  client  String
+  logo    String
+  name    String
+  period  DateTime
+  url     String
+}
+
+model gasto {
+  id     String   @id @default(uuid()) @map("_id")
+  amount Float
+  date   DateTime
+  detail String
+  type   Int
+}
+
+model principal {
+  id          String @id @default(uuid()) @map("_id")
+  available   Int
+  expenses    Int
+  inbanks     Int
+  indebt      Int
+  investments Int
+  max         Int
+  monthly     Int
+  nextmonth   Int
+}
+
+model wallet {
+  id      String   @id @default(uuid()) @map("_id")
+  capital Int
+  logo    String
+  name    String
+  period  DateTime
+  tna     Int
+}
