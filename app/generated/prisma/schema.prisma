@@ -7,12 +7,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model banco {
-  id      String   @id @default(uuid()) @map("_id")
+  id      Int      @id @default(autoincrement()) @map("_id")
   capital Float
   duedate DateTime
   logo    String
@@ -22,7 +22,7 @@ model banco {
 }
 
 model fijo {
-  id      String   @id @default(uuid()) @map("_id")
+  id      Int      @id @default(autoincrement()) @map("_id")
   capital Int
   client  String
   logo    String
@@ -32,7 +32,7 @@ model fijo {
 }
 
 model gasto {
-  id     String   @id @default(uuid()) @map("_id")
+  id     Int      @id @default(autoincrement()) @map("_id")
   amount Float
   date   DateTime
   detail String
@@ -40,7 +40,7 @@ model gasto {
 }
 
 model principal {
-  id          String @id @default(uuid()) @map("_id")
+  id          Int @id @default(autoincrement()) @map("_id")
   available   Int
   expenses    Int
   inbanks     Int
@@ -52,7 +52,7 @@ model principal {
 }
 
 model wallet {
-  id      String   @id @default(uuid()) @map("_id")
+  id      Int      @id @default(autoincrement()) @map("_id")
   capital Int
   logo    String
   name    String

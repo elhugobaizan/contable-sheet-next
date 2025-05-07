@@ -708,10 +708,6 @@ export namespace Prisma {
             args: Prisma.bancoCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.bancoCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$bancoPayload>[]
-          }
           delete: {
             args: Prisma.bancoDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$bancoPayload>
@@ -777,10 +773,6 @@ export namespace Prisma {
           createMany: {
             args: Prisma.fijoCreateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.fijoCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$fijoPayload>[]
           }
           delete: {
             args: Prisma.fijoDeleteArgs<ExtArgs>
@@ -848,10 +840,6 @@ export namespace Prisma {
             args: Prisma.gastoCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.gastoCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$gastoPayload>[]
-          }
           delete: {
             args: Prisma.gastoDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gastoPayload>
@@ -918,10 +906,6 @@ export namespace Prisma {
             args: Prisma.principalCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
-          createManyAndReturn: {
-            args: Prisma.principalCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$principalPayload>[]
-          }
           delete: {
             args: Prisma.principalDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$principalPayload>
@@ -987,10 +971,6 @@ export namespace Prisma {
           createMany: {
             args: Prisma.walletCreateManyArgs<ExtArgs>
             result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.walletCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$walletPayload>[]
           }
           delete: {
             args: Prisma.walletDeleteArgs<ExtArgs>
@@ -1200,17 +1180,19 @@ export namespace Prisma {
   }
 
   export type BancoAvgAggregateOutputType = {
+    id: number | null
     capital: number | null
     tna: number | null
   }
 
   export type BancoSumAggregateOutputType = {
+    id: number | null
     capital: number | null
     tna: number | null
   }
 
   export type BancoMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     capital: number | null
     duedate: Date | null
     logo: string | null
@@ -1220,7 +1202,7 @@ export namespace Prisma {
   }
 
   export type BancoMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     capital: number | null
     duedate: Date | null
     logo: string | null
@@ -1242,11 +1224,13 @@ export namespace Prisma {
 
 
   export type BancoAvgAggregateInputType = {
+    id?: true
     capital?: true
     tna?: true
   }
 
   export type BancoSumAggregateInputType = {
+    id?: true
     capital?: true
     tna?: true
   }
@@ -1369,7 +1353,7 @@ export namespace Prisma {
   }
 
   export type BancoGroupByOutputType = {
-    id: string
+    id: number
     capital: number
     duedate: Date
     logo: string
@@ -1407,15 +1391,6 @@ export namespace Prisma {
     tna?: boolean
   }, ExtArgs["result"]["banco"]>
 
-  export type bancoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    capital?: boolean
-    duedate?: boolean
-    logo?: boolean
-    name?: boolean
-    period?: boolean
-    tna?: boolean
-  }, ExtArgs["result"]["banco"]>
 
   export type bancoSelectScalar = {
     id?: boolean
@@ -1432,7 +1407,7 @@ export namespace Prisma {
     name: "banco"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       capital: number
       duedate: Date
       logo: string
@@ -1555,30 +1530,6 @@ export namespace Prisma {
      *     
      */
     createMany<T extends bancoCreateManyArgs>(args?: SelectSubset<T, bancoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Bancos and returns the data saved in the database.
-     * @param {bancoCreateManyAndReturnArgs} args - Arguments to create many Bancos.
-     * @example
-     * // Create many Bancos
-     * const banco = await prisma.banco.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Bancos and only return the `id`
-     * const bancoWithIdOnly = await prisma.banco.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends bancoCreateManyAndReturnArgs>(args?: SelectSubset<T, bancoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$bancoPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Banco.
@@ -1832,7 +1783,7 @@ export namespace Prisma {
    * Fields of the banco model
    */ 
   interface bancoFieldRefs {
-    readonly id: FieldRef<"banco", 'String'>
+    readonly id: FieldRef<"banco", 'Int'>
     readonly capital: FieldRef<"banco", 'Float'>
     readonly duedate: FieldRef<"banco", 'DateTime'>
     readonly logo: FieldRef<"banco", 'String'>
@@ -2020,20 +1971,7 @@ export namespace Prisma {
      * The data used to create many bancos.
      */
     data: bancoCreateManyInput | bancoCreateManyInput[]
-  }
-
-  /**
-   * banco createManyAndReturn
-   */
-  export type bancoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the banco
-     */
-    select?: bancoSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many bancos.
-     */
-    data: bancoCreateManyInput | bancoCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2138,15 +2076,17 @@ export namespace Prisma {
   }
 
   export type FijoAvgAggregateOutputType = {
+    id: number | null
     capital: number | null
   }
 
   export type FijoSumAggregateOutputType = {
+    id: number | null
     capital: number | null
   }
 
   export type FijoMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     capital: number | null
     client: string | null
     logo: string | null
@@ -2156,7 +2096,7 @@ export namespace Prisma {
   }
 
   export type FijoMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     capital: number | null
     client: string | null
     logo: string | null
@@ -2178,10 +2118,12 @@ export namespace Prisma {
 
 
   export type FijoAvgAggregateInputType = {
+    id?: true
     capital?: true
   }
 
   export type FijoSumAggregateInputType = {
+    id?: true
     capital?: true
   }
 
@@ -2303,7 +2245,7 @@ export namespace Prisma {
   }
 
   export type FijoGroupByOutputType = {
-    id: string
+    id: number
     capital: number
     client: string
     logo: string
@@ -2341,15 +2283,6 @@ export namespace Prisma {
     url?: boolean
   }, ExtArgs["result"]["fijo"]>
 
-  export type fijoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    capital?: boolean
-    client?: boolean
-    logo?: boolean
-    name?: boolean
-    period?: boolean
-    url?: boolean
-  }, ExtArgs["result"]["fijo"]>
 
   export type fijoSelectScalar = {
     id?: boolean
@@ -2366,7 +2299,7 @@ export namespace Prisma {
     name: "fijo"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       capital: number
       client: string
       logo: string
@@ -2489,30 +2422,6 @@ export namespace Prisma {
      *     
      */
     createMany<T extends fijoCreateManyArgs>(args?: SelectSubset<T, fijoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Fijos and returns the data saved in the database.
-     * @param {fijoCreateManyAndReturnArgs} args - Arguments to create many Fijos.
-     * @example
-     * // Create many Fijos
-     * const fijo = await prisma.fijo.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Fijos and only return the `id`
-     * const fijoWithIdOnly = await prisma.fijo.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends fijoCreateManyAndReturnArgs>(args?: SelectSubset<T, fijoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$fijoPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Fijo.
@@ -2766,7 +2675,7 @@ export namespace Prisma {
    * Fields of the fijo model
    */ 
   interface fijoFieldRefs {
-    readonly id: FieldRef<"fijo", 'String'>
+    readonly id: FieldRef<"fijo", 'Int'>
     readonly capital: FieldRef<"fijo", 'Int'>
     readonly client: FieldRef<"fijo", 'String'>
     readonly logo: FieldRef<"fijo", 'String'>
@@ -2954,20 +2863,7 @@ export namespace Prisma {
      * The data used to create many fijos.
      */
     data: fijoCreateManyInput | fijoCreateManyInput[]
-  }
-
-  /**
-   * fijo createManyAndReturn
-   */
-  export type fijoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the fijo
-     */
-    select?: fijoSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many fijos.
-     */
-    data: fijoCreateManyInput | fijoCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3072,17 +2968,19 @@ export namespace Prisma {
   }
 
   export type GastoAvgAggregateOutputType = {
+    id: number | null
     amount: number | null
     type: number | null
   }
 
   export type GastoSumAggregateOutputType = {
+    id: number | null
     amount: number | null
     type: number | null
   }
 
   export type GastoMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     amount: number | null
     date: Date | null
     detail: string | null
@@ -3090,7 +2988,7 @@ export namespace Prisma {
   }
 
   export type GastoMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     amount: number | null
     date: Date | null
     detail: string | null
@@ -3108,11 +3006,13 @@ export namespace Prisma {
 
 
   export type GastoAvgAggregateInputType = {
+    id?: true
     amount?: true
     type?: true
   }
 
   export type GastoSumAggregateInputType = {
+    id?: true
     amount?: true
     type?: true
   }
@@ -3229,7 +3129,7 @@ export namespace Prisma {
   }
 
   export type GastoGroupByOutputType = {
-    id: string
+    id: number
     amount: number
     date: Date
     detail: string
@@ -3263,13 +3163,6 @@ export namespace Prisma {
     type?: boolean
   }, ExtArgs["result"]["gasto"]>
 
-  export type gastoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    amount?: boolean
-    date?: boolean
-    detail?: boolean
-    type?: boolean
-  }, ExtArgs["result"]["gasto"]>
 
   export type gastoSelectScalar = {
     id?: boolean
@@ -3284,7 +3177,7 @@ export namespace Prisma {
     name: "gasto"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       amount: number
       date: Date
       detail: string
@@ -3405,30 +3298,6 @@ export namespace Prisma {
      *     
      */
     createMany<T extends gastoCreateManyArgs>(args?: SelectSubset<T, gastoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Gastos and returns the data saved in the database.
-     * @param {gastoCreateManyAndReturnArgs} args - Arguments to create many Gastos.
-     * @example
-     * // Create many Gastos
-     * const gasto = await prisma.gasto.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Gastos and only return the `id`
-     * const gastoWithIdOnly = await prisma.gasto.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends gastoCreateManyAndReturnArgs>(args?: SelectSubset<T, gastoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gastoPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Gasto.
@@ -3682,7 +3551,7 @@ export namespace Prisma {
    * Fields of the gasto model
    */ 
   interface gastoFieldRefs {
-    readonly id: FieldRef<"gasto", 'String'>
+    readonly id: FieldRef<"gasto", 'Int'>
     readonly amount: FieldRef<"gasto", 'Float'>
     readonly date: FieldRef<"gasto", 'DateTime'>
     readonly detail: FieldRef<"gasto", 'String'>
@@ -3868,20 +3737,7 @@ export namespace Prisma {
      * The data used to create many gastos.
      */
     data: gastoCreateManyInput | gastoCreateManyInput[]
-  }
-
-  /**
-   * gasto createManyAndReturn
-   */
-  export type gastoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the gasto
-     */
-    select?: gastoSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many gastos.
-     */
-    data: gastoCreateManyInput | gastoCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3986,6 +3842,7 @@ export namespace Prisma {
   }
 
   export type PrincipalAvgAggregateOutputType = {
+    id: number | null
     available: number | null
     expenses: number | null
     inbanks: number | null
@@ -3997,6 +3854,7 @@ export namespace Prisma {
   }
 
   export type PrincipalSumAggregateOutputType = {
+    id: number | null
     available: number | null
     expenses: number | null
     inbanks: number | null
@@ -4008,7 +3866,7 @@ export namespace Prisma {
   }
 
   export type PrincipalMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     available: number | null
     expenses: number | null
     inbanks: number | null
@@ -4020,7 +3878,7 @@ export namespace Prisma {
   }
 
   export type PrincipalMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     available: number | null
     expenses: number | null
     inbanks: number | null
@@ -4046,6 +3904,7 @@ export namespace Prisma {
 
 
   export type PrincipalAvgAggregateInputType = {
+    id?: true
     available?: true
     expenses?: true
     inbanks?: true
@@ -4057,6 +3916,7 @@ export namespace Prisma {
   }
 
   export type PrincipalSumAggregateInputType = {
+    id?: true
     available?: true
     expenses?: true
     inbanks?: true
@@ -4191,7 +4051,7 @@ export namespace Prisma {
   }
 
   export type PrincipalGroupByOutputType = {
-    id: string
+    id: number
     available: number
     expenses: number
     inbanks: number
@@ -4233,17 +4093,6 @@ export namespace Prisma {
     nextmonth?: boolean
   }, ExtArgs["result"]["principal"]>
 
-  export type principalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    available?: boolean
-    expenses?: boolean
-    inbanks?: boolean
-    indebt?: boolean
-    investments?: boolean
-    max?: boolean
-    monthly?: boolean
-    nextmonth?: boolean
-  }, ExtArgs["result"]["principal"]>
 
   export type principalSelectScalar = {
     id?: boolean
@@ -4262,7 +4111,7 @@ export namespace Prisma {
     name: "principal"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       available: number
       expenses: number
       inbanks: number
@@ -4387,30 +4236,6 @@ export namespace Prisma {
      *     
      */
     createMany<T extends principalCreateManyArgs>(args?: SelectSubset<T, principalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Principals and returns the data saved in the database.
-     * @param {principalCreateManyAndReturnArgs} args - Arguments to create many Principals.
-     * @example
-     * // Create many Principals
-     * const principal = await prisma.principal.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Principals and only return the `id`
-     * const principalWithIdOnly = await prisma.principal.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends principalCreateManyAndReturnArgs>(args?: SelectSubset<T, principalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$principalPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Principal.
@@ -4664,7 +4489,7 @@ export namespace Prisma {
    * Fields of the principal model
    */ 
   interface principalFieldRefs {
-    readonly id: FieldRef<"principal", 'String'>
+    readonly id: FieldRef<"principal", 'Int'>
     readonly available: FieldRef<"principal", 'Int'>
     readonly expenses: FieldRef<"principal", 'Int'>
     readonly inbanks: FieldRef<"principal", 'Int'>
@@ -4854,20 +4679,7 @@ export namespace Prisma {
      * The data used to create many principals.
      */
     data: principalCreateManyInput | principalCreateManyInput[]
-  }
-
-  /**
-   * principal createManyAndReturn
-   */
-  export type principalCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the principal
-     */
-    select?: principalSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many principals.
-     */
-    data: principalCreateManyInput | principalCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -4972,17 +4784,19 @@ export namespace Prisma {
   }
 
   export type WalletAvgAggregateOutputType = {
+    id: number | null
     capital: number | null
     tna: number | null
   }
 
   export type WalletSumAggregateOutputType = {
+    id: number | null
     capital: number | null
     tna: number | null
   }
 
   export type WalletMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     capital: number | null
     logo: string | null
     name: string | null
@@ -4991,7 +4805,7 @@ export namespace Prisma {
   }
 
   export type WalletMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     capital: number | null
     logo: string | null
     name: string | null
@@ -5011,11 +4825,13 @@ export namespace Prisma {
 
 
   export type WalletAvgAggregateInputType = {
+    id?: true
     capital?: true
     tna?: true
   }
 
   export type WalletSumAggregateInputType = {
+    id?: true
     capital?: true
     tna?: true
   }
@@ -5135,7 +4951,7 @@ export namespace Prisma {
   }
 
   export type WalletGroupByOutputType = {
-    id: string
+    id: number
     capital: number
     logo: string
     name: string
@@ -5171,14 +4987,6 @@ export namespace Prisma {
     tna?: boolean
   }, ExtArgs["result"]["wallet"]>
 
-  export type walletSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    capital?: boolean
-    logo?: boolean
-    name?: boolean
-    period?: boolean
-    tna?: boolean
-  }, ExtArgs["result"]["wallet"]>
 
   export type walletSelectScalar = {
     id?: boolean
@@ -5194,7 +5002,7 @@ export namespace Prisma {
     name: "wallet"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       capital: number
       logo: string
       name: string
@@ -5316,30 +5124,6 @@ export namespace Prisma {
      *     
      */
     createMany<T extends walletCreateManyArgs>(args?: SelectSubset<T, walletCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Wallets and returns the data saved in the database.
-     * @param {walletCreateManyAndReturnArgs} args - Arguments to create many Wallets.
-     * @example
-     * // Create many Wallets
-     * const wallet = await prisma.wallet.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Wallets and only return the `id`
-     * const walletWithIdOnly = await prisma.wallet.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends walletCreateManyAndReturnArgs>(args?: SelectSubset<T, walletCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$walletPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Wallet.
@@ -5593,7 +5377,7 @@ export namespace Prisma {
    * Fields of the wallet model
    */ 
   interface walletFieldRefs {
-    readonly id: FieldRef<"wallet", 'String'>
+    readonly id: FieldRef<"wallet", 'Int'>
     readonly capital: FieldRef<"wallet", 'Int'>
     readonly logo: FieldRef<"wallet", 'String'>
     readonly name: FieldRef<"wallet", 'String'>
@@ -5780,20 +5564,7 @@ export namespace Prisma {
      * The data used to create many wallets.
      */
     data: walletCreateManyInput | walletCreateManyInput[]
-  }
-
-  /**
-   * wallet createManyAndReturn
-   */
-  export type walletCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wallet
-     */
-    select?: walletSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many wallets.
-     */
-    data: walletCreateManyInput | walletCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5890,6 +5661,9 @@ export namespace Prisma {
    */
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -5974,9 +5748,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Int'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
@@ -5995,9 +5769,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'String'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
   /**
    * Deep Input Types
@@ -6008,7 +5782,7 @@ export namespace Prisma {
     AND?: bancoWhereInput | bancoWhereInput[]
     OR?: bancoWhereInput[]
     NOT?: bancoWhereInput | bancoWhereInput[]
-    id?: StringFilter<"banco"> | string
+    id?: IntFilter<"banco"> | number
     capital?: FloatFilter<"banco"> | number
     duedate?: DateTimeFilter<"banco"> | Date | string
     logo?: StringFilter<"banco"> | string
@@ -6028,7 +5802,7 @@ export namespace Prisma {
   }
 
   export type bancoWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: bancoWhereInput | bancoWhereInput[]
     OR?: bancoWhereInput[]
     NOT?: bancoWhereInput | bancoWhereInput[]
@@ -6059,7 +5833,7 @@ export namespace Prisma {
     AND?: bancoScalarWhereWithAggregatesInput | bancoScalarWhereWithAggregatesInput[]
     OR?: bancoScalarWhereWithAggregatesInput[]
     NOT?: bancoScalarWhereWithAggregatesInput | bancoScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"banco"> | string
+    id?: IntWithAggregatesFilter<"banco"> | number
     capital?: FloatWithAggregatesFilter<"banco"> | number
     duedate?: DateTimeWithAggregatesFilter<"banco"> | Date | string
     logo?: StringWithAggregatesFilter<"banco"> | string
@@ -6072,7 +5846,7 @@ export namespace Prisma {
     AND?: fijoWhereInput | fijoWhereInput[]
     OR?: fijoWhereInput[]
     NOT?: fijoWhereInput | fijoWhereInput[]
-    id?: StringFilter<"fijo"> | string
+    id?: IntFilter<"fijo"> | number
     capital?: IntFilter<"fijo"> | number
     client?: StringFilter<"fijo"> | string
     logo?: StringFilter<"fijo"> | string
@@ -6092,7 +5866,7 @@ export namespace Prisma {
   }
 
   export type fijoWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: fijoWhereInput | fijoWhereInput[]
     OR?: fijoWhereInput[]
     NOT?: fijoWhereInput | fijoWhereInput[]
@@ -6123,7 +5897,7 @@ export namespace Prisma {
     AND?: fijoScalarWhereWithAggregatesInput | fijoScalarWhereWithAggregatesInput[]
     OR?: fijoScalarWhereWithAggregatesInput[]
     NOT?: fijoScalarWhereWithAggregatesInput | fijoScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"fijo"> | string
+    id?: IntWithAggregatesFilter<"fijo"> | number
     capital?: IntWithAggregatesFilter<"fijo"> | number
     client?: StringWithAggregatesFilter<"fijo"> | string
     logo?: StringWithAggregatesFilter<"fijo"> | string
@@ -6136,7 +5910,7 @@ export namespace Prisma {
     AND?: gastoWhereInput | gastoWhereInput[]
     OR?: gastoWhereInput[]
     NOT?: gastoWhereInput | gastoWhereInput[]
-    id?: StringFilter<"gasto"> | string
+    id?: IntFilter<"gasto"> | number
     amount?: FloatFilter<"gasto"> | number
     date?: DateTimeFilter<"gasto"> | Date | string
     detail?: StringFilter<"gasto"> | string
@@ -6152,7 +5926,7 @@ export namespace Prisma {
   }
 
   export type gastoWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: gastoWhereInput | gastoWhereInput[]
     OR?: gastoWhereInput[]
     NOT?: gastoWhereInput | gastoWhereInput[]
@@ -6179,7 +5953,7 @@ export namespace Prisma {
     AND?: gastoScalarWhereWithAggregatesInput | gastoScalarWhereWithAggregatesInput[]
     OR?: gastoScalarWhereWithAggregatesInput[]
     NOT?: gastoScalarWhereWithAggregatesInput | gastoScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"gasto"> | string
+    id?: IntWithAggregatesFilter<"gasto"> | number
     amount?: FloatWithAggregatesFilter<"gasto"> | number
     date?: DateTimeWithAggregatesFilter<"gasto"> | Date | string
     detail?: StringWithAggregatesFilter<"gasto"> | string
@@ -6190,7 +5964,7 @@ export namespace Prisma {
     AND?: principalWhereInput | principalWhereInput[]
     OR?: principalWhereInput[]
     NOT?: principalWhereInput | principalWhereInput[]
-    id?: StringFilter<"principal"> | string
+    id?: IntFilter<"principal"> | number
     available?: IntFilter<"principal"> | number
     expenses?: IntFilter<"principal"> | number
     inbanks?: IntFilter<"principal"> | number
@@ -6214,7 +5988,7 @@ export namespace Prisma {
   }
 
   export type principalWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: principalWhereInput | principalWhereInput[]
     OR?: principalWhereInput[]
     NOT?: principalWhereInput | principalWhereInput[]
@@ -6249,7 +6023,7 @@ export namespace Prisma {
     AND?: principalScalarWhereWithAggregatesInput | principalScalarWhereWithAggregatesInput[]
     OR?: principalScalarWhereWithAggregatesInput[]
     NOT?: principalScalarWhereWithAggregatesInput | principalScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"principal"> | string
+    id?: IntWithAggregatesFilter<"principal"> | number
     available?: IntWithAggregatesFilter<"principal"> | number
     expenses?: IntWithAggregatesFilter<"principal"> | number
     inbanks?: IntWithAggregatesFilter<"principal"> | number
@@ -6264,7 +6038,7 @@ export namespace Prisma {
     AND?: walletWhereInput | walletWhereInput[]
     OR?: walletWhereInput[]
     NOT?: walletWhereInput | walletWhereInput[]
-    id?: StringFilter<"wallet"> | string
+    id?: IntFilter<"wallet"> | number
     capital?: IntFilter<"wallet"> | number
     logo?: StringFilter<"wallet"> | string
     name?: StringFilter<"wallet"> | string
@@ -6282,7 +6056,7 @@ export namespace Prisma {
   }
 
   export type walletWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: walletWhereInput | walletWhereInput[]
     OR?: walletWhereInput[]
     NOT?: walletWhereInput | walletWhereInput[]
@@ -6311,7 +6085,7 @@ export namespace Prisma {
     AND?: walletScalarWhereWithAggregatesInput | walletScalarWhereWithAggregatesInput[]
     OR?: walletScalarWhereWithAggregatesInput[]
     NOT?: walletScalarWhereWithAggregatesInput | walletScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"wallet"> | string
+    id?: IntWithAggregatesFilter<"wallet"> | number
     capital?: IntWithAggregatesFilter<"wallet"> | number
     logo?: StringWithAggregatesFilter<"wallet"> | string
     name?: StringWithAggregatesFilter<"wallet"> | string
@@ -6320,7 +6094,6 @@ export namespace Prisma {
   }
 
   export type bancoCreateInput = {
-    id?: string
     capital: number
     duedate: Date | string
     logo: string
@@ -6330,7 +6103,7 @@ export namespace Prisma {
   }
 
   export type bancoUncheckedCreateInput = {
-    id?: string
+    id?: number
     capital: number
     duedate: Date | string
     logo: string
@@ -6340,7 +6113,6 @@ export namespace Prisma {
   }
 
   export type bancoUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     capital?: FloatFieldUpdateOperationsInput | number
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6350,7 +6122,7 @@ export namespace Prisma {
   }
 
   export type bancoUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     capital?: FloatFieldUpdateOperationsInput | number
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6360,7 +6132,7 @@ export namespace Prisma {
   }
 
   export type bancoCreateManyInput = {
-    id?: string
+    id?: number
     capital: number
     duedate: Date | string
     logo: string
@@ -6370,7 +6142,6 @@ export namespace Prisma {
   }
 
   export type bancoUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     capital?: FloatFieldUpdateOperationsInput | number
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6380,7 +6151,7 @@ export namespace Prisma {
   }
 
   export type bancoUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     capital?: FloatFieldUpdateOperationsInput | number
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6390,7 +6161,6 @@ export namespace Prisma {
   }
 
   export type fijoCreateInput = {
-    id?: string
     capital: number
     client: string
     logo: string
@@ -6400,7 +6170,7 @@ export namespace Prisma {
   }
 
   export type fijoUncheckedCreateInput = {
-    id?: string
+    id?: number
     capital: number
     client: string
     logo: string
@@ -6410,7 +6180,6 @@ export namespace Prisma {
   }
 
   export type fijoUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     capital?: IntFieldUpdateOperationsInput | number
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6420,7 +6189,7 @@ export namespace Prisma {
   }
 
   export type fijoUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     capital?: IntFieldUpdateOperationsInput | number
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6430,7 +6199,7 @@ export namespace Prisma {
   }
 
   export type fijoCreateManyInput = {
-    id?: string
+    id?: number
     capital: number
     client: string
     logo: string
@@ -6440,7 +6209,6 @@ export namespace Prisma {
   }
 
   export type fijoUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     capital?: IntFieldUpdateOperationsInput | number
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6450,7 +6218,7 @@ export namespace Prisma {
   }
 
   export type fijoUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     capital?: IntFieldUpdateOperationsInput | number
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
@@ -6460,7 +6228,6 @@ export namespace Prisma {
   }
 
   export type gastoCreateInput = {
-    id?: string
     amount: number
     date: Date | string
     detail: string
@@ -6468,7 +6235,7 @@ export namespace Prisma {
   }
 
   export type gastoUncheckedCreateInput = {
-    id?: string
+    id?: number
     amount: number
     date: Date | string
     detail: string
@@ -6476,7 +6243,6 @@ export namespace Prisma {
   }
 
   export type gastoUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
@@ -6484,7 +6250,7 @@ export namespace Prisma {
   }
 
   export type gastoUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     amount?: FloatFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
@@ -6492,7 +6258,7 @@ export namespace Prisma {
   }
 
   export type gastoCreateManyInput = {
-    id?: string
+    id?: number
     amount: number
     date: Date | string
     detail: string
@@ -6500,7 +6266,6 @@ export namespace Prisma {
   }
 
   export type gastoUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
@@ -6508,7 +6273,7 @@ export namespace Prisma {
   }
 
   export type gastoUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     amount?: FloatFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
@@ -6516,7 +6281,6 @@ export namespace Prisma {
   }
 
   export type principalCreateInput = {
-    id?: string
     available: number
     expenses: number
     inbanks: number
@@ -6528,7 +6292,7 @@ export namespace Prisma {
   }
 
   export type principalUncheckedCreateInput = {
-    id?: string
+    id?: number
     available: number
     expenses: number
     inbanks: number
@@ -6540,7 +6304,6 @@ export namespace Prisma {
   }
 
   export type principalUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     available?: IntFieldUpdateOperationsInput | number
     expenses?: IntFieldUpdateOperationsInput | number
     inbanks?: IntFieldUpdateOperationsInput | number
@@ -6552,7 +6315,7 @@ export namespace Prisma {
   }
 
   export type principalUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     available?: IntFieldUpdateOperationsInput | number
     expenses?: IntFieldUpdateOperationsInput | number
     inbanks?: IntFieldUpdateOperationsInput | number
@@ -6564,7 +6327,7 @@ export namespace Prisma {
   }
 
   export type principalCreateManyInput = {
-    id?: string
+    id?: number
     available: number
     expenses: number
     inbanks: number
@@ -6576,7 +6339,6 @@ export namespace Prisma {
   }
 
   export type principalUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     available?: IntFieldUpdateOperationsInput | number
     expenses?: IntFieldUpdateOperationsInput | number
     inbanks?: IntFieldUpdateOperationsInput | number
@@ -6588,7 +6350,7 @@ export namespace Prisma {
   }
 
   export type principalUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     available?: IntFieldUpdateOperationsInput | number
     expenses?: IntFieldUpdateOperationsInput | number
     inbanks?: IntFieldUpdateOperationsInput | number
@@ -6600,7 +6362,6 @@ export namespace Prisma {
   }
 
   export type walletCreateInput = {
-    id?: string
     capital: number
     logo: string
     name: string
@@ -6609,7 +6370,7 @@ export namespace Prisma {
   }
 
   export type walletUncheckedCreateInput = {
-    id?: string
+    id?: number
     capital: number
     logo: string
     name: string
@@ -6618,7 +6379,6 @@ export namespace Prisma {
   }
 
   export type walletUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     capital?: IntFieldUpdateOperationsInput | number
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6627,7 +6387,7 @@ export namespace Prisma {
   }
 
   export type walletUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     capital?: IntFieldUpdateOperationsInput | number
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6636,7 +6396,7 @@ export namespace Prisma {
   }
 
   export type walletCreateManyInput = {
-    id?: string
+    id?: number
     capital: number
     logo: string
     name: string
@@ -6645,7 +6405,6 @@ export namespace Prisma {
   }
 
   export type walletUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     capital?: IntFieldUpdateOperationsInput | number
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6654,7 +6413,7 @@ export namespace Prisma {
   }
 
   export type walletUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     capital?: IntFieldUpdateOperationsInput | number
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6662,18 +6421,15 @@ export namespace Prisma {
     tna?: IntFieldUpdateOperationsInput | number
   }
 
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -6698,6 +6454,20 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
   export type bancoCountOrderByAggregateInput = {
     id?: SortOrder
     capital?: SortOrder
@@ -6709,6 +6479,7 @@ export namespace Prisma {
   }
 
   export type bancoAvgOrderByAggregateInput = {
+    id?: SortOrder
     capital?: SortOrder
     tna?: SortOrder
   }
@@ -6734,25 +6505,25 @@ export namespace Prisma {
   }
 
   export type bancoSumOrderByAggregateInput = {
+    id?: SortOrder
     capital?: SortOrder
     tna?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -6785,15 +6556,21 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type fijoCountOrderByAggregateInput = {
@@ -6807,6 +6584,7 @@ export namespace Prisma {
   }
 
   export type fijoAvgOrderByAggregateInput = {
+    id?: SortOrder
     capital?: SortOrder
   }
 
@@ -6831,23 +6609,8 @@ export namespace Prisma {
   }
 
   export type fijoSumOrderByAggregateInput = {
+    id?: SortOrder
     capital?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type gastoCountOrderByAggregateInput = {
@@ -6859,6 +6622,7 @@ export namespace Prisma {
   }
 
   export type gastoAvgOrderByAggregateInput = {
+    id?: SortOrder
     amount?: SortOrder
     type?: SortOrder
   }
@@ -6880,6 +6644,7 @@ export namespace Prisma {
   }
 
   export type gastoSumOrderByAggregateInput = {
+    id?: SortOrder
     amount?: SortOrder
     type?: SortOrder
   }
@@ -6897,6 +6662,7 @@ export namespace Prisma {
   }
 
   export type principalAvgOrderByAggregateInput = {
+    id?: SortOrder
     available?: SortOrder
     expenses?: SortOrder
     inbanks?: SortOrder
@@ -6932,6 +6698,7 @@ export namespace Prisma {
   }
 
   export type principalSumOrderByAggregateInput = {
+    id?: SortOrder
     available?: SortOrder
     expenses?: SortOrder
     inbanks?: SortOrder
@@ -6952,6 +6719,7 @@ export namespace Prisma {
   }
 
   export type walletAvgOrderByAggregateInput = {
+    id?: SortOrder
     capital?: SortOrder
     tna?: SortOrder
   }
@@ -6975,12 +6743,9 @@ export namespace Prisma {
   }
 
   export type walletSumOrderByAggregateInput = {
+    id?: SortOrder
     capital?: SortOrder
     tna?: SortOrder
-  }
-
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -6995,6 +6760,10 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -7003,18 +6772,15 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
@@ -7039,7 +6805,7 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
     notIn?: string[]
@@ -7050,13 +6816,10 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
     notIn?: number[]
@@ -7064,7 +6827,12 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -7097,20 +6865,21 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
 
