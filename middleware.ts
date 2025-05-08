@@ -1,3 +1,4 @@
+import { log } from 'console'
 import { NextRequest, NextResponse } from 'next/server'
 
 const allowedOrigins = ['http://localhost:8081']
@@ -11,6 +12,9 @@ export function middleware(request: NextRequest) {
   // Check the origin from the request
   const origin = request.headers.get('origin') ?? ''
   const isAllowedOrigin = allowedOrigins.includes(origin)
+
+  console.log(`Origin: ${origin}`);
+
 
   // Handle preflighted requests
   const isPreflight = request.method === 'OPTIONS'
@@ -38,5 +42,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/api/:path*',
+  matcher: '/:path*',
 }
