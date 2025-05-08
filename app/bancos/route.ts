@@ -19,15 +19,17 @@ export async function POST(req: Req) {
     console.log("crear nuevo banco");
     try {
         const body = await req.json();
-        const { name, capital, period, tna, logo, duedate } = body;
-        const result = {
-            name,
-            capital,
-            period,
-            tna,
-            logo,
-            duedate
-        };
+        const { nombre, capital, periodo, tna, logo, vencimiento } = body;
+        const result = await prisma.banco.create({
+            data: {
+                name: nombre,
+                capital,
+                period: periodo,
+                tna,
+                logo,
+                duedate: vencimiento
+            }
+        });
         return Res.json(result);
     } catch (err) {
         return Res.json({ message: err });
