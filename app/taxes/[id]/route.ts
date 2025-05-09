@@ -19,8 +19,6 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         const id = (await params).id;
         const body = await req.json();
         const { nombre, capital, periodo, url, logo, nroCliente } = body;
-        console.log("body", body);
-
         const result = await prisma.fijo.update({
             where: { id: +id },
             data: { name: nombre, capital, period: periodo, logo, url, client: nroCliente }

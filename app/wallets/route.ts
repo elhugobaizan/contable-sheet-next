@@ -1,6 +1,8 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { prisma } from '@/db';
 
+export const dynamic = 'force-dynamic';
+
 //List wallets
 export async function GET() {
     console.log("listar wallets");

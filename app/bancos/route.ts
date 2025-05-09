@@ -1,15 +1,16 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { prisma } from '@/db';
 
+export const dynamic = 'force-dynamic';
+
 //List bancos
 export async function GET() {
     console.log("listar bancos");
     try {
         const result = await prisma.banco.findMany();
-        console.log("find many");
         return Res.json(result);
     } catch (err) {
-        console.log("hay error", err);
+        console.log("ERROR: ", err);
         return Res.json(err);
     }
 }
@@ -30,8 +31,10 @@ export async function POST(req: Req) {
                 duedate: vencimiento
             }
         });
+        console.log(result);
         return Res.json(result);
     } catch (err) {
+        console.log("ERROR: ", err);
         return Res.json({ message: err });
     }
 }

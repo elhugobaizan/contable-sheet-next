@@ -1,6 +1,7 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { prisma } from '@/db';
-import { log } from "console";
+
+export const dynamic = 'force-dynamic';
 
 //List fijos
 export async function GET() {
