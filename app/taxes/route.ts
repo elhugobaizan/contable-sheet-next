@@ -7,7 +7,6 @@ export async function GET() {
     console.log("listar fijos");
     try {
         const result = await prisma.fijo.findMany();
-        console.log(result);
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
