@@ -1,11 +1,13 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { prisma } from '@/db';
+import { log } from "console";
 
 //List fijos
 export async function GET() {
     console.log("listar fijos");
     try {
         const result = await prisma.fijo.findMany();
+        console.log(result);
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);

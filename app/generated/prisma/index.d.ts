@@ -1181,19 +1181,19 @@ export namespace Prisma {
 
   export type BancoAvgAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     tna: number | null
   }
 
   export type BancoSumAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     tna: number | null
   }
 
   export type BancoMinAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     duedate: Date | null
     logo: string | null
     name: string | null
@@ -1203,7 +1203,7 @@ export namespace Prisma {
 
   export type BancoMaxAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     duedate: Date | null
     logo: string | null
     name: string | null
@@ -1354,7 +1354,7 @@ export namespace Prisma {
 
   export type BancoGroupByOutputType = {
     id: number
-    capital: number
+    capital: Decimal
     duedate: Date
     logo: string
     name: string
@@ -1408,7 +1408,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      capital: number
+      capital: Prisma.Decimal
       duedate: Date
       logo: string
       name: string
@@ -1784,7 +1784,7 @@ export namespace Prisma {
    */ 
   interface bancoFieldRefs {
     readonly id: FieldRef<"banco", 'Int'>
-    readonly capital: FieldRef<"banco", 'Float'>
+    readonly capital: FieldRef<"banco", 'Decimal'>
     readonly duedate: FieldRef<"banco", 'DateTime'>
     readonly logo: FieldRef<"banco", 'String'>
     readonly name: FieldRef<"banco", 'String'>
@@ -2077,17 +2077,17 @@ export namespace Prisma {
 
   export type FijoAvgAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
   }
 
   export type FijoSumAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
   }
 
   export type FijoMinAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     client: string | null
     logo: string | null
     name: string | null
@@ -2097,7 +2097,7 @@ export namespace Prisma {
 
   export type FijoMaxAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     client: string | null
     logo: string | null
     name: string | null
@@ -2246,7 +2246,7 @@ export namespace Prisma {
 
   export type FijoGroupByOutputType = {
     id: number
-    capital: number
+    capital: Decimal
     client: string
     logo: string
     name: string
@@ -2300,7 +2300,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      capital: number
+      capital: Prisma.Decimal
       client: string
       logo: string
       name: string
@@ -2676,7 +2676,7 @@ export namespace Prisma {
    */ 
   interface fijoFieldRefs {
     readonly id: FieldRef<"fijo", 'Int'>
-    readonly capital: FieldRef<"fijo", 'Int'>
+    readonly capital: FieldRef<"fijo", 'Decimal'>
     readonly client: FieldRef<"fijo", 'String'>
     readonly logo: FieldRef<"fijo", 'String'>
     readonly name: FieldRef<"fijo", 'String'>
@@ -2969,19 +2969,19 @@ export namespace Prisma {
 
   export type GastoAvgAggregateOutputType = {
     id: number | null
-    amount: number | null
+    amount: Decimal | null
     type: number | null
   }
 
   export type GastoSumAggregateOutputType = {
     id: number | null
-    amount: number | null
+    amount: Decimal | null
     type: number | null
   }
 
   export type GastoMinAggregateOutputType = {
     id: number | null
-    amount: number | null
+    amount: Decimal | null
     date: Date | null
     detail: string | null
     type: number | null
@@ -2989,7 +2989,7 @@ export namespace Prisma {
 
   export type GastoMaxAggregateOutputType = {
     id: number | null
-    amount: number | null
+    amount: Decimal | null
     date: Date | null
     detail: string | null
     type: number | null
@@ -3130,7 +3130,7 @@ export namespace Prisma {
 
   export type GastoGroupByOutputType = {
     id: number
-    amount: number
+    amount: Decimal
     date: Date
     detail: string
     type: number
@@ -3178,7 +3178,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      amount: number
+      amount: Prisma.Decimal
       date: Date
       detail: string
       type: number
@@ -3552,7 +3552,7 @@ export namespace Prisma {
    */ 
   interface gastoFieldRefs {
     readonly id: FieldRef<"gasto", 'Int'>
-    readonly amount: FieldRef<"gasto", 'Float'>
+    readonly amount: FieldRef<"gasto", 'Decimal'>
     readonly date: FieldRef<"gasto", 'DateTime'>
     readonly detail: FieldRef<"gasto", 'String'>
     readonly type: FieldRef<"gasto", 'Int'>
@@ -4785,32 +4785,32 @@ export namespace Prisma {
 
   export type WalletAvgAggregateOutputType = {
     id: number | null
-    capital: number | null
-    tna: number | null
+    capital: Decimal | null
+    tna: Decimal | null
   }
 
   export type WalletSumAggregateOutputType = {
     id: number | null
-    capital: number | null
-    tna: number | null
+    capital: Decimal | null
+    tna: Decimal | null
   }
 
   export type WalletMinAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     logo: string | null
     name: string | null
     period: Date | null
-    tna: number | null
+    tna: Decimal | null
   }
 
   export type WalletMaxAggregateOutputType = {
     id: number | null
-    capital: number | null
+    capital: Decimal | null
     logo: string | null
     name: string | null
     period: Date | null
-    tna: number | null
+    tna: Decimal | null
   }
 
   export type WalletCountAggregateOutputType = {
@@ -4952,11 +4952,11 @@ export namespace Prisma {
 
   export type WalletGroupByOutputType = {
     id: number
-    capital: number
+    capital: Decimal
     logo: string
     name: string
     period: Date
-    tna: number
+    tna: Decimal
     _count: WalletCountAggregateOutputType | null
     _avg: WalletAvgAggregateOutputType | null
     _sum: WalletSumAggregateOutputType | null
@@ -5003,11 +5003,11 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      capital: number
+      capital: Prisma.Decimal
       logo: string
       name: string
       period: Date
-      tna: number
+      tna: Prisma.Decimal
     }, ExtArgs["result"]["wallet"]>
     composites: {}
   }
@@ -5378,11 +5378,11 @@ export namespace Prisma {
    */ 
   interface walletFieldRefs {
     readonly id: FieldRef<"wallet", 'Int'>
-    readonly capital: FieldRef<"wallet", 'Int'>
+    readonly capital: FieldRef<"wallet", 'Decimal'>
     readonly logo: FieldRef<"wallet", 'String'>
     readonly name: FieldRef<"wallet", 'String'>
     readonly period: FieldRef<"wallet", 'DateTime'>
-    readonly tna: FieldRef<"wallet", 'Int'>
+    readonly tna: FieldRef<"wallet", 'Decimal'>
   }
     
 
@@ -5755,9 +5755,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Decimal'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
@@ -5773,6 +5773,13 @@ export namespace Prisma {
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
   /**
    * Deep Input Types
    */
@@ -5783,7 +5790,7 @@ export namespace Prisma {
     OR?: bancoWhereInput[]
     NOT?: bancoWhereInput | bancoWhereInput[]
     id?: IntFilter<"banco"> | number
-    capital?: FloatFilter<"banco"> | number
+    capital?: DecimalFilter<"banco"> | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeFilter<"banco"> | Date | string
     logo?: StringFilter<"banco"> | string
     name?: StringFilter<"banco"> | string
@@ -5806,7 +5813,7 @@ export namespace Prisma {
     AND?: bancoWhereInput | bancoWhereInput[]
     OR?: bancoWhereInput[]
     NOT?: bancoWhereInput | bancoWhereInput[]
-    capital?: FloatFilter<"banco"> | number
+    capital?: DecimalFilter<"banco"> | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeFilter<"banco"> | Date | string
     logo?: StringFilter<"banco"> | string
     name?: StringFilter<"banco"> | string
@@ -5834,7 +5841,7 @@ export namespace Prisma {
     OR?: bancoScalarWhereWithAggregatesInput[]
     NOT?: bancoScalarWhereWithAggregatesInput | bancoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"banco"> | number
-    capital?: FloatWithAggregatesFilter<"banco"> | number
+    capital?: DecimalWithAggregatesFilter<"banco"> | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeWithAggregatesFilter<"banco"> | Date | string
     logo?: StringWithAggregatesFilter<"banco"> | string
     name?: StringWithAggregatesFilter<"banco"> | string
@@ -5847,7 +5854,7 @@ export namespace Prisma {
     OR?: fijoWhereInput[]
     NOT?: fijoWhereInput | fijoWhereInput[]
     id?: IntFilter<"fijo"> | number
-    capital?: IntFilter<"fijo"> | number
+    capital?: DecimalFilter<"fijo"> | Decimal | DecimalJsLike | number | string
     client?: StringFilter<"fijo"> | string
     logo?: StringFilter<"fijo"> | string
     name?: StringFilter<"fijo"> | string
@@ -5870,7 +5877,7 @@ export namespace Prisma {
     AND?: fijoWhereInput | fijoWhereInput[]
     OR?: fijoWhereInput[]
     NOT?: fijoWhereInput | fijoWhereInput[]
-    capital?: IntFilter<"fijo"> | number
+    capital?: DecimalFilter<"fijo"> | Decimal | DecimalJsLike | number | string
     client?: StringFilter<"fijo"> | string
     logo?: StringFilter<"fijo"> | string
     name?: StringFilter<"fijo"> | string
@@ -5898,7 +5905,7 @@ export namespace Prisma {
     OR?: fijoScalarWhereWithAggregatesInput[]
     NOT?: fijoScalarWhereWithAggregatesInput | fijoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"fijo"> | number
-    capital?: IntWithAggregatesFilter<"fijo"> | number
+    capital?: DecimalWithAggregatesFilter<"fijo"> | Decimal | DecimalJsLike | number | string
     client?: StringWithAggregatesFilter<"fijo"> | string
     logo?: StringWithAggregatesFilter<"fijo"> | string
     name?: StringWithAggregatesFilter<"fijo"> | string
@@ -5911,7 +5918,7 @@ export namespace Prisma {
     OR?: gastoWhereInput[]
     NOT?: gastoWhereInput | gastoWhereInput[]
     id?: IntFilter<"gasto"> | number
-    amount?: FloatFilter<"gasto"> | number
+    amount?: DecimalFilter<"gasto"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"gasto"> | Date | string
     detail?: StringFilter<"gasto"> | string
     type?: IntFilter<"gasto"> | number
@@ -5930,7 +5937,7 @@ export namespace Prisma {
     AND?: gastoWhereInput | gastoWhereInput[]
     OR?: gastoWhereInput[]
     NOT?: gastoWhereInput | gastoWhereInput[]
-    amount?: FloatFilter<"gasto"> | number
+    amount?: DecimalFilter<"gasto"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"gasto"> | Date | string
     detail?: StringFilter<"gasto"> | string
     type?: IntFilter<"gasto"> | number
@@ -5954,7 +5961,7 @@ export namespace Prisma {
     OR?: gastoScalarWhereWithAggregatesInput[]
     NOT?: gastoScalarWhereWithAggregatesInput | gastoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"gasto"> | number
-    amount?: FloatWithAggregatesFilter<"gasto"> | number
+    amount?: DecimalWithAggregatesFilter<"gasto"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeWithAggregatesFilter<"gasto"> | Date | string
     detail?: StringWithAggregatesFilter<"gasto"> | string
     type?: IntWithAggregatesFilter<"gasto"> | number
@@ -6039,11 +6046,11 @@ export namespace Prisma {
     OR?: walletWhereInput[]
     NOT?: walletWhereInput | walletWhereInput[]
     id?: IntFilter<"wallet"> | number
-    capital?: IntFilter<"wallet"> | number
+    capital?: DecimalFilter<"wallet"> | Decimal | DecimalJsLike | number | string
     logo?: StringFilter<"wallet"> | string
     name?: StringFilter<"wallet"> | string
     period?: DateTimeFilter<"wallet"> | Date | string
-    tna?: IntFilter<"wallet"> | number
+    tna?: DecimalFilter<"wallet"> | Decimal | DecimalJsLike | number | string
   }
 
   export type walletOrderByWithRelationInput = {
@@ -6060,11 +6067,11 @@ export namespace Prisma {
     AND?: walletWhereInput | walletWhereInput[]
     OR?: walletWhereInput[]
     NOT?: walletWhereInput | walletWhereInput[]
-    capital?: IntFilter<"wallet"> | number
+    capital?: DecimalFilter<"wallet"> | Decimal | DecimalJsLike | number | string
     logo?: StringFilter<"wallet"> | string
     name?: StringFilter<"wallet"> | string
     period?: DateTimeFilter<"wallet"> | Date | string
-    tna?: IntFilter<"wallet"> | number
+    tna?: DecimalFilter<"wallet"> | Decimal | DecimalJsLike | number | string
   }, "id">
 
   export type walletOrderByWithAggregationInput = {
@@ -6086,15 +6093,15 @@ export namespace Prisma {
     OR?: walletScalarWhereWithAggregatesInput[]
     NOT?: walletScalarWhereWithAggregatesInput | walletScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"wallet"> | number
-    capital?: IntWithAggregatesFilter<"wallet"> | number
+    capital?: DecimalWithAggregatesFilter<"wallet"> | Decimal | DecimalJsLike | number | string
     logo?: StringWithAggregatesFilter<"wallet"> | string
     name?: StringWithAggregatesFilter<"wallet"> | string
     period?: DateTimeWithAggregatesFilter<"wallet"> | Date | string
-    tna?: IntWithAggregatesFilter<"wallet"> | number
+    tna?: DecimalWithAggregatesFilter<"wallet"> | Decimal | DecimalJsLike | number | string
   }
 
   export type bancoCreateInput = {
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     duedate: Date | string
     logo: string
     name: string
@@ -6104,7 +6111,7 @@ export namespace Prisma {
 
   export type bancoUncheckedCreateInput = {
     id?: number
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     duedate: Date | string
     logo: string
     name: string
@@ -6113,7 +6120,7 @@ export namespace Prisma {
   }
 
   export type bancoUpdateInput = {
-    capital?: FloatFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6123,7 +6130,7 @@ export namespace Prisma {
 
   export type bancoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    capital?: FloatFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6133,7 +6140,7 @@ export namespace Prisma {
 
   export type bancoCreateManyInput = {
     id?: number
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     duedate: Date | string
     logo: string
     name: string
@@ -6142,7 +6149,7 @@ export namespace Prisma {
   }
 
   export type bancoUpdateManyMutationInput = {
-    capital?: FloatFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6152,7 +6159,7 @@ export namespace Prisma {
 
   export type bancoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    capital?: FloatFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     duedate?: DateTimeFieldUpdateOperationsInput | Date | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6161,7 +6168,7 @@ export namespace Prisma {
   }
 
   export type fijoCreateInput = {
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     client: string
     logo: string
     name: string
@@ -6171,7 +6178,7 @@ export namespace Prisma {
 
   export type fijoUncheckedCreateInput = {
     id?: number
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     client: string
     logo: string
     name: string
@@ -6180,7 +6187,7 @@ export namespace Prisma {
   }
 
   export type fijoUpdateInput = {
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6190,7 +6197,7 @@ export namespace Prisma {
 
   export type fijoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6200,7 +6207,7 @@ export namespace Prisma {
 
   export type fijoCreateManyInput = {
     id?: number
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     client: string
     logo: string
     name: string
@@ -6209,7 +6216,7 @@ export namespace Prisma {
   }
 
   export type fijoUpdateManyMutationInput = {
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6219,7 +6226,7 @@ export namespace Prisma {
 
   export type fijoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -6228,7 +6235,7 @@ export namespace Prisma {
   }
 
   export type gastoCreateInput = {
-    amount: number
+    amount?: Decimal | DecimalJsLike | number | string
     date: Date | string
     detail: string
     type: number
@@ -6236,14 +6243,14 @@ export namespace Prisma {
 
   export type gastoUncheckedCreateInput = {
     id?: number
-    amount: number
+    amount?: Decimal | DecimalJsLike | number | string
     date: Date | string
     detail: string
     type: number
   }
 
   export type gastoUpdateInput = {
-    amount?: FloatFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
     type?: IntFieldUpdateOperationsInput | number
@@ -6251,7 +6258,7 @@ export namespace Prisma {
 
   export type gastoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    amount?: FloatFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
     type?: IntFieldUpdateOperationsInput | number
@@ -6259,14 +6266,14 @@ export namespace Prisma {
 
   export type gastoCreateManyInput = {
     id?: number
-    amount: number
+    amount?: Decimal | DecimalJsLike | number | string
     date: Date | string
     detail: string
     type: number
   }
 
   export type gastoUpdateManyMutationInput = {
-    amount?: FloatFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
     type?: IntFieldUpdateOperationsInput | number
@@ -6274,7 +6281,7 @@ export namespace Prisma {
 
   export type gastoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    amount?: FloatFieldUpdateOperationsInput | number
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     detail?: StringFieldUpdateOperationsInput | string
     type?: IntFieldUpdateOperationsInput | number
@@ -6362,63 +6369,63 @@ export namespace Prisma {
   }
 
   export type walletCreateInput = {
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     logo: string
     name: string
     period: Date | string
-    tna: number
+    tna?: Decimal | DecimalJsLike | number | string
   }
 
   export type walletUncheckedCreateInput = {
     id?: number
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     logo: string
     name: string
     period: Date | string
-    tna: number
+    tna?: Decimal | DecimalJsLike | number | string
   }
 
   export type walletUpdateInput = {
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     period?: DateTimeFieldUpdateOperationsInput | Date | string
-    tna?: IntFieldUpdateOperationsInput | number
+    tna?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type walletUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     period?: DateTimeFieldUpdateOperationsInput | Date | string
-    tna?: IntFieldUpdateOperationsInput | number
+    tna?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type walletCreateManyInput = {
     id?: number
-    capital: number
+    capital?: Decimal | DecimalJsLike | number | string
     logo: string
     name: string
     period: Date | string
-    tna: number
+    tna?: Decimal | DecimalJsLike | number | string
   }
 
   export type walletUpdateManyMutationInput = {
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     period?: DateTimeFieldUpdateOperationsInput | Date | string
-    tna?: IntFieldUpdateOperationsInput | number
+    tna?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type walletUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    capital?: IntFieldUpdateOperationsInput | number
+    capital?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     logo?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     period?: DateTimeFieldUpdateOperationsInput | Date | string
-    tna?: IntFieldUpdateOperationsInput | number
+    tna?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6432,15 +6439,15 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -6466,6 +6473,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type bancoCountOrderByAggregateInput = {
@@ -6526,20 +6544,20 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6571,6 +6589,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type fijoCountOrderByAggregateInput = {
@@ -6748,12 +6782,12 @@ export namespace Prisma {
     tna?: SortOrder
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -6762,6 +6796,14 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6783,15 +6825,15 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -6819,6 +6861,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -6835,20 +6888,20 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6880,6 +6933,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
 
