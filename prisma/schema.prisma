@@ -10,7 +10,7 @@ datasource db {
 
 model banco {
   id      Int      @id @default(autoincrement()) @map("_id")
-  capital Decimal  @default(0.00) @db.Decimal(20, 2)
+  capital Float
   duedate DateTime
   logo    String
   name    String
@@ -19,40 +19,40 @@ model banco {
 }
 
 model fijo {
-  id      Int      @id @default(autoincrement()) @map("_id")
-  capital Decimal  @default(0.00) @db.Decimal(20, 2)
+  id      Int       @id @default(autoincrement()) @map("_id")
+  capital Float     @default(0)
   client  String
   logo    String
   name    String
-  period  DateTime
+  period  DateTime?
   url     String
 }
 
 model gasto {
   id     Int      @id @default(autoincrement()) @map("_id")
-  amount Decimal  @default(0.00) @db.Decimal(20, 2)
+  amount Float
   date   DateTime
   detail String
   type   Int
 }
 
 model principal {
-  id          Int @id @default(autoincrement()) @map("_id")
-  available   Int
-  expenses    Int
-  inbanks     Int
-  indebt      Int
-  investments Int
-  max         Int
-  monthly     Int
-  nextmonth   Int
+  id          Int   @id @default(autoincrement()) @map("_id")
+  available   Float @default(0)
+  expenses    Float @default(0)
+  inbanks     Float @default(0)
+  indebt      Float @default(0)
+  investments Float @default(0)
+  max         Float @default(0)
+  monthly     Float @default(0)
+  nextmonth   Float @default(0)
 }
 
 model wallet {
   id      Int      @id @default(autoincrement()) @map("_id")
-  capital Decimal  @default(0.00) @db.Decimal(20, 2)
+  capital Float    @default(0)
   logo    String
   name    String
   period  DateTime
-  tna     Decimal  @default(0) @db.Decimal(5, 2)
+  tna     Float    @default(0)
 }
