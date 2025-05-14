@@ -56,3 +56,8 @@ model wallet {
   period  DateTime
   tna     Float    @default(0)
 }
+
+model tipo_gasto {
+  id     Int    @id @default(autoincrement()) @map("_id")
+  nombre String @db.VarChar(255)
+}

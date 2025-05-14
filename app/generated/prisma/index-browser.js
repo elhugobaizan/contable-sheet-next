@@ -171,6 +171,11 @@ exports.Prisma.WalletScalarFieldEnum = {
   tna: 'tna'
 };
 
+exports.Prisma.Tipo_gastoScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -187,7 +192,8 @@ exports.Prisma.ModelName = {
   fijo: 'fijo',
   gasto: 'gasto',
   principal: 'principal',
-  wallet: 'wallet'
+  wallet: 'wallet',
+  tipo_gasto: 'tipo_gasto'
 };
 
 /**
