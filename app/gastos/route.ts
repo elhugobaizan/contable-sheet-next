@@ -29,6 +29,8 @@ export async function POST(req: Req) {
                 type: tipo
             }
         });
+        console.log(result);
+
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
