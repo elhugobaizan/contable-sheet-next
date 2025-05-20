@@ -11,10 +11,10 @@ datasource db {
 model banco {
   id      Int      @id @default(autoincrement()) @map("_id")
   capital Float
-  duedate DateTime
+  duedate DateTime @db.Date
   logo    String
   name    String
-  period  DateTime
+  period  DateTime @db.Date
   tna     Float
 }
 
@@ -24,7 +24,7 @@ model fijo {
   client  String
   logo    String
   name    String
-  period  DateTime?
+  period  DateTime? @db.DateTime(0)
   url     String
 }
 
