@@ -19,7 +19,7 @@ async function getReservaWallets() {
     } */
 }
 
-export async function getTotalFondos() {
+async function getTotalFondos() {
   return 1725507.58;
   /*   try {
       const result = await prisma.wallet.aggregate({
