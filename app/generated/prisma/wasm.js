@@ -176,6 +176,16 @@ exports.Prisma.Tipo_gastoScalarFieldEnum = {
   nombre: 'nombre'
 };
 
+exports.Prisma.InversionScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  periodo: 'periodo',
+  valorinicial: 'valorinicial',
+  valoractual: 'valoractual',
+  cuotapartes: 'cuotapartes',
+  montoinicial: 'montoinicial'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -193,7 +203,8 @@ exports.Prisma.ModelName = {
   gasto: 'gasto',
   principal: 'principal',
   wallet: 'wallet',
-  tipo_gasto: 'tipo_gasto'
+  tipo_gasto: 'tipo_gasto',
+  inversion: 'inversion'
 };
 
 /**

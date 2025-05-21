@@ -43,6 +43,11 @@ export type wallet = $Result.DefaultSelection<Prisma.$walletPayload>
  * 
  */
 export type tipo_gasto = $Result.DefaultSelection<Prisma.$tipo_gastoPayload>
+/**
+ * Model inversion
+ * 
+ */
+export type inversion = $Result.DefaultSelection<Prisma.$inversionPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -226,6 +231,16 @@ export class PrismaClient<
     * ```
     */
   get tipo_gasto(): Prisma.tipo_gastoDelegate<ExtArgs>;
+
+  /**
+   * `prisma.inversion`: Exposes CRUD operations for the **inversion** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Inversions
+    * const inversions = await prisma.inversion.findMany()
+    * ```
+    */
+  get inversion(): Prisma.inversionDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -672,7 +687,8 @@ export namespace Prisma {
     gasto: 'gasto',
     principal: 'principal',
     wallet: 'wallet',
-    tipo_gasto: 'tipo_gasto'
+    tipo_gasto: 'tipo_gasto',
+    inversion: 'inversion'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -688,7 +704,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "banco" | "fijo" | "gasto" | "principal" | "wallet" | "tipo_gasto"
+      modelProps: "banco" | "fijo" | "gasto" | "principal" | "wallet" | "tipo_gasto" | "inversion"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1085,6 +1101,72 @@ export namespace Prisma {
           count: {
             args: Prisma.tipo_gastoCountArgs<ExtArgs>
             result: $Utils.Optional<Tipo_gastoCountAggregateOutputType> | number
+          }
+        }
+      }
+      inversion: {
+        payload: Prisma.$inversionPayload<ExtArgs>
+        fields: Prisma.inversionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.inversionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.inversionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>
+          }
+          findFirst: {
+            args: Prisma.inversionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.inversionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>
+          }
+          findMany: {
+            args: Prisma.inversionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>[]
+          }
+          create: {
+            args: Prisma.inversionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>
+          }
+          createMany: {
+            args: Prisma.inversionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.inversionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>
+          }
+          update: {
+            args: Prisma.inversionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>
+          }
+          deleteMany: {
+            args: Prisma.inversionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.inversionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.inversionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$inversionPayload>
+          }
+          aggregate: {
+            args: Prisma.InversionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInversion>
+          }
+          groupBy: {
+            args: Prisma.inversionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InversionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.inversionCountArgs<ExtArgs>
+            result: $Utils.Optional<InversionCountAggregateOutputType> | number
           }
         }
       }
@@ -6572,6 +6654,910 @@ export namespace Prisma {
 
 
   /**
+   * Model inversion
+   */
+
+  export type AggregateInversion = {
+    _count: InversionCountAggregateOutputType | null
+    _avg: InversionAvgAggregateOutputType | null
+    _sum: InversionSumAggregateOutputType | null
+    _min: InversionMinAggregateOutputType | null
+    _max: InversionMaxAggregateOutputType | null
+  }
+
+  export type InversionAvgAggregateOutputType = {
+    id: number | null
+    valorinicial: number | null
+    valoractual: number | null
+    cuotapartes: number | null
+    montoinicial: number | null
+  }
+
+  export type InversionSumAggregateOutputType = {
+    id: number | null
+    valorinicial: number | null
+    valoractual: number | null
+    cuotapartes: number | null
+    montoinicial: number | null
+  }
+
+  export type InversionMinAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    periodo: Date | null
+    valorinicial: number | null
+    valoractual: number | null
+    cuotapartes: number | null
+    montoinicial: number | null
+  }
+
+  export type InversionMaxAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    periodo: Date | null
+    valorinicial: number | null
+    valoractual: number | null
+    cuotapartes: number | null
+    montoinicial: number | null
+  }
+
+  export type InversionCountAggregateOutputType = {
+    id: number
+    nombre: number
+    periodo: number
+    valorinicial: number
+    valoractual: number
+    cuotapartes: number
+    montoinicial: number
+    _all: number
+  }
+
+
+  export type InversionAvgAggregateInputType = {
+    id?: true
+    valorinicial?: true
+    valoractual?: true
+    cuotapartes?: true
+    montoinicial?: true
+  }
+
+  export type InversionSumAggregateInputType = {
+    id?: true
+    valorinicial?: true
+    valoractual?: true
+    cuotapartes?: true
+    montoinicial?: true
+  }
+
+  export type InversionMinAggregateInputType = {
+    id?: true
+    nombre?: true
+    periodo?: true
+    valorinicial?: true
+    valoractual?: true
+    cuotapartes?: true
+    montoinicial?: true
+  }
+
+  export type InversionMaxAggregateInputType = {
+    id?: true
+    nombre?: true
+    periodo?: true
+    valorinicial?: true
+    valoractual?: true
+    cuotapartes?: true
+    montoinicial?: true
+  }
+
+  export type InversionCountAggregateInputType = {
+    id?: true
+    nombre?: true
+    periodo?: true
+    valorinicial?: true
+    valoractual?: true
+    cuotapartes?: true
+    montoinicial?: true
+    _all?: true
+  }
+
+  export type InversionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which inversion to aggregate.
+     */
+    where?: inversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of inversions to fetch.
+     */
+    orderBy?: inversionOrderByWithRelationInput | inversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: inversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` inversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` inversions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned inversions
+    **/
+    _count?: true | InversionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InversionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InversionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InversionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InversionMaxAggregateInputType
+  }
+
+  export type GetInversionAggregateType<T extends InversionAggregateArgs> = {
+        [P in keyof T & keyof AggregateInversion]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInversion[P]>
+      : GetScalarType<T[P], AggregateInversion[P]>
+  }
+
+
+
+
+  export type inversionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: inversionWhereInput
+    orderBy?: inversionOrderByWithAggregationInput | inversionOrderByWithAggregationInput[]
+    by: InversionScalarFieldEnum[] | InversionScalarFieldEnum
+    having?: inversionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InversionCountAggregateInputType | true
+    _avg?: InversionAvgAggregateInputType
+    _sum?: InversionSumAggregateInputType
+    _min?: InversionMinAggregateInputType
+    _max?: InversionMaxAggregateInputType
+  }
+
+  export type InversionGroupByOutputType = {
+    id: number
+    nombre: string
+    periodo: Date
+    valorinicial: number
+    valoractual: number
+    cuotapartes: number
+    montoinicial: number
+    _count: InversionCountAggregateOutputType | null
+    _avg: InversionAvgAggregateOutputType | null
+    _sum: InversionSumAggregateOutputType | null
+    _min: InversionMinAggregateOutputType | null
+    _max: InversionMaxAggregateOutputType | null
+  }
+
+  type GetInversionGroupByPayload<T extends inversionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InversionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InversionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InversionGroupByOutputType[P]>
+            : GetScalarType<T[P], InversionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type inversionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    periodo?: boolean
+    valorinicial?: boolean
+    valoractual?: boolean
+    cuotapartes?: boolean
+    montoinicial?: boolean
+  }, ExtArgs["result"]["inversion"]>
+
+
+  export type inversionSelectScalar = {
+    id?: boolean
+    nombre?: boolean
+    periodo?: boolean
+    valorinicial?: boolean
+    valoractual?: boolean
+    cuotapartes?: boolean
+    montoinicial?: boolean
+  }
+
+
+  export type $inversionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "inversion"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nombre: string
+      periodo: Date
+      valorinicial: number
+      valoractual: number
+      cuotapartes: number
+      montoinicial: number
+    }, ExtArgs["result"]["inversion"]>
+    composites: {}
+  }
+
+  type inversionGetPayload<S extends boolean | null | undefined | inversionDefaultArgs> = $Result.GetResult<Prisma.$inversionPayload, S>
+
+  type inversionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<inversionFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: InversionCountAggregateInputType | true
+    }
+
+  export interface inversionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['inversion'], meta: { name: 'inversion' } }
+    /**
+     * Find zero or one Inversion that matches the filter.
+     * @param {inversionFindUniqueArgs} args - Arguments to find a Inversion
+     * @example
+     * // Get one Inversion
+     * const inversion = await prisma.inversion.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends inversionFindUniqueArgs>(args: SelectSubset<T, inversionFindUniqueArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Inversion that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {inversionFindUniqueOrThrowArgs} args - Arguments to find a Inversion
+     * @example
+     * // Get one Inversion
+     * const inversion = await prisma.inversion.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends inversionFindUniqueOrThrowArgs>(args: SelectSubset<T, inversionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Inversion that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inversionFindFirstArgs} args - Arguments to find a Inversion
+     * @example
+     * // Get one Inversion
+     * const inversion = await prisma.inversion.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends inversionFindFirstArgs>(args?: SelectSubset<T, inversionFindFirstArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Inversion that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inversionFindFirstOrThrowArgs} args - Arguments to find a Inversion
+     * @example
+     * // Get one Inversion
+     * const inversion = await prisma.inversion.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends inversionFindFirstOrThrowArgs>(args?: SelectSubset<T, inversionFindFirstOrThrowArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Inversions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inversionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Inversions
+     * const inversions = await prisma.inversion.findMany()
+     * 
+     * // Get first 10 Inversions
+     * const inversions = await prisma.inversion.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const inversionWithIdOnly = await prisma.inversion.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends inversionFindManyArgs>(args?: SelectSubset<T, inversionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Inversion.
+     * @param {inversionCreateArgs} args - Arguments to create a Inversion.
+     * @example
+     * // Create one Inversion
+     * const Inversion = await prisma.inversion.create({
+     *   data: {
+     *     // ... data to create a Inversion
+     *   }
+     * })
+     * 
+     */
+    create<T extends inversionCreateArgs>(args: SelectSubset<T, inversionCreateArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Inversions.
+     * @param {inversionCreateManyArgs} args - Arguments to create many Inversions.
+     * @example
+     * // Create many Inversions
+     * const inversion = await prisma.inversion.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends inversionCreateManyArgs>(args?: SelectSubset<T, inversionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Inversion.
+     * @param {inversionDeleteArgs} args - Arguments to delete one Inversion.
+     * @example
+     * // Delete one Inversion
+     * const Inversion = await prisma.inversion.delete({
+     *   where: {
+     *     // ... filter to delete one Inversion
+     *   }
+     * })
+     * 
+     */
+    delete<T extends inversionDeleteArgs>(args: SelectSubset<T, inversionDeleteArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Inversion.
+     * @param {inversionUpdateArgs} args - Arguments to update one Inversion.
+     * @example
+     * // Update one Inversion
+     * const inversion = await prisma.inversion.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends inversionUpdateArgs>(args: SelectSubset<T, inversionUpdateArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Inversions.
+     * @param {inversionDeleteManyArgs} args - Arguments to filter Inversions to delete.
+     * @example
+     * // Delete a few Inversions
+     * const { count } = await prisma.inversion.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends inversionDeleteManyArgs>(args?: SelectSubset<T, inversionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Inversions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inversionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Inversions
+     * const inversion = await prisma.inversion.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends inversionUpdateManyArgs>(args: SelectSubset<T, inversionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Inversion.
+     * @param {inversionUpsertArgs} args - Arguments to update or create a Inversion.
+     * @example
+     * // Update or create a Inversion
+     * const inversion = await prisma.inversion.upsert({
+     *   create: {
+     *     // ... data to create a Inversion
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Inversion we want to update
+     *   }
+     * })
+     */
+    upsert<T extends inversionUpsertArgs>(args: SelectSubset<T, inversionUpsertArgs<ExtArgs>>): Prisma__inversionClient<$Result.GetResult<Prisma.$inversionPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Inversions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inversionCountArgs} args - Arguments to filter Inversions to count.
+     * @example
+     * // Count the number of Inversions
+     * const count = await prisma.inversion.count({
+     *   where: {
+     *     // ... the filter for the Inversions we want to count
+     *   }
+     * })
+    **/
+    count<T extends inversionCountArgs>(
+      args?: Subset<T, inversionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InversionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Inversion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InversionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InversionAggregateArgs>(args: Subset<T, InversionAggregateArgs>): Prisma.PrismaPromise<GetInversionAggregateType<T>>
+
+    /**
+     * Group by Inversion.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {inversionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends inversionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: inversionGroupByArgs['orderBy'] }
+        : { orderBy?: inversionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, inversionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInversionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the inversion model
+   */
+  readonly fields: inversionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for inversion.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__inversionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the inversion model
+   */ 
+  interface inversionFieldRefs {
+    readonly id: FieldRef<"inversion", 'Int'>
+    readonly nombre: FieldRef<"inversion", 'String'>
+    readonly periodo: FieldRef<"inversion", 'DateTime'>
+    readonly valorinicial: FieldRef<"inversion", 'Float'>
+    readonly valoractual: FieldRef<"inversion", 'Float'>
+    readonly cuotapartes: FieldRef<"inversion", 'Float'>
+    readonly montoinicial: FieldRef<"inversion", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * inversion findUnique
+   */
+  export type inversionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * Filter, which inversion to fetch.
+     */
+    where: inversionWhereUniqueInput
+  }
+
+  /**
+   * inversion findUniqueOrThrow
+   */
+  export type inversionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * Filter, which inversion to fetch.
+     */
+    where: inversionWhereUniqueInput
+  }
+
+  /**
+   * inversion findFirst
+   */
+  export type inversionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * Filter, which inversion to fetch.
+     */
+    where?: inversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of inversions to fetch.
+     */
+    orderBy?: inversionOrderByWithRelationInput | inversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for inversions.
+     */
+    cursor?: inversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` inversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` inversions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of inversions.
+     */
+    distinct?: InversionScalarFieldEnum | InversionScalarFieldEnum[]
+  }
+
+  /**
+   * inversion findFirstOrThrow
+   */
+  export type inversionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * Filter, which inversion to fetch.
+     */
+    where?: inversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of inversions to fetch.
+     */
+    orderBy?: inversionOrderByWithRelationInput | inversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for inversions.
+     */
+    cursor?: inversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` inversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` inversions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of inversions.
+     */
+    distinct?: InversionScalarFieldEnum | InversionScalarFieldEnum[]
+  }
+
+  /**
+   * inversion findMany
+   */
+  export type inversionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * Filter, which inversions to fetch.
+     */
+    where?: inversionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of inversions to fetch.
+     */
+    orderBy?: inversionOrderByWithRelationInput | inversionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing inversions.
+     */
+    cursor?: inversionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` inversions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` inversions.
+     */
+    skip?: number
+    distinct?: InversionScalarFieldEnum | InversionScalarFieldEnum[]
+  }
+
+  /**
+   * inversion create
+   */
+  export type inversionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * The data needed to create a inversion.
+     */
+    data: XOR<inversionCreateInput, inversionUncheckedCreateInput>
+  }
+
+  /**
+   * inversion createMany
+   */
+  export type inversionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many inversions.
+     */
+    data: inversionCreateManyInput | inversionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * inversion update
+   */
+  export type inversionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * The data needed to update a inversion.
+     */
+    data: XOR<inversionUpdateInput, inversionUncheckedUpdateInput>
+    /**
+     * Choose, which inversion to update.
+     */
+    where: inversionWhereUniqueInput
+  }
+
+  /**
+   * inversion updateMany
+   */
+  export type inversionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update inversions.
+     */
+    data: XOR<inversionUpdateManyMutationInput, inversionUncheckedUpdateManyInput>
+    /**
+     * Filter which inversions to update
+     */
+    where?: inversionWhereInput
+  }
+
+  /**
+   * inversion upsert
+   */
+  export type inversionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * The filter to search for the inversion to update in case it exists.
+     */
+    where: inversionWhereUniqueInput
+    /**
+     * In case the inversion found by the `where` argument doesn't exist, create a new inversion with this data.
+     */
+    create: XOR<inversionCreateInput, inversionUncheckedCreateInput>
+    /**
+     * In case the inversion was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<inversionUpdateInput, inversionUncheckedUpdateInput>
+  }
+
+  /**
+   * inversion delete
+   */
+  export type inversionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+    /**
+     * Filter which inversion to delete.
+     */
+    where: inversionWhereUniqueInput
+  }
+
+  /**
+   * inversion deleteMany
+   */
+  export type inversionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which inversions to delete
+     */
+    where?: inversionWhereInput
+  }
+
+  /**
+   * inversion without action
+   */
+  export type inversionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the inversion
+     */
+    select?: inversionSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6655,6 +7641,19 @@ export namespace Prisma {
   };
 
   export type Tipo_gastoScalarFieldEnum = (typeof Tipo_gastoScalarFieldEnum)[keyof typeof Tipo_gastoScalarFieldEnum]
+
+
+  export const InversionScalarFieldEnum: {
+    id: 'id',
+    nombre: 'nombre',
+    periodo: 'periodo',
+    valorinicial: 'valorinicial',
+    valoractual: 'valoractual',
+    cuotapartes: 'cuotapartes',
+    montoinicial: 'montoinicial'
+  };
+
+  export type InversionScalarFieldEnum = (typeof InversionScalarFieldEnum)[keyof typeof InversionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7063,6 +8062,70 @@ export namespace Prisma {
     nombre?: StringWithAggregatesFilter<"tipo_gasto"> | string
   }
 
+  export type inversionWhereInput = {
+    AND?: inversionWhereInput | inversionWhereInput[]
+    OR?: inversionWhereInput[]
+    NOT?: inversionWhereInput | inversionWhereInput[]
+    id?: IntFilter<"inversion"> | number
+    nombre?: StringFilter<"inversion"> | string
+    periodo?: DateTimeFilter<"inversion"> | Date | string
+    valorinicial?: FloatFilter<"inversion"> | number
+    valoractual?: FloatFilter<"inversion"> | number
+    cuotapartes?: FloatFilter<"inversion"> | number
+    montoinicial?: FloatFilter<"inversion"> | number
+  }
+
+  export type inversionOrderByWithRelationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    periodo?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+  }
+
+  export type inversionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: inversionWhereInput | inversionWhereInput[]
+    OR?: inversionWhereInput[]
+    NOT?: inversionWhereInput | inversionWhereInput[]
+    nombre?: StringFilter<"inversion"> | string
+    periodo?: DateTimeFilter<"inversion"> | Date | string
+    valorinicial?: FloatFilter<"inversion"> | number
+    valoractual?: FloatFilter<"inversion"> | number
+    cuotapartes?: FloatFilter<"inversion"> | number
+    montoinicial?: FloatFilter<"inversion"> | number
+  }, "id">
+
+  export type inversionOrderByWithAggregationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    periodo?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+    _count?: inversionCountOrderByAggregateInput
+    _avg?: inversionAvgOrderByAggregateInput
+    _max?: inversionMaxOrderByAggregateInput
+    _min?: inversionMinOrderByAggregateInput
+    _sum?: inversionSumOrderByAggregateInput
+  }
+
+  export type inversionScalarWhereWithAggregatesInput = {
+    AND?: inversionScalarWhereWithAggregatesInput | inversionScalarWhereWithAggregatesInput[]
+    OR?: inversionScalarWhereWithAggregatesInput[]
+    NOT?: inversionScalarWhereWithAggregatesInput | inversionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"inversion"> | number
+    nombre?: StringWithAggregatesFilter<"inversion"> | string
+    periodo?: DateTimeWithAggregatesFilter<"inversion"> | Date | string
+    valorinicial?: FloatWithAggregatesFilter<"inversion"> | number
+    valoractual?: FloatWithAggregatesFilter<"inversion"> | number
+    cuotapartes?: FloatWithAggregatesFilter<"inversion"> | number
+    montoinicial?: FloatWithAggregatesFilter<"inversion"> | number
+  }
+
   export type bancoCreateInput = {
     capital: number
     duedate: Date | string
@@ -7421,6 +8484,73 @@ export namespace Prisma {
   export type tipo_gastoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type inversionCreateInput = {
+    nombre?: string
+    periodo: Date | string
+    valorinicial?: number
+    valoractual?: number
+    cuotapartes?: number
+    montoinicial?: number
+  }
+
+  export type inversionUncheckedCreateInput = {
+    id?: number
+    nombre?: string
+    periodo: Date | string
+    valorinicial?: number
+    valoractual?: number
+    cuotapartes?: number
+    montoinicial?: number
+  }
+
+  export type inversionUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    periodo?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorinicial?: FloatFieldUpdateOperationsInput | number
+    valoractual?: FloatFieldUpdateOperationsInput | number
+    cuotapartes?: FloatFieldUpdateOperationsInput | number
+    montoinicial?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type inversionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    periodo?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorinicial?: FloatFieldUpdateOperationsInput | number
+    valoractual?: FloatFieldUpdateOperationsInput | number
+    cuotapartes?: FloatFieldUpdateOperationsInput | number
+    montoinicial?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type inversionCreateManyInput = {
+    id?: number
+    nombre?: string
+    periodo: Date | string
+    valorinicial?: number
+    valoractual?: number
+    cuotapartes?: number
+    montoinicial?: number
+  }
+
+  export type inversionUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    periodo?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorinicial?: FloatFieldUpdateOperationsInput | number
+    valoractual?: FloatFieldUpdateOperationsInput | number
+    cuotapartes?: FloatFieldUpdateOperationsInput | number
+    montoinicial?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type inversionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    periodo?: DateTimeFieldUpdateOperationsInput | Date | string
+    valorinicial?: FloatFieldUpdateOperationsInput | number
+    valoractual?: FloatFieldUpdateOperationsInput | number
+    cuotapartes?: FloatFieldUpdateOperationsInput | number
+    montoinicial?: FloatFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7803,6 +8933,52 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type inversionCountOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    periodo?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+  }
+
+  export type inversionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+  }
+
+  export type inversionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    periodo?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+  }
+
+  export type inversionMinOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    periodo?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+  }
+
+  export type inversionSumOrderByAggregateInput = {
+    id?: SortOrder
+    valorinicial?: SortOrder
+    valoractual?: SortOrder
+    cuotapartes?: SortOrder
+    montoinicial?: SortOrder
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -8006,6 +9182,10 @@ export namespace Prisma {
      * @deprecated Use tipo_gastoDefaultArgs instead
      */
     export type tipo_gastoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = tipo_gastoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use inversionDefaultArgs instead
+     */
+    export type inversionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = inversionDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -2,14 +2,6 @@ import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { DateTime } from "luxon";
 import { prisma } from "@/db";
 
-function ahorroPorMes(objetivoMensual: number, alMomento: number) {
-  return (alMomento > objetivoMensual ? 0 : (objetivoMensual - alMomento));
-}
-
-function topeDiario(efectivoEnBanco: number, objetivoMensual: number) {
-  return (efectivoEnBanco - (objetivoMensual < 0 ? 0 : objetivoMensual)) / (DateTime.now().daysInMonth - DateTime.now().day);
-}
-
 async function getTotalFijos() {
   try {
     const result = await prisma.fijo.aggregate({
@@ -65,14 +57,25 @@ async function getPlazosFijos() {
   }
 }
 
+function ahorroPorMes(objetivoMensual: number, alMomento: number) {
+  return (alMomento > objetivoMensual ? 0 : (objetivoMensual - alMomento));
+}
+
+function topeDiario(efectivoEnBanco: number, objetivoMensual: number) {
+  return (efectivoEnBanco - (objetivoMensual < 0 ? 0 : objetivoMensual)) / (DateTime.now().daysInMonth - DateTime.now().day);
+}
+
 export async function GET() {
+  console.log('tope de gasto diario');
+
   const totalFijos = await getTotalFijos();
   const gastosHoy = await getGastosHoy();
   const disponible = await getTotalDisponible();
   const pfijo = await getPlazosFijos();
 
   const ahorro = ahorroPorMes(880000, pfijo!);
-  const tope = topeDiario(disponible! - totalFijos!, ahorro) - gastosHoy!;
+  console.log(totalFijos, gastosHoy, disponible, pfijo, ahorro);
 
+  const tope = topeDiario(disponible! - totalFijos!, ahorro);
   return Res.json(tope);
 }

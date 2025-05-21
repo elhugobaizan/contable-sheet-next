@@ -61,3 +61,13 @@ model tipo_gasto {
   id     Int    @id @default(autoincrement()) @map("_id")
   nombre String @db.VarChar(255)
 }
+
+model inversion {
+  id           Int      @id @default(autoincrement())
+  nombre       String   @default("") @db.VarChar(50)
+  periodo      DateTime @db.Date
+  valorinicial Float    @default(0) @db.Float
+  valoractual  Float    @default(0) @db.Float
+  cuotapartes  Float    @default(0) @db.Float
+  montoinicial Float    @default(0) @db.Float
+}
