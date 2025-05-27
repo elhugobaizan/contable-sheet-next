@@ -31,6 +31,21 @@ async function getGastosHoy() {
   }
 }
 
+async function getReservaWallets() {
+  try {
+    const result = await prisma.variable.findFirst({
+      where: {
+        nombre: 'reserva_wallet'
+      }
+    });
+    const valor = result ? (result.valor ? result.valor : 0) : 0;
+    return valor;
+  } catch (err) {
+    console.log("ERROR: ", err);
+    return 0;
+  }
+}
+
 async function getTotalDisponible() {
   try {
     const result = await prisma.wallet.aggregate({
@@ -38,7 +53,8 @@ async function getTotalDisponible() {
         capital: true
       }
     });
-    return (result._sum.capital ? result._sum.capital : 0) - 200000; //Hay que ver donde poner esa reserva
+    const reserva = await getReservaWallets()
+    return (result._sum.capital ? result._sum.capital : 0) - reserva; //Hay que ver donde poner esa reserva
   } catch (err) {
     console.log("ERROR: ", err);
   }
