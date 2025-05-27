@@ -186,6 +186,12 @@ exports.Prisma.InversionScalarFieldEnum = {
   montoinicial: 'montoinicial'
 };
 
+exports.Prisma.VariableScalarFieldEnum = {
+  id: 'id',
+  nombre: 'nombre',
+  valor: 'valor'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -204,7 +210,8 @@ exports.Prisma.ModelName = {
   principal: 'principal',
   wallet: 'wallet',
   tipo_gasto: 'tipo_gasto',
-  inversion: 'inversion'
+  inversion: 'inversion',
+  variable: 'variable'
 };
 
 /**

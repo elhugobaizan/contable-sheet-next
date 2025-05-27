@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { prisma } from "@/db";
 
 async function getReservaWallets() {
-  return 1200000;
+  return 200000;
   /*   try {
       const result = await prisma.gasto.aggregate({
         _sum: {

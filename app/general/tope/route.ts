@@ -38,7 +38,7 @@ async function getTotalDisponible() {
         capital: true
       }
     });
-    return (result._sum.capital ? result._sum.capital : 0) - 1200000; //Hay que ver donde poner esa reserva
+    return (result._sum.capital ? result._sum.capital : 0) - 200000; //Hay que ver donde poner esa reserva
   } catch (err) {
     console.log("ERROR: ", err);
   }

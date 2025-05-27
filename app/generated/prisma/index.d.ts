@@ -48,6 +48,11 @@ export type tipo_gasto = $Result.DefaultSelection<Prisma.$tipo_gastoPayload>
  * 
  */
 export type inversion = $Result.DefaultSelection<Prisma.$inversionPayload>
+/**
+ * Model variable
+ * 
+ */
+export type variable = $Result.DefaultSelection<Prisma.$variablePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -241,6 +246,16 @@ export class PrismaClient<
     * ```
     */
   get inversion(): Prisma.inversionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.variable`: Exposes CRUD operations for the **variable** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Variables
+    * const variables = await prisma.variable.findMany()
+    * ```
+    */
+  get variable(): Prisma.variableDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -688,7 +703,8 @@ export namespace Prisma {
     principal: 'principal',
     wallet: 'wallet',
     tipo_gasto: 'tipo_gasto',
-    inversion: 'inversion'
+    inversion: 'inversion',
+    variable: 'variable'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -704,7 +720,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "banco" | "fijo" | "gasto" | "principal" | "wallet" | "tipo_gasto" | "inversion"
+      modelProps: "banco" | "fijo" | "gasto" | "principal" | "wallet" | "tipo_gasto" | "inversion" | "variable"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1167,6 +1183,72 @@ export namespace Prisma {
           count: {
             args: Prisma.inversionCountArgs<ExtArgs>
             result: $Utils.Optional<InversionCountAggregateOutputType> | number
+          }
+        }
+      }
+      variable: {
+        payload: Prisma.$variablePayload<ExtArgs>
+        fields: Prisma.variableFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.variableFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.variableFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>
+          }
+          findFirst: {
+            args: Prisma.variableFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.variableFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>
+          }
+          findMany: {
+            args: Prisma.variableFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>[]
+          }
+          create: {
+            args: Prisma.variableCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>
+          }
+          createMany: {
+            args: Prisma.variableCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.variableDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>
+          }
+          update: {
+            args: Prisma.variableUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>
+          }
+          deleteMany: {
+            args: Prisma.variableDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.variableUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.variableUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$variablePayload>
+          }
+          aggregate: {
+            args: Prisma.VariableAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVariable>
+          }
+          groupBy: {
+            args: Prisma.variableGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VariableGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.variableCountArgs<ExtArgs>
+            result: $Utils.Optional<VariableCountAggregateOutputType> | number
           }
         }
       }
@@ -7558,6 +7640,854 @@ export namespace Prisma {
 
 
   /**
+   * Model variable
+   */
+
+  export type AggregateVariable = {
+    _count: VariableCountAggregateOutputType | null
+    _avg: VariableAvgAggregateOutputType | null
+    _sum: VariableSumAggregateOutputType | null
+    _min: VariableMinAggregateOutputType | null
+    _max: VariableMaxAggregateOutputType | null
+  }
+
+  export type VariableAvgAggregateOutputType = {
+    id: number | null
+    valor: number | null
+  }
+
+  export type VariableSumAggregateOutputType = {
+    id: number | null
+    valor: number | null
+  }
+
+  export type VariableMinAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    valor: number | null
+  }
+
+  export type VariableMaxAggregateOutputType = {
+    id: number | null
+    nombre: string | null
+    valor: number | null
+  }
+
+  export type VariableCountAggregateOutputType = {
+    id: number
+    nombre: number
+    valor: number
+    _all: number
+  }
+
+
+  export type VariableAvgAggregateInputType = {
+    id?: true
+    valor?: true
+  }
+
+  export type VariableSumAggregateInputType = {
+    id?: true
+    valor?: true
+  }
+
+  export type VariableMinAggregateInputType = {
+    id?: true
+    nombre?: true
+    valor?: true
+  }
+
+  export type VariableMaxAggregateInputType = {
+    id?: true
+    nombre?: true
+    valor?: true
+  }
+
+  export type VariableCountAggregateInputType = {
+    id?: true
+    nombre?: true
+    valor?: true
+    _all?: true
+  }
+
+  export type VariableAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which variable to aggregate.
+     */
+    where?: variableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of variables to fetch.
+     */
+    orderBy?: variableOrderByWithRelationInput | variableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: variableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` variables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` variables.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned variables
+    **/
+    _count?: true | VariableCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VariableAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VariableSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VariableMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VariableMaxAggregateInputType
+  }
+
+  export type GetVariableAggregateType<T extends VariableAggregateArgs> = {
+        [P in keyof T & keyof AggregateVariable]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVariable[P]>
+      : GetScalarType<T[P], AggregateVariable[P]>
+  }
+
+
+
+
+  export type variableGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: variableWhereInput
+    orderBy?: variableOrderByWithAggregationInput | variableOrderByWithAggregationInput[]
+    by: VariableScalarFieldEnum[] | VariableScalarFieldEnum
+    having?: variableScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VariableCountAggregateInputType | true
+    _avg?: VariableAvgAggregateInputType
+    _sum?: VariableSumAggregateInputType
+    _min?: VariableMinAggregateInputType
+    _max?: VariableMaxAggregateInputType
+  }
+
+  export type VariableGroupByOutputType = {
+    id: number
+    nombre: string
+    valor: number
+    _count: VariableCountAggregateOutputType | null
+    _avg: VariableAvgAggregateOutputType | null
+    _sum: VariableSumAggregateOutputType | null
+    _min: VariableMinAggregateOutputType | null
+    _max: VariableMaxAggregateOutputType | null
+  }
+
+  type GetVariableGroupByPayload<T extends variableGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VariableGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VariableGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VariableGroupByOutputType[P]>
+            : GetScalarType<T[P], VariableGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type variableSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nombre?: boolean
+    valor?: boolean
+  }, ExtArgs["result"]["variable"]>
+
+
+  export type variableSelectScalar = {
+    id?: boolean
+    nombre?: boolean
+    valor?: boolean
+  }
+
+
+  export type $variablePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "variable"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nombre: string
+      valor: number
+    }, ExtArgs["result"]["variable"]>
+    composites: {}
+  }
+
+  type variableGetPayload<S extends boolean | null | undefined | variableDefaultArgs> = $Result.GetResult<Prisma.$variablePayload, S>
+
+  type variableCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<variableFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: VariableCountAggregateInputType | true
+    }
+
+  export interface variableDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['variable'], meta: { name: 'variable' } }
+    /**
+     * Find zero or one Variable that matches the filter.
+     * @param {variableFindUniqueArgs} args - Arguments to find a Variable
+     * @example
+     * // Get one Variable
+     * const variable = await prisma.variable.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends variableFindUniqueArgs>(args: SelectSubset<T, variableFindUniqueArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Variable that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {variableFindUniqueOrThrowArgs} args - Arguments to find a Variable
+     * @example
+     * // Get one Variable
+     * const variable = await prisma.variable.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends variableFindUniqueOrThrowArgs>(args: SelectSubset<T, variableFindUniqueOrThrowArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Variable that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {variableFindFirstArgs} args - Arguments to find a Variable
+     * @example
+     * // Get one Variable
+     * const variable = await prisma.variable.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends variableFindFirstArgs>(args?: SelectSubset<T, variableFindFirstArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Variable that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {variableFindFirstOrThrowArgs} args - Arguments to find a Variable
+     * @example
+     * // Get one Variable
+     * const variable = await prisma.variable.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends variableFindFirstOrThrowArgs>(args?: SelectSubset<T, variableFindFirstOrThrowArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Variables that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {variableFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Variables
+     * const variables = await prisma.variable.findMany()
+     * 
+     * // Get first 10 Variables
+     * const variables = await prisma.variable.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const variableWithIdOnly = await prisma.variable.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends variableFindManyArgs>(args?: SelectSubset<T, variableFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Variable.
+     * @param {variableCreateArgs} args - Arguments to create a Variable.
+     * @example
+     * // Create one Variable
+     * const Variable = await prisma.variable.create({
+     *   data: {
+     *     // ... data to create a Variable
+     *   }
+     * })
+     * 
+     */
+    create<T extends variableCreateArgs>(args: SelectSubset<T, variableCreateArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Variables.
+     * @param {variableCreateManyArgs} args - Arguments to create many Variables.
+     * @example
+     * // Create many Variables
+     * const variable = await prisma.variable.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends variableCreateManyArgs>(args?: SelectSubset<T, variableCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Variable.
+     * @param {variableDeleteArgs} args - Arguments to delete one Variable.
+     * @example
+     * // Delete one Variable
+     * const Variable = await prisma.variable.delete({
+     *   where: {
+     *     // ... filter to delete one Variable
+     *   }
+     * })
+     * 
+     */
+    delete<T extends variableDeleteArgs>(args: SelectSubset<T, variableDeleteArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Variable.
+     * @param {variableUpdateArgs} args - Arguments to update one Variable.
+     * @example
+     * // Update one Variable
+     * const variable = await prisma.variable.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends variableUpdateArgs>(args: SelectSubset<T, variableUpdateArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Variables.
+     * @param {variableDeleteManyArgs} args - Arguments to filter Variables to delete.
+     * @example
+     * // Delete a few Variables
+     * const { count } = await prisma.variable.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends variableDeleteManyArgs>(args?: SelectSubset<T, variableDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Variables.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {variableUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Variables
+     * const variable = await prisma.variable.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends variableUpdateManyArgs>(args: SelectSubset<T, variableUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Variable.
+     * @param {variableUpsertArgs} args - Arguments to update or create a Variable.
+     * @example
+     * // Update or create a Variable
+     * const variable = await prisma.variable.upsert({
+     *   create: {
+     *     // ... data to create a Variable
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Variable we want to update
+     *   }
+     * })
+     */
+    upsert<T extends variableUpsertArgs>(args: SelectSubset<T, variableUpsertArgs<ExtArgs>>): Prisma__variableClient<$Result.GetResult<Prisma.$variablePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Variables.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {variableCountArgs} args - Arguments to filter Variables to count.
+     * @example
+     * // Count the number of Variables
+     * const count = await prisma.variable.count({
+     *   where: {
+     *     // ... the filter for the Variables we want to count
+     *   }
+     * })
+    **/
+    count<T extends variableCountArgs>(
+      args?: Subset<T, variableCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VariableCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Variable.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariableAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VariableAggregateArgs>(args: Subset<T, VariableAggregateArgs>): Prisma.PrismaPromise<GetVariableAggregateType<T>>
+
+    /**
+     * Group by Variable.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {variableGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends variableGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: variableGroupByArgs['orderBy'] }
+        : { orderBy?: variableGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, variableGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVariableGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the variable model
+   */
+  readonly fields: variableFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for variable.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__variableClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the variable model
+   */ 
+  interface variableFieldRefs {
+    readonly id: FieldRef<"variable", 'Int'>
+    readonly nombre: FieldRef<"variable", 'String'>
+    readonly valor: FieldRef<"variable", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * variable findUnique
+   */
+  export type variableFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * Filter, which variable to fetch.
+     */
+    where: variableWhereUniqueInput
+  }
+
+  /**
+   * variable findUniqueOrThrow
+   */
+  export type variableFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * Filter, which variable to fetch.
+     */
+    where: variableWhereUniqueInput
+  }
+
+  /**
+   * variable findFirst
+   */
+  export type variableFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * Filter, which variable to fetch.
+     */
+    where?: variableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of variables to fetch.
+     */
+    orderBy?: variableOrderByWithRelationInput | variableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for variables.
+     */
+    cursor?: variableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` variables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` variables.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of variables.
+     */
+    distinct?: VariableScalarFieldEnum | VariableScalarFieldEnum[]
+  }
+
+  /**
+   * variable findFirstOrThrow
+   */
+  export type variableFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * Filter, which variable to fetch.
+     */
+    where?: variableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of variables to fetch.
+     */
+    orderBy?: variableOrderByWithRelationInput | variableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for variables.
+     */
+    cursor?: variableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` variables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` variables.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of variables.
+     */
+    distinct?: VariableScalarFieldEnum | VariableScalarFieldEnum[]
+  }
+
+  /**
+   * variable findMany
+   */
+  export type variableFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * Filter, which variables to fetch.
+     */
+    where?: variableWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of variables to fetch.
+     */
+    orderBy?: variableOrderByWithRelationInput | variableOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing variables.
+     */
+    cursor?: variableWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` variables from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` variables.
+     */
+    skip?: number
+    distinct?: VariableScalarFieldEnum | VariableScalarFieldEnum[]
+  }
+
+  /**
+   * variable create
+   */
+  export type variableCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * The data needed to create a variable.
+     */
+    data: XOR<variableCreateInput, variableUncheckedCreateInput>
+  }
+
+  /**
+   * variable createMany
+   */
+  export type variableCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many variables.
+     */
+    data: variableCreateManyInput | variableCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * variable update
+   */
+  export type variableUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * The data needed to update a variable.
+     */
+    data: XOR<variableUpdateInput, variableUncheckedUpdateInput>
+    /**
+     * Choose, which variable to update.
+     */
+    where: variableWhereUniqueInput
+  }
+
+  /**
+   * variable updateMany
+   */
+  export type variableUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update variables.
+     */
+    data: XOR<variableUpdateManyMutationInput, variableUncheckedUpdateManyInput>
+    /**
+     * Filter which variables to update
+     */
+    where?: variableWhereInput
+  }
+
+  /**
+   * variable upsert
+   */
+  export type variableUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * The filter to search for the variable to update in case it exists.
+     */
+    where: variableWhereUniqueInput
+    /**
+     * In case the variable found by the `where` argument doesn't exist, create a new variable with this data.
+     */
+    create: XOR<variableCreateInput, variableUncheckedCreateInput>
+    /**
+     * In case the variable was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<variableUpdateInput, variableUncheckedUpdateInput>
+  }
+
+  /**
+   * variable delete
+   */
+  export type variableDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+    /**
+     * Filter which variable to delete.
+     */
+    where: variableWhereUniqueInput
+  }
+
+  /**
+   * variable deleteMany
+   */
+  export type variableDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which variables to delete
+     */
+    where?: variableWhereInput
+  }
+
+  /**
+   * variable without action
+   */
+  export type variableDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the variable
+     */
+    select?: variableSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7654,6 +8584,15 @@ export namespace Prisma {
   };
 
   export type InversionScalarFieldEnum = (typeof InversionScalarFieldEnum)[keyof typeof InversionScalarFieldEnum]
+
+
+  export const VariableScalarFieldEnum: {
+    id: 'id',
+    nombre: 'nombre',
+    valor: 'valor'
+  };
+
+  export type VariableScalarFieldEnum = (typeof VariableScalarFieldEnum)[keyof typeof VariableScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8126,6 +9065,50 @@ export namespace Prisma {
     montoinicial?: FloatWithAggregatesFilter<"inversion"> | number
   }
 
+  export type variableWhereInput = {
+    AND?: variableWhereInput | variableWhereInput[]
+    OR?: variableWhereInput[]
+    NOT?: variableWhereInput | variableWhereInput[]
+    id?: IntFilter<"variable"> | number
+    nombre?: StringFilter<"variable"> | string
+    valor?: FloatFilter<"variable"> | number
+  }
+
+  export type variableOrderByWithRelationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    valor?: SortOrder
+  }
+
+  export type variableWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    nombre?: string
+    AND?: variableWhereInput | variableWhereInput[]
+    OR?: variableWhereInput[]
+    NOT?: variableWhereInput | variableWhereInput[]
+    valor?: FloatFilter<"variable"> | number
+  }, "id" | "nombre">
+
+  export type variableOrderByWithAggregationInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    valor?: SortOrder
+    _count?: variableCountOrderByAggregateInput
+    _avg?: variableAvgOrderByAggregateInput
+    _max?: variableMaxOrderByAggregateInput
+    _min?: variableMinOrderByAggregateInput
+    _sum?: variableSumOrderByAggregateInput
+  }
+
+  export type variableScalarWhereWithAggregatesInput = {
+    AND?: variableScalarWhereWithAggregatesInput | variableScalarWhereWithAggregatesInput[]
+    OR?: variableScalarWhereWithAggregatesInput[]
+    NOT?: variableScalarWhereWithAggregatesInput | variableScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"variable"> | number
+    nombre?: StringWithAggregatesFilter<"variable"> | string
+    valor?: FloatWithAggregatesFilter<"variable"> | number
+  }
+
   export type bancoCreateInput = {
     capital: number
     duedate: Date | string
@@ -8551,6 +9534,45 @@ export namespace Prisma {
     valoractual?: FloatFieldUpdateOperationsInput | number
     cuotapartes?: FloatFieldUpdateOperationsInput | number
     montoinicial?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type variableCreateInput = {
+    nombre: string
+    valor?: number
+  }
+
+  export type variableUncheckedCreateInput = {
+    id?: number
+    nombre: string
+    valor?: number
+  }
+
+  export type variableUpdateInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    valor?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type variableUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    valor?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type variableCreateManyInput = {
+    id?: number
+    nombre: string
+    valor?: number
+  }
+
+  export type variableUpdateManyMutationInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    valor?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type variableUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    valor?: FloatFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -8979,6 +10001,34 @@ export namespace Prisma {
     montoinicial?: SortOrder
   }
 
+  export type variableCountOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    valor?: SortOrder
+  }
+
+  export type variableAvgOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+  }
+
+  export type variableMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    valor?: SortOrder
+  }
+
+  export type variableMinOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    valor?: SortOrder
+  }
+
+  export type variableSumOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9186,6 +10236,10 @@ export namespace Prisma {
      * @deprecated Use inversionDefaultArgs instead
      */
     export type inversionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = inversionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use variableDefaultArgs instead
+     */
+    export type variableArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = variableDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -71,3 +71,9 @@ model inversion {
   cuotapartes  Float    @default(0) @db.Float
   montoinicial Float    @default(0) @db.Float
 }
+
+model variable {
+  id     Int    @id @default(autoincrement())
+  nombre String @unique(map: "Índice 2") @db.VarChar(50)
+  valor  Float  @default(0) @db.Float
+}
