@@ -13,7 +13,10 @@ export async function GET() {
         return result;
     } catch (err) {
         console.log("ERROR: ", err);
-        return err;
+        return Res.json({ 
+            error: 'Error al listar wallets',
+            message: err instanceof Error ? err.message : String(err)
+        }, { status: 500 });
     }
 }
 
