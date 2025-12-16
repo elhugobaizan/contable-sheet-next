@@ -13,7 +13,7 @@
     "@prisma/client": "^5.22.0",
     "googleapis": "^169.0.0",
     "luxon": "^3.6.1",
-    "next": "15.3.2"
+    "next": "^16.0.10"
   },
   "devDependencies": {
     "@types/luxon": "^3.6.2",
