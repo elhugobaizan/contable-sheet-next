@@ -1,7 +1,6 @@
-import { log } from 'console'
 import { NextRequest, NextResponse } from 'next/server'
 
-const allowedOrigins = ['http://localhost:8081', 'https://hb-sheet-contable.vercel.app']
+const allowedOrigins = new Set(['http://localhost:8081', 'https://hb-sheet-contable.vercel.app'])
 
 const corsOptions = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -11,7 +10,7 @@ const corsOptions = {
 export function middleware(request: NextRequest) {
   // Check the origin from the request
   const origin = request.headers.get('origin') ?? ''
-  const isAllowedOrigin = allowedOrigins.includes(origin);
+  const isAllowedOrigin = allowedOrigins.has(origin);
 
   // Handle preflighted requests
   const isPreflight = request.method === 'OPTIONS';

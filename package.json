@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "googleapis": "^169.0.0",
     "luxon": "^3.6.1",
     "next": "15.3.2"
   },
