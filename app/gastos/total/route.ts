@@ -1,5 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { prisma } from '@/db';
+import connectDB from '@/db';
+import Gasto from '@/app/models/Gasto';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,14 +8,20 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     console.log("total gastos");
     try {
-        const result = await prisma.gasto.aggregate({
-            _sum: {
-                amount: true
+        await connectDB();
+        const result = await Gasto.aggregate([
+            {
+                $group: {
+                    _id: null,
+                    _sum: {
+                        amount: { $sum: '$amount' }
+                    }
+                }
             }
-        });
-        return Res.json(result);
+        ]);
+        return Res.json(result[0] || { _sum: { amount: 0 } });
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json(err);
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }

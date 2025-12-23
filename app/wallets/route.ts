@@ -1,6 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { generateWalletId } from "../controllers/utils";
-import { sheetName, wallet } from "../controllers/wallet";
+import connectDB from '@/db';
+import Wallet from '@/app/models/Wallet';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,9 +8,9 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     console.log("listar wallets");
     try {
-        const result = await wallet.read();
-        //Parsear el JSON a objetos
-        return result;
+        await connectDB();
+        const result = await Wallet.find({});
+        return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
@@ -20,30 +20,60 @@ export async function GET() {
     }
 }
 
-//Create wallet
+//Create wallet(s)
 export async function POST(req: Req) {
-    console.log("crear nuevo wallet");
+    console.log("crear nuevo wallet(s)");
     try {
-        const body = await req.json();
-        const { id, nombre, capital, periodo, tna, logo } = body;
+        const mongooseConnection = await connectDB();
         
-        // Generar ID automáticamente si no se proporciona
-        const walletId = id ?? await generateWalletId(sheetName);
+        // Verificar si la colección existe, si no, crearla
+        const db = mongooseConnection.connection.db;
+        if (db) {
+            const collections = await db.listCollections({ name: 'wallets' }).toArray();
+            if (collections.length === 0) {
+                console.log("Creando colección 'wallets'...");
+                await db.createCollection('wallets');
+                console.log("Colección 'wallets' creada exitosamente");
+            }
+        }
+        
+        const body = await req.json();
+        
+        // Verificar si es un array
+        if (Array.isArray(body)) {
+            // Crear múltiples wallets
+            const wallets = body.map((wallet: any) => ({
+                Nombre: wallet.Nombre,
+                Inicio: wallet.Inicio,
+                Interes: wallet.Interes || 0,
+                Efectivo: wallet.Efectivo || 0,
+                Logo: wallet.Logo || '',
+                CVU: wallet.CVU || '',
+                Alias: wallet.Alias || ''
+            }));
+            
+            const result = await Wallet.insertMany(wallets);
+            return Res.json(result);
+        } else {
+            // Crear un solo wallet (comportamiento original)
+            const { Nombre, Inicio, Interes, Efectivo, Logo, CVU, Alias } = body;
+            
+            const result = await Wallet.create({
+                Nombre: Nombre,
+                Inicio: Inicio,
+                Interes: Interes || 0,
+                Efectivo: Efectivo || 0,
+                Logo: Logo || '',
+                CVU: CVU || '',
+                Alias: Alias || ''
+            });
 
-        // Crear wallet en Google Sheets usando la estructura del controlador
-        const result = await wallet.create(walletId, {
-            nombre,
-            capital,
-            periodo,
-            tna,
-            logo
-        });
-
-        return result;
+            return Res.json(result);
+        }
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
-            error: 'Error al crear wallet',
+            error: 'Error al crear wallet(s)',
             message: err instanceof Error ? err.message : String(err)
         }, { status: 500 });
     }

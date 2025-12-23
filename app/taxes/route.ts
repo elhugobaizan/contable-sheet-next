@@ -1,5 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { prisma } from '@/db';
+import connectDB from '@/db';
+import Fijo from '@/app/models/Fijo';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,11 +8,12 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     console.log("listar fijos");
     try {
-        const result = await prisma.fijo.findMany();
+        await connectDB();
+        const result = await Fijo.find({});
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json(err);
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }
 
@@ -19,22 +21,21 @@ export async function GET() {
 export async function POST(req: Req) {
     console.log("crear nuevo fijo");
     try {
+        await connectDB();
         const body = await req.json();
         const { nombre, capital, periodo, url, logo, nroCliente } = body;
-        const result = await prisma.fijo.create({
-            data: {
-                name: nombre,
-                capital,
-                period: periodo,
-                logo,
-                url,
-                client: nroCliente
-            }
+        const result = await Fijo.create({
+            name: nombre,
+            capital,
+            period: periodo,
+            logo,
+            url,
+            client: nroCliente
         });
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ message: err });
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }
 

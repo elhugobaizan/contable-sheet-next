@@ -7,7 +7,7 @@ const corsOptions = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 }
 
-export function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   // Check the origin from the request
   const origin = request.headers.get('origin') ?? ''
   const isAllowedOrigin = allowedOrigins.has(origin);
@@ -40,3 +40,4 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: '/:path*',
 }
+

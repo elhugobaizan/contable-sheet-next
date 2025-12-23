@@ -1,23 +1,29 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { prisma } from '@/db';
-import { banco } from "@/app/generated/prisma";
+import connectDB from '@/db';
+import Banco from '@/app/models/Banco';
 import { Interval, DateTime } from 'luxon';
 
 export const dynamic = 'force-dynamic';
 
-//List wallets
+//Intereses bancos
 export async function GET() {
-    console.log("total bancos");
+    console.log("intereses bancos");
     try {
-        const result = await prisma.banco.findMany();
+        await connectDB();
+        const result = await Banco.find({});
         const intereses = result && result.map(banco => calculateMensual(banco));
         return Res.json(intereses ? intereses.reduce((suma, banco) => suma + banco, 0) : 0);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json(err);
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }
 
-function calculateMensual(selectedBanco: banco) {
-    return (selectedBanco.capital * ((selectedBanco.tna / 365) * Interval.fromDateTimes(DateTime.fromJSDate(selectedBanco.period!), DateTime.fromJSDate(selectedBanco.duedate)).length('days')) / 100);
+function calculateMensual(selectedBanco: any) {
+    if (!selectedBanco.period || !selectedBanco.duedate) {
+        return 0;
+    }
+    const periodDate = selectedBanco.period instanceof Date ? selectedBanco.period : new Date(selectedBanco.period);
+    const duedateDate = selectedBanco.duedate instanceof Date ? selectedBanco.duedate : new Date(selectedBanco.duedate);
+    return (selectedBanco.capital * ((selectedBanco.tna / 365) * Interval.fromDateTimes(DateTime.fromJSDate(periodDate), DateTime.fromJSDate(duedateDate)).length('days')) / 100);
 }

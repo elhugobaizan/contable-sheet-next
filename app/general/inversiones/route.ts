@@ -1,13 +1,13 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { DateTime } from "luxon";
-import { prisma } from "@/db";
+import connectDB from "@/db";
+import Variable from '@/app/models/Variable';
 
 async function getReservaWallets() {
   try {
-    const result = await prisma.variable.findFirst({
-      where: {
-        nombre: 'reserva_wallet'
-      }
+    await connectDB();
+    const result = await Variable.findOne({
+      nombre: 'reserva_wallet'
     });
     const valor = result ? (result.valor ? result.valor : 0) : 0;
     return valor;

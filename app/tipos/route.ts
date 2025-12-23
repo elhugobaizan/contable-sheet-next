@@ -1,5 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { prisma } from '@/db';
+import connectDB from '@/db';
+import TipoGasto from '@/app/models/TipoGasto';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,11 +8,12 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   console.log("listar tipos_gasto");
   try {
-    const result = await prisma.tipo_gasto.findMany();
+    await connectDB();
+    const result = await TipoGasto.find({});
     return Res.json(result);
   } catch (err) {
     console.log("ERROR: ", err);
-    return Res.json(err);
+    return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }
 

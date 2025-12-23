@@ -1,5 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { prisma } from '@/db';
+import connectDB from '@/db';
+import Banco from '@/app/models/Banco';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,17 +8,17 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   console.log("listar vencimientos de bancos");
   const hoy = new Date();
+  const fechaLimite = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate() - 3);
   try {
-    const result = await prisma.banco.findMany({
-      where: {
-        duedate: new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), -3, 0, 0, 0)
-      }
+    await connectDB();
+    const result = await Banco.find({
+      duedate: { $lte: fechaLimite }
     });
     const avisos = result.map((banco) => `Hoy vence el plazo fijo de ${banco.name}, son ${NumberToMoney(banco.capital)} pesos en intereses`);
     return Res.json(result);
   } catch (err) {
     console.log("ERROR: ", err);
-    return Res.json(err);
+    return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }
 

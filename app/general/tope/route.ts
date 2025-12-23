@@ -1,42 +1,67 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import { DateTime } from "luxon";
-import { prisma } from "@/db";
+import connectDB from "@/db";
+import Fijo from '@/app/models/Fijo';
+import Gasto from '@/app/models/Gasto';
+import Variable from '@/app/models/Variable';
+import Wallet from '@/app/models/Wallet';
+import Banco from '@/app/models/Banco';
 
 async function getTotalFijos() {
   try {
-    const result = await prisma.fijo.aggregate({
-      _sum: {
-        capital: true
+    await connectDB();
+    const result = await Fijo.aggregate([
+      {
+        $group: {
+          _id: null,
+          _sum: {
+            capital: { $sum: '$capital' }
+          }
+        }
       }
-    });
-    return result._sum.capital;
+    ]);
+    return result[0]?._sum?.capital || 0;
   } catch (err) {
     console.log("ERROR: ", err);
+    return 0;
   }
 }
 
 async function getGastosHoy() {
   try {
-    const result = await prisma.gasto.aggregate({
-      _sum: {
-        amount: true
+    await connectDB();
+    const fechaHoy = DateTime.now().startOf('day').minus({ hours: 3 }).toJSDate();
+    const fechaFin = DateTime.now().endOf('day').minus({ hours: 3 }).toJSDate();
+    const result = await Gasto.aggregate([
+      {
+        $match: {
+          date: {
+            $gte: fechaHoy,
+            $lte: fechaFin
+          }
+        }
       },
-      where: {
-        date: DateTime.now().startOf('day').minus({ hours: 3 }).toJSDate()
+      {
+        $group: {
+          _id: null,
+          _sum: {
+            amount: { $sum: '$amount' }
+          }
+        }
       }
-    });
-    return result._sum.amount ? result._sum.amount : 0;
+    ]);
+    return result[0]?._sum?.amount || 0;
   } catch (err) {
     console.log("ERROR: ", err);
+    return 0;
   }
 }
 
 async function getReservaWallets() {
   try {
-    const result = await prisma.variable.findFirst({
-      where: {
-        nombre: 'reserva_wallet'
-      }
+    await connectDB();
+    const result = await Variable.findOne({
+      nombre: 'reserva_wallet'
     });
     const valor = result ? (result.valor ? result.valor : 0) : 0;
     return valor;
@@ -48,28 +73,42 @@ async function getReservaWallets() {
 
 async function getTotalDisponible() {
   try {
-    const result = await prisma.wallet.aggregate({
-      _sum: {
-        capital: true
+    await connectDB();
+    const result = await Wallet.aggregate([
+      {
+        $group: {
+          _id: null,
+          _sum: {
+            capital: { $sum: '$capital' }
+          }
+        }
       }
-    });
+    ]);
     const reserva = await getReservaWallets()
-    return (result._sum.capital ? result._sum.capital : 0) - reserva; //Hay que ver donde poner esa reserva
+    return (result[0]?._sum?.capital || 0) - reserva; //Hay que ver donde poner esa reserva
   } catch (err) {
     console.log("ERROR: ", err);
+    return 0;
   }
 }
 
 async function getPlazosFijos() {
   try {
-    const result = await prisma.banco.aggregate({
-      _sum: {
-        capital: true
+    await connectDB();
+    const result = await Banco.aggregate([
+      {
+        $group: {
+          _id: null,
+          _sum: {
+            capital: { $sum: '$capital' }
+          }
+        }
       }
-    });
-    return result._sum.capital;
+    ]);
+    return result[0]?._sum?.capital || 0;
   } catch (err) {
     console.log("ERROR: ", err);
+    return 0;
   }
 }
 

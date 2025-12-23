@@ -1,5 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
-import { prisma } from '@/db';
+import connectDB from '@/db';
+import Inversion from '@/app/models/Inversion';
 
 export const dynamic = 'force-dynamic';
 
@@ -7,11 +8,12 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     console.log("listar inversiones");
     try {
-        const result = await prisma.inversion.findMany();
+        await connectDB();
+        const result = await Inversion.find({});
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json(err);
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }
 
@@ -19,6 +21,7 @@ export async function GET() {
 export async function POST(req: Req) {
     console.log("crear nuevo inversion");
     try {
+        await connectDB();
         const body = await req.json();
         const {
             nombre,
@@ -28,22 +31,20 @@ export async function POST(req: Req) {
             valoractual,
             valorinicial
         } = body;
-        const result = await prisma.inversion.create({
-            data: {
-                nombre,
-                periodo,
-                cuotapartes,
-                montoinicial,
-                valoractual,
-                valorinicial
-            }
+        const result = await Inversion.create({
+            nombre,
+            periodo,
+            cuotapartes,
+            montoinicial,
+            valoractual,
+            valorinicial
         });
         console.log(result);
 
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ message: err });
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }
 
