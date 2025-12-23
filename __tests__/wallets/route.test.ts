@@ -109,7 +109,7 @@ describe('Wallets API - Route /wallets', () => {
       expect(data).toEqual(createdWallet);
       expect(mockWallet.create).toHaveBeenCalledWith({
         Nombre: walletData.Nombre,
-        Inicio: walletData.Inicio,
+        Inicio: new Date(walletData.Inicio),
         Interes: walletData.Interes,
         Efectivo: walletData.Efectivo,
         Logo: walletData.Logo,
@@ -136,8 +136,10 @@ describe('Wallets API - Route /wallets', () => {
 
       const createdWallets = walletsData.map((w, i) => ({
         _id: `507f1f77bcf86cd79943901${i}`,
-        ...w,
-        Inicio: w.Inicio === '2024-01-01' ? '2024-01-01T00:00:00.000Z' : '2024-01-02T00:00:00.000Z',
+        Nombre: w.Nombre,
+        Inicio: new Date(w.Inicio).toISOString(),
+        Interes: w.Interes,
+        Efectivo: w.Efectivo,
         Logo: '',
         CVU: '',
         Alias: '',
@@ -169,6 +171,20 @@ describe('Wallets API - Route /wallets', () => {
       expect(data).toEqual(createdWallets);
       expect(mockWallet.insertMany).toHaveBeenCalled();
       expect(mockWallet.create).not.toHaveBeenCalled();
+      
+      // Verificar que insertMany recibe objetos Date
+      expect(mockWallet.insertMany).toHaveBeenCalledWith(
+        expect.arrayContaining([
+          expect.objectContaining({
+            Nombre: walletsData[0].Nombre,
+            Inicio: expect.any(Date),
+          }),
+          expect.objectContaining({
+            Nombre: walletsData[1].Nombre,
+            Inicio: expect.any(Date),
+          }),
+        ])
+      );
     });
 
     it('debe usar valores por defecto para campos opcionales', async () => {
@@ -212,7 +228,7 @@ describe('Wallets API - Route /wallets', () => {
       expect(response.status).toBe(200);
       expect(mockWallet.create).toHaveBeenCalledWith({
         Nombre: walletData.Nombre,
-        Inicio: walletData.Inicio,
+        Inicio: new Date(walletData.Inicio),
         Interes: 0,
         Efectivo: 0,
         Logo: '',

@@ -103,7 +103,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
         mockWalletId,
         {
           Nombre: updateData.Nombre,
-          Inicio: updateData.Inicio,
+          Inicio: new Date(updateData.Inicio),
           Interes: updateData.Interes,
           Efectivo: updateData.Efectivo,
           Logo: updateData.Logo,
@@ -147,7 +147,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
         mockWalletId,
         {
           Nombre: updateData.Nombre,
-          Inicio: updateData.Inicio,
+          Inicio: new Date(updateData.Inicio),
           Interes: 0,
           Efectivo: 0,
           Logo: '',

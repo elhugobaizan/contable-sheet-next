@@ -44,7 +44,7 @@ export async function POST(req: Req) {
             // Crear múltiples wallets
             const wallets = body.map((wallet: any) => ({
                 Nombre: wallet.Nombre,
-                Inicio: wallet.Inicio,
+                Inicio: new Date(wallet.Inicio),
                 Interes: wallet.Interes || 0,
                 Efectivo: wallet.Efectivo || 0,
                 Logo: wallet.Logo || '',
@@ -60,7 +60,7 @@ export async function POST(req: Req) {
             
             const result = await Wallet.create({
                 Nombre: Nombre,
-                Inicio: Inicio,
+                Inicio: new Date(Inicio),
                 Interes: Interes || 0,
                 Efectivo: Efectivo || 0,
                 Logo: Logo || '',

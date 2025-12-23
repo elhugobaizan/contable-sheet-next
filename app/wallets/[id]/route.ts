@@ -32,7 +32,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
             id,
             {
                 Nombre: Nombre,
-                Inicio: Inicio,
+                Inicio: new Date(Inicio),
                 Interes: Interes || 0,
                 Efectivo: Efectivo || 0,
                 Logo: Logo || '',
