@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "f0e73109-d663-4d77-89c3-e53b57cdfcae",
+		"name": "HB-SHEET",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "832196"
+	},
+	"item": [
+		{
+			"name": "Bancos",
+			"item": [
+				{
+					"name": "Listar bancos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/bancos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"bancos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear banco(s)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"Nombre\":\"ICBC\",\r\n    \"CBU\":\"0150516001000117082644\",\r\n    \"Alias\":\"hbaizan.icbc.pesos\",\r\n    \"Logo\":\"Bancos_Images/2.Logo.130248.png\",\r\n    \"Efectivo\":666.57\r\n},\r\n{\t\t\t\r\n    \"Nombre\":\"Uala\",\r\n    \"CBU\":\"3840200500000006987662\",\r\n    \"Alias\":\"abono.gata.sardo\",\r\n    \"Logo\":\"Bancos_Images/3.Logo.130853.jpg\",\r\n    \"Efectivo\":34110.16\r\n},\r\n{\r\n    \"Nombre\":\"Reba\",\r\n    \"CBU\":\"4150999718001708410024\",\r\n    \"Alias\":\"hbaizan.reba.pesos\",\r\n    \"Logo\":\"Bancos_Images/4.Logo.130835.png\",\r\n    \"Efectivo\":0.0\r\n},\r\n{\r\n    \"Nombre\":\"BBVA\",\r\n    \"CBU\":\"0170283740000033048439\",\r\n    \"Alias\":\"hbaizan.bbva.pesos\",\r\n    \"Logo\":\"Bancos_Images/5.Logo.205652.jpg\",\r\n    \"Efectivo\":0.93\r\n},\r\n{\r\n    \"Nombre\":\"VOII\",\r\n    \"CBU\":\"3120001902000000176134\",\r\n    \"Alias\":\"Cincel.ebrio.volaban\",\r\n    \"Logo\":\"Bancos_Images/6.Logo.161449.jpg\",\r\n    \"Efectivo\":0.0\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/bancos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"bancos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer banco",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/bancos/694b0118ede02bc12b7e2cc8",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"bancos",
+								"694b0118ede02bc12b7e2cc8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar banco",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\t\t\r\n    \"Nombre\":\"Test\",\r\n    \"CBU\":\"3840200500000006987662\",\r\n    \"Alias\":\"abono.gata.sardo\",\r\n    \"Logo\":\"Bancos_Images/3.Logo.130853.jpg\",\r\n    \"Efectivo\":34110.16\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/bancos/694b0118ede02bc12b7e2cc8",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"bancos",
+								"694b0118ede02bc12b7e2cc8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar banco",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/bancos/694b0118ede02bc12b7e2cc8",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"bancos",
+								"694b0118ede02bc12b7e2cc8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gastos Fijos",
+			"item": [
+				{
+					"name": "Listar fijos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"Detalle\":\"Internet\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/Internet.Logo.001805.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"Tarjeta Visa\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://mistarjetas.prismamediosdepago.com/socios/login?windowId=09e\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/Tarjeta Visa.Logo.001701.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Tarjeta Master\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://www1.masterconsultas.com.ar/socios/context/init.action\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/Tarjeta Master.Logo.001643.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Luz\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"http://www.cegc.com.ar/\",\r\n    \"Datos\":\"003003353\",\r\n    \"Logo\":\"Gastos fijos_Images/Luz.Logo.001216.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"Gas\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"http://www.ecogas.com.ar/\",\r\n    \"Datos\":\"20623112\",\r\n    \"Logo\":\"Gastos fijos_Images/Gas.Logo.001823.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Agua\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://oficinavirtual.aysam.com.ar/\",\r\n    \"Datos\":\"056-0105574-002-2\",\r\n    \"Logo\":\"Gastos fijos_Images/Agua.Logo.001853.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Municipalidad\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://www.godoycruz.gob.ar/\",\r\n    \"Datos\":\"72538\",\r\n    \"Logo\":\"Gastos fijos_Images/Municipalidad.Logo.001915.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"ATM Auto\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/ATM Auto.Logo.001935.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"ATM Casa\",\r\n    \"Vencimiento\":\"2025-12-30\",\r\n    \"Deuda\":7320.63,\r\n    \"URL\":\"https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp\",\r\n    \"Datos\":\"05-707849\",\r\n    \"Logo\":\"Gastos fijos_Images/ATM Casa.Logo.001947.jpg\"\r\n}\r\n]"
+						},
+						"url": {
+							"raw": "{{baseURL}}/fijos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"fijos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Gasto(s) fijo(s)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"Detalle\":\"Internet\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/Internet.Logo.001805.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"Tarjeta Visa\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://mistarjetas.prismamediosdepago.com/socios/login?windowId=09e\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/Tarjeta Visa.Logo.001701.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Tarjeta Master\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://www1.masterconsultas.com.ar/socios/context/init.action\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/Tarjeta Master.Logo.001643.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Luz\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"http://www.cegc.com.ar/\",\r\n    \"Datos\":\"003003353\",\r\n    \"Logo\":\"Gastos fijos_Images/Luz.Logo.001216.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"Gas\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"http://www.ecogas.com.ar/\",\r\n    \"Datos\":\"20623112\",\r\n    \"Logo\":\"Gastos fijos_Images/Gas.Logo.001823.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Agua\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://oficinavirtual.aysam.com.ar/\",\r\n    \"Datos\":\"056-0105574-002-2\",\r\n    \"Logo\":\"Gastos fijos_Images/Agua.Logo.001853.png\"\r\n},\r\n{\r\n    \"Detalle\":\"Municipalidad\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://www.godoycruz.gob.ar/\",\r\n    \"Datos\":\"72538\",\r\n    \"Logo\":\"Gastos fijos_Images/Municipalidad.Logo.001915.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"ATM Auto\",\r\n    \"Vencimiento\":null,\r\n    \"Deuda\":0.0,\r\n    \"URL\":\"https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp\",\r\n    \"Datos\":\"\",\r\n    \"Logo\":\"Gastos fijos_Images/ATM Auto.Logo.001935.jpg\"\r\n},\r\n{\r\n    \"Detalle\":\"ATM Casa\",\r\n    \"Vencimiento\":\"2025-12-30\",\r\n    \"Deuda\":7320.63,\r\n    \"URL\":\"https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp\",\r\n    \"Datos\":\"05-707849\",\r\n    \"Logo\":\"Gastos fijos_Images/ATM Casa.Logo.001947.jpg\"\r\n}\r\n]"
+						},
+						"url": {
+							"raw": "{{baseURL}}/fijos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"fijos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer fijo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseURL}}/fijos/694af1e1c9ff23dbd4df8e85",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"fijos",
+								"694af1e1c9ff23dbd4df8e85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar fijo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Detalle\":\"Test\",\r\n    \"Vencimiento\":\"2025-12-30\",\r\n    \"Deuda\":7320.63,\r\n    \"URL\":\"https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp\",\r\n    \"Datos\":\"05-707849\",\r\n    \"Logo\":\"Gastos fijos_Images/ATM Casa.Logo.001947.jpg\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/fijos/694af1e1c9ff23dbd4df8e85",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"fijos",
+								"694af1e1c9ff23dbd4df8e85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar fijo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseURL}}/fijos/694af1e1c9ff23dbd4df8e85",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"fijos",
+								"694af1e1c9ff23dbd4df8e85"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wallets",
+			"item": [
+				{
+					"name": "Listar wallets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/wallets",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear wallet(s)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"Nombre\":\"Mercado Pago\",\r\n    \"Inicio\":\"10/22\",\r\n    \"Interes\":19.8,\r\n    \"Efectivo\":146843.27,\r\n    \"Logo\":\"Wallets_Images/2.Logo.203122.jpg\",\r\n    \"CVU\":\"0000003100003569218356\",\r\n    \"Alias\":\"hbaizan.mp.pesos\"\r\n},\r\n{\t\t\t\r\n    \"Nombre\":\"Uala\",\r\n    \"Inicio\":\"10/22\",\r\n    \"Interes\":20,\r\n    \"Efectivo\":34110.16,\r\n    \"Logo\":\"Wallets_Images/3.Logo.203659.jpg\",\r\n    \"CVU\":\"0000007900202693630623\",\r\n    \"Alias\":\"elhugobaizan.uala\"\r\n},\r\n{\r\n    \"Nombre\":\"Personal Pay\",\r\n    \"Inicio\":\"08/23\",\r\n    \"Interes\":0,\r\n    \"Efectivo\":882.14,\r\n    \"Logo\":\"Wallets_Images/4.Logo.203454.png\",\r\n    \"CVU\":\"0000076500000004513063\",\r\n    \"Alias\":\"hbaizan.ppay\"\r\n},\r\n{\r\n    \"Nombre\":\"Prex\",\r\n    \"Inicio\":\"09/23\",\r\n    \"Interes\":22.6,\r\n    \"Efectivo\":4955719.76,\r\n    \"Logo\":\"Wallets_Images/5.Logo.203716.png\",\r\n    \"CVU\":\"0000013000032156015946\",\r\n    \"Alias\":\"26936306.prex\"\r\n},\r\n{\r\n    \"Nombre\":\"Naranja X\",\r\n    \"Inicio\":\"01/24\",\r\n    \"Interes\":22,\r\n    \"Efectivo\":806468.95,\r\n    \"Logo\":\"Wallets_Images/6.Logo.203608.png\",\r\n    \"CVU\":\"4530000800017039223638\",\r\n    \"Alias\":\"HBAIZAN.NX.ARS\"\r\n},\r\n{\r\n    \"Nombre\":\"Lemon\",\r\n    \"Inicio\":\"08/24\",\r\n    \"Interes\":17.18,\r\n    \"Efectivo\":94.57,\r\n    \"Logo\":\"Wallets_Images/7.Logo.203807.jpg\",\r\n    \"CVU\":\"0000168300000007018879\",\r\n    \"Alias\":\"elhugobaizan.LEMON\"\r\n},\r\n{\r\n    \"Nombre\":\"Claro Pay\",\r\n    \"Inicio\":\"10/24\",\r\n    \"Interes\":19.2,\r\n    \"Efectivo\":9646.81,\r\n    \"Logo\":\"Wallets_Images/8.Logo.203727.jpg\",\r\n    \"CVU\":\"0000085700202693630623\",\r\n    \"Alias\":\"20269363062.claropay\"\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/wallets",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer wallet",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/wallets/694ac71a9832c50f0bc506d9",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"wallets",
+								"694ac71a9832c50f0bc506d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar wallet",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nombre\":\"Test2222\",\r\n    \"Inicio\":\"10/22\",\r\n    \"Interes\":19.8,\r\n    \"Efectivo\":146843.27,\r\n    \"Logo\":\"Wallets_Images/2.Logo.203122.jpg\",\r\n    \"CVU\":\"0000003100003569218356\",\r\n    \"Alias\":\"hbaizan.mp.pesos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/wallets/694ac8db760c69f5cf8e8f1e",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"wallets",
+								"694ac8db760c69f5cf8e8f1e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar wallet",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/wallets/694ac8db760c69f5cf8e8f1e",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"wallets",
+								"694ac8db760c69f5cf8e8f1e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
