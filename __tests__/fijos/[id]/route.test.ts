@@ -79,7 +79,7 @@ describe('Fijos API - Route /fijos/[id]', () => {
 
       const updatedFijo = {
         _id: mockFijoId,
-        ...updateData,
+        Detalle: updateData.Detalle,
         Vencimiento: new Date(updateData.Vencimiento),
         Deuda: updateData.Deuda,
         Datos: updateData.Datos,
@@ -100,7 +100,11 @@ describe('Fijos API - Route /fijos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual(updatedFijo);
+      // JSON serialization converts Date to string
+      expect(data).toEqual({
+        ...updatedFijo,
+        Vencimiento: updatedFijo.Vencimiento.toISOString(),
+      });
       expect(mockFijo.findByIdAndUpdate).toHaveBeenCalledWith(
         mockFijoId,
         {
@@ -118,7 +122,7 @@ describe('Fijos API - Route /fijos/[id]', () => {
     it('debe usar valores por defecto para campos opcionales al actualizar', async () => {
       const updateData = {
         Detalle: 'Fijo Parcial',
-        Vencimiento: '2024-02-01',
+        Vencimiento: null,
         Deuda: 0,
         Datos: '',
         Logo: '',
@@ -128,7 +132,7 @@ describe('Fijos API - Route /fijos/[id]', () => {
       const updatedFijo = {
         _id: mockFijoId,
         Detalle: updateData.Detalle,
-        Vencimiento: '2024-02-01T00:00:00.000Z',
+        Vencimiento: null,
         Deuda: 0,
         Datos: '',
         Logo: '',
