@@ -26,10 +26,18 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const { nombre, capital, periodo, url, logo, nroCliente } = body;
+        const { Detalle, Vencimiento, Deuda, Datos, Logo, URL } = body;
+        
         const result = await Fijo.findByIdAndUpdate(
             id,
-            { name: nombre, capital, period: periodo, logo, url, client: nroCliente },
+            {
+                Detalle: Detalle,
+                Vencimiento: new Date(Vencimiento),
+                Deuda: Deuda || 0,
+                Datos: Datos || '',
+                Logo: Logo || '',
+                URL: URL || ''
+            },
             { new: true, runValidators: true }
         );
         

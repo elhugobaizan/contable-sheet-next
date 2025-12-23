@@ -13,29 +13,67 @@ export async function GET() {
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+        return Res.json({ 
+            error: 'Error al listar fijos',
+            message: err instanceof Error ? err.message : String(err)
+        }, { status: 500 });
     }
 }
 
-//Create fijo
+//Create fijo(s)
 export async function POST(req: Req) {
-    console.log("crear nuevo fijo");
+    console.log("crear nuevo fijo(s)");
     try {
-        await connectDB();
+        const mongooseConnection = await connectDB();
+        
+        // Verificar si la colección existe, si no, crearla
+        const db = mongooseConnection.connection.db;
+        if (db) {
+            const collections = await db.listCollections({ name: 'fijos' }).toArray();
+            if (collections.length === 0) {
+                console.log("Creando colección 'fijos'...");
+                await db.createCollection('fijos');
+                console.log("Colección 'fijos' creada exitosamente");
+            }
+        }
+        
         const body = await req.json();
-        const { nombre, capital, periodo, url, logo, nroCliente } = body;
-        const result = await Fijo.create({
-            name: nombre,
-            capital,
-            period: periodo,
-            logo,
-            url,
-            client: nroCliente
-        });
-        return Res.json(result);
+        
+        // Verificar si es un array
+        if (Array.isArray(body)) {
+            // Crear múltiples fijos
+            const fijos = body.map((fijo: any) => ({
+                Detalle: fijo.Detalle,
+                Vencimiento: new Date(fijo.Vencimiento),
+                Deuda: fijo.Deuda || 0,
+                Datos: fijo.Datos || '',
+                Logo: fijo.Logo || '',
+                URL: fijo.URL || ''
+            }));
+            
+            const result = await Fijo.insertMany(fijos);
+            return Res.json(result);
+        } else {
+            // Crear un solo fijo (comportamiento original)
+            const { Detalle, Vencimiento, Deuda, Datos, Logo, URL } = body;
+            
+            const result = await Fijo.create({
+                Detalle: Detalle,
+                Vencimiento: new Date(Vencimiento),
+                Deuda: Deuda || 0,
+                Datos: Datos || '',
+                Logo: Logo || '',
+                URL: URL || ''
+            });
+
+            return Res.json(result);
+        }
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+        return Res.json({ 
+            error: 'Error al crear fijo(s)',
+            message: err instanceof Error ? err.message : String(err)
+        }, { status: 500 });
     }
 }
 

@@ -1,21 +1,21 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IFijo extends Document {
-  capital: number;
-  client: string;
-  logo: string;
-  name: string;
-  period?: Date;
-  url: string;
+  Detalle: string;
+  Vencimiento: Date;
+  Deuda: number;
+  Datos: string;
+  Logo: string;
+  URL: string;
 }
 
 const FijoSchema = new Schema<IFijo>({
-  capital: { type: Number, required: true, default: 0 },
-  client: { type: String, required: true },
-  logo: { type: String, required: true },
-  name: { type: String, required: true },
-  period: { type: Date, required: false },
-  url: { type: String, required: true },
+  Detalle: { type: String, required: true },
+  Vencimiento: { type: Date, required: false, default: null },
+  Deuda: { type: Number, required: false, default: 0 },
+  Datos: { type: String, required: false, default: '' },
+  Logo: { type: String, required: false, default: '' },
+  URL: { type: String, required: false, default: '' },
 }, {
   timestamps: false,
   collection: 'fijos'
