@@ -4,7 +4,7 @@ import Banco from '@/app/models/Banco';
 
 export const dynamic = 'force-dynamic';
 
-//List bancos
+//List wallets
 export async function GET() {
     console.log("listar bancos");
     try {
@@ -13,30 +13,65 @@ export async function GET() {
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+        return Res.json({ 
+            error: 'Error al listar bancos',
+            message: err instanceof Error ? err.message : String(err)
+        }, { status: 500 });
     }
 }
 
-//Create banco
+//Create banco(s)
 export async function POST(req: Req) {
-    console.log("crear nuevo banco");
+    console.log("crear nuevo banco(s)");
     try {
-        await connectDB();
+        const mongooseConnection = await connectDB();
+        
+        // Verificar si la colección existe, si no, crearla
+        const db = mongooseConnection.connection.db;
+        if (db) {
+            const collections = await db.listCollections({ name: 'bancos' }).toArray();
+            if (collections.length === 0) {
+                console.log("Creando colección 'bancos'...");
+                await db.createCollection('bancos');
+                console.log("Colección 'bancos' creada exitosamente");
+            }
+        }
+        
         const body = await req.json();
-        const { nombre, capital, periodo, tna, logo, vencimiento } = body;
-        const result = await Banco.create({
-            name: nombre,
-            capital,
-            period: periodo,
-            tna,
-            logo,
-            duedate: vencimiento
-        });
-        console.log(result);
-        return Res.json(result);
+        
+        // Verificar si es un array
+        if (Array.isArray(body)) {
+            // Crear múltiples bancos
+                const bancos = body.map((banco: any) => ({
+                Nombre: banco.Nombre,
+                CBU: banco.CBU,
+                Alias: banco.Alias,
+                Logo: banco.Logo || '',
+                Efectivo: banco.Efectivo || 0
+            }));
+            
+            const result = await Banco.insertMany(bancos);
+            return Res.json(result);
+        } else {
+            // Crear un solo banco (comportamiento original)
+            const { Nombre, CBU, Alias, Logo, Efectivo } = body;
+            
+            const result = await Banco.create({
+                Nombre: Nombre,
+                CBU: CBU,
+                Alias: Alias || '',
+                Logo: Logo || '',
+                Efectivo: Efectivo || 0
+            });
+
+            return Res.json(result);
+        }
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+        return Res.json({ 
+            error: 'Error al crear banco(s)',
+            message: err instanceof Error ? err.message : String(err)
+        }, { status: 500 });
     }
 }
 

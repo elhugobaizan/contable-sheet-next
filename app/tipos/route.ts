@@ -16,28 +16,3 @@ export async function GET() {
     return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }
-
-/* //Create fijo
-export async function POST(req: Req) {
-    console.log("crear nuevo fijo");
-    try {
-        const body = await req.json();
-        const { nombre, capital, periodo, url, logo, nroCliente } = body;
-        const result = await prisma.fijo.create({
-            data: {
-                name: nombre,
-                capital,
-                period: periodo,
-                logo,
-                url,
-                client: nroCliente
-            }
-        });
-        return Res.json(result);
-    } catch (err) {
-        console.log("ERROR: ", err);
-        return Res.json({ message: err });
-    }
-}
-
- */

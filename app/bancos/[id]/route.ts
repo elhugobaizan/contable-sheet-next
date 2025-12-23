@@ -9,7 +9,7 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
     try {
         await connectDB();
         const id = (await params).id;
-        const result = await Banco.findById(id);
+            const result = await Banco.findById(id);
         if (!result) {
             return Res.json({ error: 'Banco no encontrado' }, { status: 404 });
         }
@@ -26,11 +26,17 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const { nombre, capital, periodo, tna, logo, vencimiento } = body;
-
+        const { Nombre, CBU, Alias, Logo, Efectivo } = body;
+        
         const result = await Banco.findByIdAndUpdate(
             id,
-            { name: nombre, capital, period: periodo, tna, logo, duedate: vencimiento },
+            {
+                Nombre: Nombre,
+                CBU: CBU,
+                Alias: Alias || '',
+                Logo: Logo || '',
+                Efectivo: Efectivo || 0
+            },
             { new: true, runValidators: true }
         );
         
