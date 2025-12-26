@@ -1,0 +1,45 @@
+[
+  {
+    "Nombre": "Bitcoin",
+    "Cantidad": 0.01309379,
+    "Logo": "tabla_de_criptos_Images/1.Logo.150030.png",
+    "Sigla": "BTC",
+    "Hoy": 1716822.17
+  },
+  {
+    "Nombre": "Binance",
+    "Cantidad": 0.02551403,
+    "Logo": "tabla_de_criptos_Images/2.Logo.194900.png",
+    "Sigla": "BNB",
+    "Hoy": 32367.36
+  },
+  {
+    "Nombre": "Tether USD",
+    "Cantidad": 225.44,
+    "Logo": "tabla_de_criptos_Images/3.Logo.195000.png",
+    "Sigla": "USDT",
+    "Hoy": 337984.16
+  },
+  {
+    "Nombre": "USDC",
+    "Cantidad": 0.07,
+    "Logo": "tabla_de_criptos_Images/4.Logo.195037.png",
+    "Sigla": "USDC",
+    "Hoy": 104.98
+  },
+  {
+    "Nombre": "Ethereum",
+    "Cantidad": 0.00000522,
+    "Logo": "tabla_de_criptos_Images/5.Logo.195216.png",
+    "Sigla": "ETH",
+    "Hoy": 22.96
+  },
+  {
+    "Nombre": "Avalanche",
+    "Cantidad": 0.00009602,
+    "Logo": "tabla_de_criptos_Images/6.Logo.195303.png",
+    "Sigla": "AVAX",
+    "Hoy": 1.73
+  }
+]
+

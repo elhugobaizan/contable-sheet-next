@@ -1,0 +1,759 @@
+[
+  {
+    "Concepto": "Pan",
+    "Fecha": "2025-09-09",
+    "Monto": 2700,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central de bebidas",
+    "Fecha": "2025-09-09",
+    "Monto": 8700,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Crujen",
+    "Fecha": "2025-09-11",
+    "Monto": 14013,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Supermercado",
+    "Fecha": "2025-09-11",
+    "Monto": 11455,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central",
+    "Fecha": "2025-09-11",
+    "Monto": 11189.75,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Kiosko",
+    "Fecha": "2025-09-12",
+    "Monto": 3500,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Aroma parrilla",
+    "Fecha": "2025-09-12",
+    "Monto": 26000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central",
+    "Fecha": "2025-09-12",
+    "Monto": 11827.7,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango MAS",
+    "Fecha": "2025-09-15",
+    "Monto": 12000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-09-15",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": "-32.937853, -68.844135"
+  },
+  {
+    "Concepto": "Central Beltran",
+    "Fecha": "2025-09-17",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Milas",
+    "Fecha": "2025-09-20",
+    "Monto": 14200,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central r peña",
+    "Fecha": "2025-09-20",
+    "Monto": 7800,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Gllen",
+    "Fecha": "2025-09-21",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Moretti",
+    "Fecha": "2025-09-20",
+    "Monto": 5300,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Jebbs",
+    "Fecha": "2025-09-22",
+    "Monto": 2700,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Miss murita",
+    "Fecha": "2025-09-23",
+    "Monto": 12600,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Pedidos ya",
+    "Fecha": "2025-09-22",
+    "Monto": 16289,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central de bebidas",
+    "Fecha": "2025-09-19",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central de bebidas",
+    "Fecha": "2025-09-18",
+    "Monto": 11190,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Supermercado",
+    "Fecha": "2025-09-17",
+    "Monto": 3520,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Shell",
+    "Fecha": "2025-09-18",
+    "Monto": 20000,
+    "Tipo": 5,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-09-24",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango Más",
+    "Fecha": "2025-09-25",
+    "Monto": 19900,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Beltran",
+    "Fecha": "2025-09-25",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Limpia inodoro",
+    "Fecha": "2025-09-25",
+    "Monto": 5860,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Sanguchitos",
+    "Fecha": "2025-09-26",
+    "Monto": 9578,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central san jose",
+    "Fecha": "2025-09-28",
+    "Monto": 11185,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Moretti",
+    "Fecha": "2025-09-27",
+    "Monto": 6500,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central chacras",
+    "Fecha": "2025-09-27",
+    "Monto": 11800,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Fruta, pan y etc",
+    "Fecha": "2025-09-29",
+    "Monto": 26550,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central tomba",
+    "Fecha": "2025-10-02",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": "-32.915258, -68.840578"
+  },
+  {
+    "Concepto": "Pan y verduras",
+    "Fecha": "2025-10-04",
+    "Monto": 3200,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-10-04",
+    "Monto": 9359,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central panamericana y jebbs",
+    "Fecha": "2025-10-06",
+    "Monto": 17000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Salida del domingo",
+    "Fecha": "2025-10-05",
+    "Monto": 1400,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Guayma",
+    "Fecha": "2025-10-08",
+    "Monto": 11827,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Cumpleaños",
+    "Fecha": "2025-10-09",
+    "Monto": 120000,
+    "Tipo": 4,
+    "Donde": "-32.956661, -68.850889"
+  },
+  {
+    "Concepto": "Nafta",
+    "Fecha": "2025-10-09",
+    "Monto": 20000,
+    "Tipo": 5,
+    "Donde": "-32.961234, -68.867050"
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-10-11",
+    "Monto": 11827,
+    "Tipo": 2,
+    "Donde": "-32.937829, -68.844071"
+  },
+  {
+    "Concepto": "Sube",
+    "Fecha": "2025-10-12",
+    "Monto": 2000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Beltran",
+    "Fecha": "2025-10-13",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central panamericana",
+    "Fecha": "2025-10-14",
+    "Monto": 12316,
+    "Tipo": 2,
+    "Donde": "-32.947010, -68.852980"
+  },
+  {
+    "Concepto": "Chango Mas",
+    "Fecha": "2025-10-15",
+    "Monto": 12013,
+    "Tipo": 1,
+    "Donde": "-32.951677, -68.858555"
+  },
+  {
+    "Concepto": "Central Guayma",
+    "Fecha": "2025-10-16",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango mas",
+    "Fecha": "2025-10-17",
+    "Monto": 12705.7,
+    "Tipo": 1,
+    "Donde": "-32.951799, -68.858359"
+  },
+  {
+    "Concepto": "Pedidos ya",
+    "Fecha": "2025-10-18",
+    "Monto": 18000,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Balcarce",
+    "Fecha": "2025-10-19",
+    "Monto": 8655,
+    "Tipo": 1,
+    "Donde": "-32.915258, -68.840578"
+  },
+  {
+    "Concepto": "Pedidos ya",
+    "Fecha": "2025-10-21",
+    "Monto": 18000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Licencia",
+    "Fecha": "2025-10-22",
+    "Monto": 6800,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-10-23",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Peluca",
+    "Fecha": "2025-10-23",
+    "Monto": 12000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Super",
+    "Fecha": "2025-10-23",
+    "Monto": 25467,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Multa enero",
+    "Fecha": "2025-10-24",
+    "Monto": 44600,
+    "Tipo": 5,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Renovacion licencia",
+    "Fecha": "2025-10-24",
+    "Monto": 30240,
+    "Tipo": 5,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Sube",
+    "Fecha": "2025-10-24",
+    "Monto": 2000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Moretti",
+    "Fecha": "2025-10-25",
+    "Monto": 12000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Lavado auto",
+    "Fecha": "2025-10-25",
+    "Monto": 10000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central chacras",
+    "Fecha": "2025-10-25",
+    "Monto": 9900,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Salida lean",
+    "Fecha": "2025-10-25",
+    "Monto": 28000,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Vea",
+    "Fecha": "2025-10-27",
+    "Monto": 11705,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central panamericana",
+    "Fecha": "2025-10-28",
+    "Monto": 11470,
+    "Tipo": 2,
+    "Donde": "-32.947030, -68.853009"
+  },
+  {
+    "Concepto": "Sube",
+    "Fecha": "2025-10-29",
+    "Monto": 2000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-10-31",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Jebbs",
+    "Fecha": "2025-10-31",
+    "Monto": 2000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Vea panamericana",
+    "Fecha": "2025-11-01",
+    "Monto": 8930,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Dni",
+    "Fecha": "2025-11-03",
+    "Monto": 7500,
+    "Tipo": 5,
+    "Donde": "-32.930061, -68.856485"
+  },
+  {
+    "Concepto": "Vea",
+    "Fecha": "2025-11-03",
+    "Monto": 15500,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Vea",
+    "Fecha": "2025-11-11",
+    "Monto": 17500,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango Más",
+    "Fecha": "2025-11-12",
+    "Monto": 11000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Cínico - almuerzo",
+    "Fecha": "2025-11-16",
+    "Monto": 20790,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Museo Boca",
+    "Fecha": "2025-11-16",
+    "Monto": 17000,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Remera Oasis",
+    "Fecha": "2025-11-15",
+    "Monto": 50000,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Sube",
+    "Fecha": "2025-11-15",
+    "Monto": 2000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Blest - almuerzo",
+    "Fecha": "2025-11-15",
+    "Monto": 29150,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Orsai",
+    "Fecha": "2025-11-17",
+    "Monto": 10000,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Polleria",
+    "Fecha": "2025-11-20",
+    "Monto": 9000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Sarmiento",
+    "Fecha": "2025-11-20",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Vea",
+    "Fecha": "2025-11-20",
+    "Monto": 9400,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango mas",
+    "Fecha": "2025-11-25",
+    "Monto": 15500,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central panamericana",
+    "Fecha": "2025-11-25",
+    "Monto": 12300,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central chacras",
+    "Fecha": "2025-11-27",
+    "Monto": 9300,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Sube",
+    "Fecha": "2025-11-27",
+    "Monto": 3000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Supermercado",
+    "Fecha": "2025-11-27",
+    "Monto": 11000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Moretti - fiambres",
+    "Fecha": "2025-12-02",
+    "Monto": 13400,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Crujen",
+    "Fecha": "2025-12-02",
+    "Monto": 9500,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central panamericana",
+    "Fecha": "2025-12-02",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Milas",
+    "Fecha": "2025-12-03",
+    "Monto": 10000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango Más",
+    "Fecha": "2025-12-04",
+    "Monto": 23000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central guaymallen",
+    "Fecha": "2025-12-04",
+    "Monto": 11500,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Sube",
+    "Fecha": "2025-12-05",
+    "Monto": 3000,
+    "Tipo": 5,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Beltrán",
+    "Fecha": "2025-12-05",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Easy (focos)",
+    "Fecha": "2025-12-06",
+    "Monto": 3000,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Lomo peYa",
+    "Fecha": "2025-12-06",
+    "Monto": 26000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Balcarce",
+    "Fecha": "2025-12-06",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Chango Más",
+    "Fecha": "2025-12-08",
+    "Monto": 14240,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Almuerzo",
+    "Fecha": "2025-12-15",
+    "Monto": 6000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Almuerzo",
+    "Fecha": "2025-12-14",
+    "Monto": 16000,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Torta padre",
+    "Fecha": "2025-12-13",
+    "Monto": 35900,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "CompuMarian",
+    "Fecha": "2025-12-15",
+    "Monto": 279999,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Milas",
+    "Fecha": "2025-12-15",
+    "Monto": 17600,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Beltran",
+    "Fecha": "2025-12-15",
+    "Monto": 8655,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Benedetti",
+    "Fecha": "2025-12-20",
+    "Monto": 14500,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Easy",
+    "Fecha": "2025-12-20",
+    "Monto": 48900,
+    "Tipo": 6,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Central Balcarce",
+    "Fecha": "2025-12-20",
+    "Monto": 11500,
+    "Tipo": 2,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Vea",
+    "Fecha": "2025-12-22",
+    "Monto": 18900,
+    "Tipo": 1,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Navidad",
+    "Fecha": "2025-12-22",
+    "Monto": 29186,
+    "Tipo": 4,
+    "Donde": ""
+  },
+  {
+    "Concepto": "Luz",
+    "Fecha": "2025-12-19",
+    "Monto": 33600,
+    "Tipo": 5,
+    "Donde": ""
+  }
+]
+

@@ -1,18 +1,17 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
-import Gasto from '@/app/models/Gasto';
-import { TipoGasto } from '@/app/models/TipoGasto';
+import Cripto from '@/app/models/Cripto';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Leer gasto");
+    console.log("Leer cripto");
     try {
         await connectDB();
         const id = (await params).id;
-        const result = await Gasto.findById(id);
+        const result = await Cripto.findById(id);
         if (!result) {
-            return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
+            return Res.json({ error: 'Cripto no encontrado' }, { status: 404 });
         }
         return Res.json(result);
     } catch (err) {
@@ -22,30 +21,29 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
 }
 
 export async function PUT(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Actualizar gasto");
+    console.log("Actualizar cripto");
     try {
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const { Fecha, Monto, Tipo, Donde, Concepto } = body;
+        const { Nombre, Cantidad, Logo, Sigla, Hoy } = body;
         
-        // Validate and parse Vencimiento date
         const updateData: any = {
-            Fecha: new Date(Fecha),
-            Monto: Monto || 0,
-            Tipo: Tipo || TipoGasto.Varios,
-            Donde: Donde || '',
-            Concepto: Concepto || ''
+            Nombre: Nombre,
+            Cantidad: Cantidad,
+            Logo: Logo || '',
+            Sigla: Sigla || '',
+            Hoy: Hoy || 0
         };
         
-        const result = await Gasto.findByIdAndUpdate(
+        const result = await Cripto.findByIdAndUpdate(
             id,
             updateData,
             { new: true, runValidators: true }
         );
         
         if (!result) {
-            return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
+            return Res.json({ error: 'Cripto no encontrado' }, { status: 404 });
         }
         
         return Res.json(result);
@@ -56,14 +54,14 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
 }
 
 export async function DELETE(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("borrar gasto");
+    console.log("borrar cripto");
     try {
         await connectDB();
         const id = (await params).id;
-        const result = await Gasto.findByIdAndDelete(id);
+        const result = await Cripto.findByIdAndDelete(id);
         
         if (!result) {
-            return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
+            return Res.json({ error: 'Cripto no encontrado' }, { status: 404 });
         }
         
         return Res.json(result);

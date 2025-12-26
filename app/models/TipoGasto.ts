@@ -1,14 +1,8 @@
-import mongoose, { Schema, Document } from 'mongoose';
-
-export interface ITipoGasto extends Document {
-  nombre: string;
+export enum TipoGasto {
+  Comida = 1,
+  Bebida = 2,
+  Salud = 3,
+  Ocio = 4,
+  Servicios = 5,
+  Varios = 6
 }
-
-const TipoGastoSchema = new Schema<ITipoGasto>({
-  nombre: { type: String, required: true },
-}, {
-  timestamps: false,
-  collection: 'tipo_gasto'
-});
-
-export default mongoose.models.TipoGasto || mongoose.model<ITipoGasto>('TipoGasto', TipoGastoSchema);

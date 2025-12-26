@@ -10,6 +10,151 @@
 			"name": "Bancos",
 			"item": [
 				{
+					"name": "Plazos Fijos",
+					"item": [
+						{
+							"name": "Listar plazos  fijos",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/bancos/[id]/plazosfijos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bancos",
+										"[id]",
+										"plazosfijos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear plazo(s) fijo(s)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[{\r\n    \"Nombre\":\"VOII\",\r\n    \"Periodo\":\"2025-11-25\",\r\n    \"Vencimiento\":\"2025-12-25\",\r\n    \"Capital\":7343000.00,\r\n    \"TNA\":35.0\r\n},\r\n{\r\n    \"Nombre\":\"VOII 2\",\r\n    \"Periodo\":\"2025-11-25\",\r\n    \"Vencimiento\":\"2025-12-25\",\r\n    \"Capital\":5450000.00,\r\n    \"TNA\":35.0\r\n},\r\n{\r\n    \"Nombre\":\"VOII 3\",\r\n    \"Periodo\":\"2025-11-25\",\r\n    \"Vencimiento\":\"2025-12-25\",\r\n    \"Capital\":5455000.00,\r\n    \"TNA\":35.0\r\n},\r\n{\r\n    \"Nombre\":\"VOII 4\",\r\n    \"Periodo\":\"2025-11-25\",\r\n    \"Vencimiento\":\"2025-12-25\",\r\n    \"Capital\":7920000.00,\r\n    \"TNA\":35.0\r\n},\r\n{\r\n    \"Nombre\":\"VOII 6\",\r\n    \"Periodo\":\"2025-12-23\",\r\n    \"Vencimiento\":\"2026-01-22\",\r\n    \"Capital\":4306000.00,\r\n    \"TNA\":28.0\r\n}\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/bancos/[id]/plazosfijos",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bancos",
+										"[id]",
+										"plazosfijos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Leer plazo fijo",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/bancos/[id]/plazosfijos/694ee8eb6b1c6f6fce2a78d6",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bancos",
+										"[id]",
+										"plazosfijos",
+										"694ee8eb6b1c6f6fce2a78d6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar plazo fijo",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Nombre\":\"Test2222\",\r\n    \"Periodo\":\"2025-11-25\",\r\n    \"Vencimiento\":\"2025-12-25\",\r\n    \"Capital\":7343000.00,\r\n    \"TNA\":35.0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/bancos/6/plazosfijos/694ee8eb6b1c6f6fce2a78d6",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bancos",
+										"6",
+										"plazosfijos",
+										"694ee8eb6b1c6f6fce2a78d6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borrar plazo fijo",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/bancos/6/plazosfijos/694ee8eb6b1c6f6fce2a78d6",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"bancos",
+										"6",
+										"plazosfijos",
+										"694ee8eb6b1c6f6fce2a78d6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Listar bancos",
 					"request": {
 						"auth": {
