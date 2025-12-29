@@ -1,0 +1,79 @@
+[
+  {
+      "_id": "694aea0249478bb6094988bf",
+      "Nombre": "Mercado Pago",
+      "Inicio": "2001-10-22T03:00:00.000Z",
+      "Interes": 19.8,
+      "Efectivo": 146843.27,
+      "Logo": "Wallets_Images/2.Logo.203122.jpg",
+      "CVU": "0000003100003569218356",
+      "Alias": "hbaizan.mp.pesos",
+      "__v": 0
+  },
+  {
+      "_id": "694aea0249478bb6094988c0",
+      "Nombre": "Uala",
+      "Inicio": "2001-10-22T03:00:00.000Z",
+      "Interes": 20,
+      "Efectivo": 34110.16,
+      "Logo": "Wallets_Images/3.Logo.203659.jpg",
+      "CVU": "0000007900202693630623",
+      "Alias": "elhugobaizan.uala",
+      "__v": 0
+  },
+  {
+      "_id": "694aea0249478bb6094988c1",
+      "Nombre": "Personal Pay",
+      "Inicio": "2001-08-23T03:00:00.000Z",
+      "Interes": 0,
+      "Efectivo": 882.14,
+      "Logo": "Wallets_Images/4.Logo.203454.png",
+      "CVU": "0000076500000004513063",
+      "Alias": "hbaizan.ppay",
+      "__v": 0
+  },
+  {
+      "_id": "694aea0249478bb6094988c2",
+      "Nombre": "Prex",
+      "Inicio": "2001-09-23T03:00:00.000Z",
+      "Interes": 22.6,
+      "Efectivo": 4955719.76,
+      "Logo": "Wallets_Images/5.Logo.203716.png",
+      "CVU": "0000013000032156015946",
+      "Alias": "26936306.prex",
+      "__v": 0
+  },
+  {
+      "_id": "694aea0249478bb6094988c3",
+      "Nombre": "Naranja X",
+      "Inicio": "2001-01-24T03:00:00.000Z",
+      "Interes": 22,
+      "Efectivo": 806468.95,
+      "Logo": "Wallets_Images/6.Logo.203608.png",
+      "CVU": "4530000800017039223638",
+      "Alias": "HBAIZAN.NX.ARS",
+      "__v": 0
+  },
+  {
+      "_id": "694aea0249478bb6094988c4",
+      "Nombre": "Lemon",
+      "Inicio": "2001-08-24T03:00:00.000Z",
+      "Interes": 17.18,
+      "Efectivo": 94.57,
+      "Logo": "Wallets_Images/7.Logo.203807.jpg",
+      "CVU": "0000168300000007018879",
+      "Alias": "elhugobaizan.LEMON",
+      "__v": 0
+  },
+  {
+      "_id": "694aea0249478bb6094988c5",
+      "Nombre": "Claro Pay",
+      "Inicio": "2001-10-24T03:00:00.000Z",
+      "Interes": 19.2,
+      "Efectivo": 9646.81,
+      "Logo": "Wallets_Images/8.Logo.203727.jpg",
+      "CVU": "0000085700202693630623",
+      "Alias": "20269363062.claropay",
+      "__v": 0
+  }
+]

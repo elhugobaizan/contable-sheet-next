@@ -1,0 +1,87 @@
+[
+  {
+    "Campo":"Neto",
+    "Valor":"C4+C9+C10+(GOOGLEFINANCE('CURRENCY:USDARS')*C16)+Usuario!C8+(GOOGLEFINANCE('CURRENCY:USDARS')*Usuario!C9)",
+    "Imagen":"Principal_Images/1.Sueldo.jpg"
+  },
+  {
+    "Campo":"Mi sueldo",
+    "Valor":2000000,
+    "Imagen":"Principal_Images/1.Sueldo.jpg"
+  },
+  {
+    "Campo":"Actualmente en los bancos (liquidez)",
+    "Valor":"(DINEROENBANCOS()+DINEROENWALLETS()+Usuario!C6) - C18",
+    "Imagen":""
+  },
+  {
+    "Campo":"Gastos fijos del mes",
+    "Valor":"TOTALGASTOSFIJOS()",
+    "Imagen":""
+  },
+  {
+    "Campo":"Gasto maximo por dia",
+    "Valor":"MAXIMOGASTODIARIO(C4-C5;AHORROPORMES(C11;C12))-C7",
+    "Imagen":""
+  },
+  {
+    "Campo":"Llevo gastado hoy ",
+    "Valor":"IFERROR(SUM(FILTER(HistorialGasto[Monto];HistorialGasto[Fecha]=TODAY()));0)",
+    "Imagen":""
+  },
+  {
+    "Campo":"Intereses en pesos",
+    "Valor":"SUMAINTERESESMENSUALES()+SUMAINTERESESDIARIOS()*30",
+    "Imagen":""
+  },
+  {
+    "Campo":"Fondos de inversión",
+    "Valor":"C17+DINEROENWALLETS()",
+    "Imagen":""
+  },
+  {
+    "Campo":"Plazos fijos",
+    "Valor":"SUMAPLAZOSFIJO()+C18",
+    "Imagen":""
+  },
+  {
+    "Campo":"Objetivo de ahorro por mes (mantener los PF + reserva wallet)",
+    "Valor":"SUMAINTERESESMENSUALES()+C18",
+    "Imagen":""
+  },
+  {
+    "Campo":"Ahorrado hasta el momento",
+    "Valor":"SUMAINTERESESMENSUALES()+C18+C4",
+    "Imagen":""
+  },
+  {
+    "Campo":"Disponible en el proximo mes",
+    "Valor":"(C8+C4)+C3",
+    "Imagen":""
+  },
+  {
+    "Campo":"Gane hoy ",
+    "Valor":"SUMAINTERESESDIARIOS()+SUMAINVERSIONESPESO()",
+    "Imagen":""
+  },
+  {
+    "Campo":"Me deben al ",
+    "Valor":0,
+    "Imagen":""
+  },
+  {
+    "Campo":"Dolares",
+    "Valor":"11676+4310+SUMAINVERSIONESDOLAR()",
+    "Imagen":""
+  },
+  {
+    "Campo":"Criptomonedas",
+    "Valor":"SUM(Cripto[Inversion])",
+    "Imagen":""
+  },
+  {
+    "Campo":"Reserva de wallets",
+    "Valor":3000000,
+    "Imagen":""
+  }
+]

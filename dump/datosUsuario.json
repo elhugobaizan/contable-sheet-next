@@ -1,0 +1,38 @@
+[
+  {
+    "Campo":"DNI",
+    "Valor":26936306
+  },
+  {
+    "Campo":"CUIL",
+    "Valor":20269363062
+  },
+  {
+    "Campo":"N° tramite DNI",
+    "Valor":"00742455894"
+  },
+  {
+    "Campo":"Nombre",
+    "Valor":"Hugo"
+  },
+  {
+    "Campo":"Efectivo",
+    "Valor":920
+  },
+  {
+    "Campo":"Dólares",
+    "Valor":15986
+  },
+  {
+    "Campo":"Auto",
+    "Valor":15000000
+  },
+  {
+    "Campo":"Casa",
+    "Valor":40000
+  },
+  {
+    "Campo":"Reserva de wallets",
+    "Valor":3000000
+  }
+]

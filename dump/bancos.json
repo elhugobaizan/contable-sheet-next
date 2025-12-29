@@ -1,0 +1,47 @@
+[
+  {
+      "_id": "694afcb3f7ad8a6d91a632d8",
+      "Nombre": "ICBC",
+      "CBU": "0150516001000117082644",
+      "Alias": "hbaizan.icbc.pesos",
+      "Logo": "Bancos_Images/2.Logo.130248.png",
+      "Efectivo": 666.57,
+      "__v": 0
+  },
+  {
+      "_id": "694afcb3f7ad8a6d91a632d9",
+      "Nombre": "Uala",
+      "CBU": "3840200500000006987662",
+      "Alias": "abono.gata.sardo",
+      "Logo": "Bancos_Images/3.Logo.130853.jpg",
+      "Efectivo": 34110.16,
+      "__v": 0
+  },
+  {
+      "_id": "694afcb3f7ad8a6d91a632da",
+      "Nombre": "Reba",
+      "CBU": "4150999718001708410024",
+      "Alias": "hbaizan.reba.pesos",
+      "Logo": "Bancos_Images/4.Logo.130835.png",
+      "Efectivo": 0,
+      "__v": 0
+  },
+  {
+      "_id": "694afcb3f7ad8a6d91a632db",
+      "Nombre": "BBVA",
+      "CBU": "0170283740000033048439",
+      "Alias": "hbaizan.bbva.pesos",
+      "Logo": "Bancos_Images/5.Logo.205652.jpg",
+      "Efectivo": 0.93,
+      "__v": 0
+  },
+  {
+      "_id": "694afcb3f7ad8a6d91a632dc",
+      "Nombre": "VOII",
+      "CBU": "3120001902000000176134",
+      "Alias": "Cincel.ebrio.volaban",
+      "Logo": "Bancos_Images/6.Logo.161449.jpg",
+      "Efectivo": 0,
+      "__v": 0
+  }
+]

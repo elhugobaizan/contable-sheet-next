@@ -1,0 +1,52 @@
+[
+  {
+      "_id": "694ee6aa6b1c6f6fce2a78cf",
+      "Nombre": "VOII",
+      "Periodo": "2025-11-25T00:00:00.000Z",
+      "Vencimiento": "2025-12-25T00:00:00.000Z",
+      "Capital": 7343000,
+      "TNA": 35,
+      "Banco": 6,
+      "__v": 0
+  },
+  {
+      "_id": "694ee6aa6b1c6f6fce2a78d0",
+      "Nombre": "VOII 2",
+      "Periodo": "2025-11-25T00:00:00.000Z",
+      "Vencimiento": "2025-12-25T00:00:00.000Z",
+      "Capital": 5450000,
+      "TNA": 35,
+      "Banco": 6,
+      "__v": 0
+  },
+  {
+      "_id": "694ee6aa6b1c6f6fce2a78d1",
+      "Nombre": "VOII 3",
+      "Periodo": "2025-11-25T00:00:00.000Z",
+      "Vencimiento": "2025-12-25T00:00:00.000Z",
+      "Capital": 5455000,
+      "TNA": 35,
+      "Banco": 6,
+      "__v": 0
+  },
+  {
+      "_id": "694ee6aa6b1c6f6fce2a78d2",
+      "Nombre": "VOII 4",
+      "Periodo": "2025-11-25T00:00:00.000Z",
+      "Vencimiento": "2025-12-25T00:00:00.000Z",
+      "Capital": 7920000,
+      "TNA": 35,
+      "Banco": 6,
+      "__v": 0
+  },
+  {
+      "_id": "694ee6aa6b1c6f6fce2a78d3",
+      "Nombre": "VOII 6",
+      "Periodo": "2025-12-23T00:00:00.000Z",
+      "Vencimiento": "2026-01-22T00:00:00.000Z",
+      "Capital": 4306000,
+      "TNA": 28,
+      "Banco": 6,
+      "__v": 0
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+      "_id": "694aeda749478bb6094988c7",
+      "Detalle": "Internet",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "",
+      "Logo": "Gastos fijos_Images/Internet.Logo.001805.jpg",
+      "URL": "",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988c8",
+      "Detalle": "Tarjeta Visa",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "",
+      "Logo": "Gastos fijos_Images/Tarjeta Visa.Logo.001701.png",
+      "URL": "https://mistarjetas.prismamediosdepago.com/socios/login?windowId=09e",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988c9",
+      "Detalle": "Tarjeta Master",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "",
+      "Logo": "Gastos fijos_Images/Tarjeta Master.Logo.001643.png",
+      "URL": "https://www1.masterconsultas.com.ar/socios/context/init.action",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988ca",
+      "Detalle": "Luz",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "003003353",
+      "Logo": "Gastos fijos_Images/Luz.Logo.001216.jpg",
+      "URL": "http://www.cegc.com.ar/",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988cb",
+      "Detalle": "Gas",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "20623112",
+      "Logo": "Gastos fijos_Images/Gas.Logo.001823.png",
+      "URL": "http://www.ecogas.com.ar/",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988cc",
+      "Detalle": "Agua",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "056-0105574-002-2",
+      "Logo": "Gastos fijos_Images/Agua.Logo.001853.png",
+      "URL": "https://oficinavirtual.aysam.com.ar/",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988cd",
+      "Detalle": "Municipalidad",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "72538",
+      "Logo": "Gastos fijos_Images/Municipalidad.Logo.001915.jpg",
+      "URL": "https://www.godoycruz.gob.ar/",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988ce",
+      "Detalle": "ATM Auto",
+      "Vencimiento": "1970-01-01T00:00:00.000Z",
+      "Deuda": 0,
+      "Datos": "",
+      "Logo": "Gastos fijos_Images/ATM Auto.Logo.001935.jpg",
+      "URL": "https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp",
+      "__v": 0
+  },
+  {
+      "_id": "694aeda749478bb6094988cf",
+      "Detalle": "ATM Casa",
+      "Vencimiento": "2025-12-30T00:00:00.000Z",
+      "Deuda": 7320.63,
+      "Datos": "05-707849",
+      "Logo": "Gastos fijos_Images/ATM Casa.Logo.001947.jpg",
+      "URL": "https://atm.mendoza.gov.ar/portalatm/misTramites/misTramitesLogin.jsp",
+      "__v": 0
+  }
+]
