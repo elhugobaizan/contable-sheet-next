@@ -283,7 +283,9 @@
 									"    pm.environment.set(\"banco_nombre\", firstBanco.Nombre);",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -294,9 +296,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/bancos",
+							"raw": "{{prodURL}}/bancos",
 							"host": [
-								"{{baseURL}}"
+								"{{prodURL}}"
 							],
 							"path": [
 								"bancos"
@@ -1118,8 +1120,12 @@
 	],
 	"variable": [
 		{
-			"key": "baseURL",
+			"key": "localURL",
 			"value": "http://localhost:3000"
+		},
+		{
+			"key": "prodURL",
+			"value": "https://hb-sheet-back.vercel.app/"
 		}
 	]
 }
