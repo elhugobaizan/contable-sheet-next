@@ -418,6 +418,276 @@
 			]
 		},
 		{
+			"name": "Criptos",
+			"item": [
+				{
+					"name": "Listar criptos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/criptos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"criptos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear cripto(s)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"Nombre\": \"Bitcoin\",\r\n    \"Cantidad\": 0.01309379,\r\n    \"Logo\": \"tabla_de_criptos_Images/1.Logo.150030.png\",\r\n    \"Sigla\": \"BTC\",\r\n    \"Hoy\": 1716822.17\r\n  },\r\n  {\r\n    \"Nombre\": \"Binance\",\r\n    \"Cantidad\": 0.02551403,\r\n    \"Logo\": \"tabla_de_criptos_Images/2.Logo.194900.png\",\r\n    \"Sigla\": \"BNB\",\r\n    \"Hoy\": 32367.36\r\n  },\r\n  {\r\n    \"Nombre\": \"Tether USD\",\r\n    \"Cantidad\": 225.44,\r\n    \"Logo\": \"tabla_de_criptos_Images/3.Logo.195000.png\",\r\n    \"Sigla\": \"USDT\",\r\n    \"Hoy\": 337984.16\r\n  },\r\n  {\r\n    \"Nombre\": \"USDC\",\r\n    \"Cantidad\": 0.07,\r\n    \"Logo\": \"tabla_de_criptos_Images/4.Logo.195037.png\",\r\n    \"Sigla\": \"USDC\",\r\n    \"Hoy\": 104.98\r\n  },\r\n  {\r\n    \"Nombre\": \"Ethereum\",\r\n    \"Cantidad\": 0.00000522,\r\n    \"Logo\": \"tabla_de_criptos_Images/5.Logo.195216.png\",\r\n    \"Sigla\": \"ETH\",\r\n    \"Hoy\": 22.96\r\n  },\r\n  {\r\n    \"Nombre\": \"Avalanche\",\r\n    \"Cantidad\": 0.00009602,\r\n    \"Logo\": \"tabla_de_criptos_Images/6.Logo.195303.png\",\r\n    \"Sigla\": \"AVAX\",\r\n    \"Hoy\": 1.73\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/criptos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"criptos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer cripto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"criptos",
+								"6952935f9e79cd276d25f8c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar cripto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nombre\": \"Test2222\",\r\n    \"Cantidad\": 0.01309379,\r\n    \"Logo\": \"tabla_de_criptos_Images/1.Logo.150030.png\",\r\n    \"Sigla\": \"BTC\",\r\n    \"Hoy\": 1716822.17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"criptos",
+								"6952935f9e79cd276d25f8c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar cripto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"criptos",
+								"6952935f9e79cd276d25f8c4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gastos",
+			"item": [
+				{
+					"name": "Listar gastos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/gastos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"gastos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear gasto(s)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"Concepto\": \"Pan\",\r\n    \"Fecha\": \"2025-09-09\",\r\n    \"Monto\": 2700,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central de bebidas\",\r\n    \"Fecha\": \"2025-09-09\",\r\n    \"Monto\": 8700,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Crujen\",\r\n    \"Fecha\": \"2025-09-11\",\r\n    \"Monto\": 14013,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Supermercado\",\r\n    \"Fecha\": \"2025-09-11\",\r\n    \"Monto\": 11455,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central\",\r\n    \"Fecha\": \"2025-09-11\",\r\n    \"Monto\": 11189.75,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Kiosko\",\r\n    \"Fecha\": \"2025-09-12\",\r\n    \"Monto\": 3500,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Aroma parrilla\",\r\n    \"Fecha\": \"2025-09-12\",\r\n    \"Monto\": 26000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central\",\r\n    \"Fecha\": \"2025-09-12\",\r\n    \"Monto\": 11827.7,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango MAS\",\r\n    \"Fecha\": \"2025-09-15\",\r\n    \"Monto\": 12000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-09-15\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"-32.937853, -68.844135\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Beltran\",\r\n    \"Fecha\": \"2025-09-17\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Milas\",\r\n    \"Fecha\": \"2025-09-20\",\r\n    \"Monto\": 14200,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central r peña\",\r\n    \"Fecha\": \"2025-09-20\",\r\n    \"Monto\": 7800,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Gllen\",\r\n    \"Fecha\": \"2025-09-21\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Moretti\",\r\n    \"Fecha\": \"2025-09-20\",\r\n    \"Monto\": 5300,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Jebbs\",\r\n    \"Fecha\": \"2025-09-22\",\r\n    \"Monto\": 2700,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Miss murita\",\r\n    \"Fecha\": \"2025-09-23\",\r\n    \"Monto\": 12600,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Pedidos ya\",\r\n    \"Fecha\": \"2025-09-22\",\r\n    \"Monto\": 16289,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central de bebidas\",\r\n    \"Fecha\": \"2025-09-19\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central de bebidas\",\r\n    \"Fecha\": \"2025-09-18\",\r\n    \"Monto\": 11190,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Supermercado\",\r\n    \"Fecha\": \"2025-09-17\",\r\n    \"Monto\": 3520,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Shell\",\r\n    \"Fecha\": \"2025-09-18\",\r\n    \"Monto\": 20000,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-09-24\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango Más\",\r\n    \"Fecha\": \"2025-09-25\",\r\n    \"Monto\": 19900,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Beltran\",\r\n    \"Fecha\": \"2025-09-25\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Limpia inodoro\",\r\n    \"Fecha\": \"2025-09-25\",\r\n    \"Monto\": 5860,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sanguchitos\",\r\n    \"Fecha\": \"2025-09-26\",\r\n    \"Monto\": 9578,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central san jose\",\r\n    \"Fecha\": \"2025-09-28\",\r\n    \"Monto\": 11185,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Moretti\",\r\n    \"Fecha\": \"2025-09-27\",\r\n    \"Monto\": 6500,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central chacras\",\r\n    \"Fecha\": \"2025-09-27\",\r\n    \"Monto\": 11800,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Fruta, pan y etc\",\r\n    \"Fecha\": \"2025-09-29\",\r\n    \"Monto\": 26550,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central tomba\",\r\n    \"Fecha\": \"2025-10-02\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"-32.915258, -68.840578\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Pan y verduras\",\r\n    \"Fecha\": \"2025-10-04\",\r\n    \"Monto\": 3200,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-10-04\",\r\n    \"Monto\": 9359,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central panamericana y jebbs\",\r\n    \"Fecha\": \"2025-10-06\",\r\n    \"Monto\": 17000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Salida del domingo\",\r\n    \"Fecha\": \"2025-10-05\",\r\n    \"Monto\": 1400,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Guayma\",\r\n    \"Fecha\": \"2025-10-08\",\r\n    \"Monto\": 11827,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Cumpleaños\",\r\n    \"Fecha\": \"2025-10-09\",\r\n    \"Monto\": 120000,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"-32.956661, -68.850889\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Nafta\",\r\n    \"Fecha\": \"2025-10-09\",\r\n    \"Monto\": 20000,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"-32.961234, -68.867050\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-10-11\",\r\n    \"Monto\": 11827,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"-32.937829, -68.844071\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sube\",\r\n    \"Fecha\": \"2025-10-12\",\r\n    \"Monto\": 2000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Beltran\",\r\n    \"Fecha\": \"2025-10-13\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central panamericana\",\r\n    \"Fecha\": \"2025-10-14\",\r\n    \"Monto\": 12316,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"-32.947010, -68.852980\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango Mas\",\r\n    \"Fecha\": \"2025-10-15\",\r\n    \"Monto\": 12013,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"-32.951677, -68.858555\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Guayma\",\r\n    \"Fecha\": \"2025-10-16\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango mas\",\r\n    \"Fecha\": \"2025-10-17\",\r\n    \"Monto\": 12705.7,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"-32.951799, -68.858359\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Pedidos ya\",\r\n    \"Fecha\": \"2025-10-18\",\r\n    \"Monto\": 18000,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Balcarce\",\r\n    \"Fecha\": \"2025-10-19\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"-32.915258, -68.840578\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Pedidos ya\",\r\n    \"Fecha\": \"2025-10-21\",\r\n    \"Monto\": 18000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Licencia\",\r\n    \"Fecha\": \"2025-10-22\",\r\n    \"Monto\": 6800,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-10-23\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Peluca\",\r\n    \"Fecha\": \"2025-10-23\",\r\n    \"Monto\": 12000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Super\",\r\n    \"Fecha\": \"2025-10-23\",\r\n    \"Monto\": 25467,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Multa enero\",\r\n    \"Fecha\": \"2025-10-24\",\r\n    \"Monto\": 44600,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Renovacion licencia\",\r\n    \"Fecha\": \"2025-10-24\",\r\n    \"Monto\": 30240,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sube\",\r\n    \"Fecha\": \"2025-10-24\",\r\n    \"Monto\": 2000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Moretti\",\r\n    \"Fecha\": \"2025-10-25\",\r\n    \"Monto\": 12000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Lavado auto\",\r\n    \"Fecha\": \"2025-10-25\",\r\n    \"Monto\": 10000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central chacras\",\r\n    \"Fecha\": \"2025-10-25\",\r\n    \"Monto\": 9900,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Salida lean\",\r\n    \"Fecha\": \"2025-10-25\",\r\n    \"Monto\": 28000,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Vea\",\r\n    \"Fecha\": \"2025-10-27\",\r\n    \"Monto\": 11705,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central panamericana\",\r\n    \"Fecha\": \"2025-10-28\",\r\n    \"Monto\": 11470,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"-32.947030, -68.853009\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sube\",\r\n    \"Fecha\": \"2025-10-29\",\r\n    \"Monto\": 2000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-10-31\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Jebbs\",\r\n    \"Fecha\": \"2025-10-31\",\r\n    \"Monto\": 2000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Vea panamericana\",\r\n    \"Fecha\": \"2025-11-01\",\r\n    \"Monto\": 8930,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Dni\",\r\n    \"Fecha\": \"2025-11-03\",\r\n    \"Monto\": 7500,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"-32.930061, -68.856485\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Vea\",\r\n    \"Fecha\": \"2025-11-03\",\r\n    \"Monto\": 15500,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Vea\",\r\n    \"Fecha\": \"2025-11-11\",\r\n    \"Monto\": 17500,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango Más\",\r\n    \"Fecha\": \"2025-11-12\",\r\n    \"Monto\": 11000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Cínico - almuerzo\",\r\n    \"Fecha\": \"2025-11-16\",\r\n    \"Monto\": 20790,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Museo Boca\",\r\n    \"Fecha\": \"2025-11-16\",\r\n    \"Monto\": 17000,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Remera Oasis\",\r\n    \"Fecha\": \"2025-11-15\",\r\n    \"Monto\": 50000,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sube\",\r\n    \"Fecha\": \"2025-11-15\",\r\n    \"Monto\": 2000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Blest - almuerzo\",\r\n    \"Fecha\": \"2025-11-15\",\r\n    \"Monto\": 29150,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Orsai\",\r\n    \"Fecha\": \"2025-11-17\",\r\n    \"Monto\": 10000,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Polleria\",\r\n    \"Fecha\": \"2025-11-20\",\r\n    \"Monto\": 9000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Sarmiento\",\r\n    \"Fecha\": \"2025-11-20\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Vea\",\r\n    \"Fecha\": \"2025-11-20\",\r\n    \"Monto\": 9400,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango mas\",\r\n    \"Fecha\": \"2025-11-25\",\r\n    \"Monto\": 15500,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central panamericana\",\r\n    \"Fecha\": \"2025-11-25\",\r\n    \"Monto\": 12300,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central chacras\",\r\n    \"Fecha\": \"2025-11-27\",\r\n    \"Monto\": 9300,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sube\",\r\n    \"Fecha\": \"2025-11-27\",\r\n    \"Monto\": 3000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Supermercado\",\r\n    \"Fecha\": \"2025-11-27\",\r\n    \"Monto\": 11000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Moretti - fiambres\",\r\n    \"Fecha\": \"2025-12-02\",\r\n    \"Monto\": 13400,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Crujen\",\r\n    \"Fecha\": \"2025-12-02\",\r\n    \"Monto\": 9500,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central panamericana\",\r\n    \"Fecha\": \"2025-12-02\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Milas\",\r\n    \"Fecha\": \"2025-12-03\",\r\n    \"Monto\": 10000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango Más\",\r\n    \"Fecha\": \"2025-12-04\",\r\n    \"Monto\": 23000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central guaymallen\",\r\n    \"Fecha\": \"2025-12-04\",\r\n    \"Monto\": 11500,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Sube\",\r\n    \"Fecha\": \"2025-12-05\",\r\n    \"Monto\": 3000,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Beltrán\",\r\n    \"Fecha\": \"2025-12-05\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Easy (focos)\",\r\n    \"Fecha\": \"2025-12-06\",\r\n    \"Monto\": 3000,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Lomo peYa\",\r\n    \"Fecha\": \"2025-12-06\",\r\n    \"Monto\": 26000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Balcarce\",\r\n    \"Fecha\": \"2025-12-06\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Chango Más\",\r\n    \"Fecha\": \"2025-12-08\",\r\n    \"Monto\": 14240,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Almuerzo\",\r\n    \"Fecha\": \"2025-12-15\",\r\n    \"Monto\": 6000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Almuerzo\",\r\n    \"Fecha\": \"2025-12-14\",\r\n    \"Monto\": 16000,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Torta padre\",\r\n    \"Fecha\": \"2025-12-13\",\r\n    \"Monto\": 35900,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"CompuMarian\",\r\n    \"Fecha\": \"2025-12-15\",\r\n    \"Monto\": 279999,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Milas\",\r\n    \"Fecha\": \"2025-12-15\",\r\n    \"Monto\": 17600,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Beltran\",\r\n    \"Fecha\": \"2025-12-15\",\r\n    \"Monto\": 8655,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Benedetti\",\r\n    \"Fecha\": \"2025-12-20\",\r\n    \"Monto\": 14500,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Easy\",\r\n    \"Fecha\": \"2025-12-20\",\r\n    \"Monto\": 48900,\r\n    \"Tipo\": 6,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Central Balcarce\",\r\n    \"Fecha\": \"2025-12-20\",\r\n    \"Monto\": 11500,\r\n    \"Tipo\": 2,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Vea\",\r\n    \"Fecha\": \"2025-12-22\",\r\n    \"Monto\": 18900,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Navidad\",\r\n    \"Fecha\": \"2025-12-22\",\r\n    \"Monto\": 29186,\r\n    \"Tipo\": 4,\r\n    \"Donde\": \"\"\r\n  },\r\n  {\r\n    \"Concepto\": \"Luz\",\r\n    \"Fecha\": \"2025-12-19\",\r\n    \"Monto\": 33600,\r\n    \"Tipo\": 5,\r\n    \"Donde\": \"\"\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/gastos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"gastos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer gasto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/gastos/695292459e79cd276d25f8be",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"gastos",
+								"695292459e79cd276d25f8be"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar gasto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Concepto\": \"Test222\",\r\n    \"Fecha\": \"2025-09-09T00:00:00.000Z\",\r\n    \"Monto\": 2700,\r\n    \"Tipo\": 1,\r\n    \"Donde\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/gastos/695292459e79cd276d25f8be",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"gastos",
+								"695292459e79cd276d25f8be"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar gasto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/gastos/695292459e79cd276d25f8be",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"gastos",
+								"695292459e79cd276d25f8be"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Gastos Fijos",
 			"item": [
 				{
@@ -552,6 +822,141 @@
 			]
 		},
 		{
+			"name": "Inversiones",
+			"item": [
+				{
+					"name": "Listar inversiones",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/inversiones",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"inversiones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear inversion(es)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"Nombre\": \"IOL\",\r\n    \"Capital\": 183.4,\r\n    \"Moneda\": 2\r\n},\r\n{\r\n    \"Nombre\": \"Orsai\",\r\n    \"Capital\": 1100,\r\n    \"Moneda\": 2\r\n},\r\n{\r\n    \"Nombre\": \"USDT Cripto\",\r\n    \"Capital\": 225.28,\r\n    \"Moneda\": 2\r\n},\r\n{\r\n    \"Nombre\": \"USDC\",\r\n    \"Capital\": 0.07,\r\n    \"Moneda\": 2\r\n},\r\n{\r\n    \"Nombre\": \"ICBC\",\r\n    \"Capital\": 2789.98,\r\n    \"Moneda\": 2\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/inversiones",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"inversiones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Leer inversion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/inversiones/695290fe9e79cd276d25f8b7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"inversiones",
+								"695290fe9e79cd276d25f8b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar inversion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Nombre\": \"Test222\",\r\n    \"Capital\": 183.4,\r\n    \"Moneda\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/inversiones/695290fe9e79cd276d25f8b7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"inversiones",
+								"695290fe9e79cd276d25f8b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar inversion",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/inversiones/695290fe9e79cd276d25f8b7",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"inversiones",
+								"695290fe9e79cd276d25f8b7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Wallets",
 			"item": [
 				{
@@ -604,7 +1009,28 @@
 					"response": []
 				},
 				{
-					"name": "Actualizar cripto",
+					"name": "Leer wallet",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/wallets/694ac71a9832c50f0bc506d9",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"wallets",
+								"694ac71a9832c50f0bc506d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar wallet",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -613,7 +1039,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Nombre\": \"Test2222\",\r\n    \"Cantidad\": 0.01309379,\r\n    \"Logo\": \"tabla_de_criptos_Images/1.Logo.150030.png\",\r\n    \"Sigla\": \"BTC\",\r\n    \"Hoy\": 1716822.17\r\n}",
+							"raw": "{\r\n    \"Nombre\":\"Test2222\",\r\n    \"Inicio\":\"10/22\",\r\n    \"Interes\":19.8,\r\n    \"Efectivo\":146843.27,\r\n    \"Logo\":\"Wallets_Images/2.Logo.203122.jpg\",\r\n    \"CVU\":\"0000003100003569218356\",\r\n    \"Alias\":\"hbaizan.mp.pesos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -621,20 +1047,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
+							"raw": "{{baseURL}}/wallets/694ac8db760c69f5cf8e8f1e",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"criptos",
-								"6952935f9e79cd276d25f8c4"
+								"wallets",
+								"694ac8db760c69f5cf8e8f1e"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Borrar cripto",
+					"name": "Borrar wallet",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -651,13 +1077,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
+							"raw": "{{baseURL}}/wallets/694ac8db760c69f5cf8e8f1e",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"criptos",
-								"6952935f9e79cd276d25f8c4"
+								"wallets",
+								"694ac8db760c69f5cf8e8f1e"
 							]
 						}
 					},
