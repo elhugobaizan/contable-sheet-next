@@ -1,21 +1,16 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { TipoMoneda } from './Tipos';
 
 export interface IInversion extends Document {
-  nombre: string;
-  periodo: Date;
-  valorinicial: number;
-  valoractual: number;
-  cuotapartes: number;
-  montoinicial: number;
+  Nombre: string;
+  Capital: number;
+  Moneda: number;
 }
 
 const InversionSchema = new Schema<IInversion>({
-  nombre: { type: String, required: true, default: '' },
-  periodo: { type: Date, required: true },
-  valorinicial: { type: Number, required: true, default: 0 },
-  valoractual: { type: Number, required: true, default: 0 },
-  cuotapartes: { type: Number, required: true, default: 0 },
-  montoinicial: { type: Number, required: true, default: 0 },
+  Nombre: { type: String, required: true, default: '' },
+  Capital: { type: Number, required: true, default: 0 },
+  Moneda: { type: Number, required: true, default: TipoMoneda.Peso },
 }, {
   timestamps: false,
   collection: 'inversiones'

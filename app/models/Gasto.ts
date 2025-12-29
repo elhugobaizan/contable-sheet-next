@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { TipoGasto } from './Tipos';
 
 export interface IGasto extends Document {
   Concepto: string;
@@ -12,7 +13,7 @@ const GastoSchema = new Schema<IGasto>({
   Concepto: { type: String, required: true },
   Fecha: { type: Date, required: false, default: new Date() },
   Monto: { type: Number, required: true },
-  Tipo: { type: Number, required: false, default: 6 },
+  Tipo: { type: Number, required: false, default: TipoGasto.Varios },
   Donde: { type: String, required: false, default: '' }
 }, {
   timestamps: false,

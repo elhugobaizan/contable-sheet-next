@@ -1,6 +1,6 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
-import TipoGasto from '@/app/models/TipoGasto';
+import TipoGasto from '@/app/models/Tipos';
 
 export const dynamic = 'force-dynamic';
 

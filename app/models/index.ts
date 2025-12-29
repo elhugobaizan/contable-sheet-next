@@ -5,7 +5,6 @@ export { default as Inversion } from './Inversion';
 export { default as Wallet } from './Wallet';
 export { default as Fijo } from './Fijo';
 export { default as Principal } from './Principal';
-export { default as TipoGasto } from './TipoGasto';
 export { default as Variable } from './Variable';
 
 // Export types
@@ -15,5 +14,4 @@ export type { IInversion } from './Inversion';
 export type { IWallet } from './Wallet';
 export type { IFijo } from './Fijo';
 export type { IPrincipal } from './Principal';
-export type { ITipoGasto } from './TipoGasto';
 export type { IVariable } from './Variable';

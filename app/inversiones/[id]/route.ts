@@ -1,6 +1,7 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import Inversion from '@/app/models/Inversion';
+import { TipoMoneda } from "@/app/models/Tipos";
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +12,7 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
         const id = (await params).id;
         const result = await Inversion.findById(id);
         if (!result) {
-            return Res.json({ error: 'Inversión no encontrada' }, { status: 404 });
+            return Res.json({ error: 'Inversion no encontrada' }, { status: 404 });
         }
         return Res.json(result);
     } catch (err) {
@@ -26,29 +27,20 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const {
-            nombre,
-            periodo,
-            cuotapartes,
-            montoinicial,
-            valoractual,
-            valorinicial
-        } = body;
+        const { Nombre, Capital, Moneda } = body;
+
         const result = await Inversion.findByIdAndUpdate(
             id,
             {
-                nombre,
-                periodo,
-                cuotapartes,
-                montoinicial,
-                valoractual,
-                valorinicial
+                Nombre: Nombre,
+                Capital: Capital || 0,
+                Moneda: Moneda || TipoMoneda.Peso,
             },
             { new: true, runValidators: true }
         );
         
         if (!result) {
-            return Res.json({ error: 'Inversión no encontrada' }, { status: 404 });
+            return Res.json({ error: 'Inversion no encontrada' }, { status: 404 });
         }
         
         return Res.json(result);
@@ -66,7 +58,7 @@ export async function DELETE(req: Req, { params }: { params: Promise<{ id: strin
         const result = await Inversion.findByIdAndDelete(id);
         
         if (!result) {
-            return Res.json({ error: 'Inversión no encontrada' }, { status: 404 });
+            return Res.json({ error: 'Inversion no encontrada' }, { status: 404 });
         }
         
         return Res.json(result);

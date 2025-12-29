@@ -6,3 +6,8 @@ export enum TipoGasto {
   Servicios = 5,
   Varios = 6
 }
+
+export enum TipoMoneda {
+  Peso = 1,
+  Dolar = 2
+}
