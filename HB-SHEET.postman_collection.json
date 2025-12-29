@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f0e73109-d663-4d77-89c3-e53b57cdfcae",
+		"_postman_id": "e9f5c309-bd17-4ca7-bb8e-95fb426b4a1c",
 		"name": "HB-SHEET",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "832196"
@@ -604,28 +604,7 @@
 					"response": []
 				},
 				{
-					"name": "Leer wallet",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/wallets/694ac71a9832c50f0bc506d9",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"wallets",
-								"694ac71a9832c50f0bc506d9"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Actualizar wallet",
+					"name": "Actualizar cripto",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -634,7 +613,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Nombre\":\"Test2222\",\r\n    \"Inicio\":\"10/22\",\r\n    \"Interes\":19.8,\r\n    \"Efectivo\":146843.27,\r\n    \"Logo\":\"Wallets_Images/2.Logo.203122.jpg\",\r\n    \"CVU\":\"0000003100003569218356\",\r\n    \"Alias\":\"hbaizan.mp.pesos\"\r\n}",
+							"raw": "{\r\n    \"Nombre\": \"Test2222\",\r\n    \"Cantidad\": 0.01309379,\r\n    \"Logo\": \"tabla_de_criptos_Images/1.Logo.150030.png\",\r\n    \"Sigla\": \"BTC\",\r\n    \"Hoy\": 1716822.17\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -642,20 +621,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/wallets/694ac8db760c69f5cf8e8f1e",
+							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"wallets",
-								"694ac8db760c69f5cf8e8f1e"
+								"criptos",
+								"6952935f9e79cd276d25f8c4"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Borrar wallet",
+					"name": "Borrar cripto",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -672,13 +651,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/wallets/694ac8db760c69f5cf8e8f1e",
+							"raw": "{{baseURL}}/criptos/6952935f9e79cd276d25f8c4",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"wallets",
-								"694ac8db760c69f5cf8e8f1e"
+								"criptos",
+								"6952935f9e79cd276d25f8c4"
 							]
 						}
 					},
@@ -687,11 +666,34 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": "",
-			"type": "default"
+			"value": "http://localhost:3000"
 		}
 	]
 }
