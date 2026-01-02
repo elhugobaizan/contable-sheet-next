@@ -10,15 +10,17 @@ export async function GET() {
     console.log("listar bancos");
     try {
         await connectDB();
-        const result = await Banco.find({});
-        const bancosMap = result.map(async (banco) => {
-            const pf = await PlazoFijo.find({ Banco: banco._id })
-            return Res.json({
-                ...banco,
-                plazosfijos: pf
-            });
-        })
-        return Res.json(bancosMap);
+        const result = await Banco.aggregate([
+            {
+                $lookup: {
+                    from: 'plazosfijos',
+                    as: 'plazosfijos',
+                    localField: '_id',
+                    foreignField: 'Banco',
+                }
+            }
+        ]);
+        return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
