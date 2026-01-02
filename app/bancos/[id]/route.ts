@@ -1,6 +1,7 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import Banco from '@/app/models/Banco';
+import PlazoFijo from '@/app/models/PlazoFijo';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +14,12 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
         if (!result) {
             return Res.json({ error: 'Banco no encontrado' }, { status: 404 });
         }
-        return Res.json(result);
+        const pf = await PlazoFijo.find({ Banco: result._id })
+        return Res.json({
+            ...result,
+            plazosfijos: pf
+        });
+
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });

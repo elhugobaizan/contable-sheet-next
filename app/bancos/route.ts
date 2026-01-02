@@ -1,6 +1,7 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import Banco from '@/app/models/Banco';
+import PlazoFijo from '@/app/models/PlazoFijo';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,7 +11,14 @@ export async function GET() {
     try {
         await connectDB();
         const result = await Banco.find({});
-        return Res.json(result);
+        const bancosMap = result.map(async (banco) => {
+            const pf = await PlazoFijo.find({ Banco: banco._id })
+            return Res.json({
+                ...banco,
+                plazosfijos: pf
+            });
+        })
+        return Res.json(bancosMap);
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
