@@ -56,7 +56,7 @@ export async function POST(req: Req, { params }: { params: Promise<{ id: string 
                 Vencimiento: new Date(fijo.Vencimiento),
                 Capital: fijo.Capital || 0,
                 TNA: fijo.TNA || '',
-                Banco: +id || 0
+                Banco: id || ''
             }));
             
             const result = await PlazoFijo.insertMany(fijos);
@@ -71,7 +71,7 @@ export async function POST(req: Req, { params }: { params: Promise<{ id: string 
                 Vencimiento: new Date(Vencimiento),
                 Capital: Capital,
                 TNA: TNA,
-                Banco: +id
+                Banco: id
             });
 
             return Res.json(result);

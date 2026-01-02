@@ -6,7 +6,7 @@ export interface IPlazoFijo extends Document {
   Vencimiento:Date,
   Capital: number,
   TNA: number,
-  Banco: number
+  Banco: string
 }
 
 const PlazoFijoSchema = new Schema<IPlazoFijo>({
@@ -15,7 +15,7 @@ const PlazoFijoSchema = new Schema<IPlazoFijo>({
   Vencimiento: { type: Date, required: false, default: new Date() },
   Capital: { type: Number, required: true },
   TNA: { type: Number, required: true},
-  Banco: { type: Number, required: true},
+  Banco: { type: String, required: true},
 }, {
   timestamps: false,
   collection: 'plazosfijos'
