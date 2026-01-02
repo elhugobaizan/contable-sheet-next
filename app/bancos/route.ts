@@ -1,7 +1,6 @@
-import { NextRequest as Req, NextResponse as Res } from "next/server";
-import connectDB from '@/db';
 import Banco from '@/app/models/Banco';
-import PlazoFijo from '@/app/models/PlazoFijo';
+import connectDB from '@/db';
+import { NextRequest as Req, NextResponse as Res } from "next/server";
 
 export const dynamic = 'force-dynamic';
 

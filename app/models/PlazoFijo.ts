@@ -6,7 +6,7 @@ export interface IPlazoFijo extends Document {
   Vencimiento:Date,
   Capital: number,
   TNA: number,
-  Banco: string
+  Banco: mongoose.Types.ObjectId
 }
 
 const PlazoFijoSchema = new Schema<IPlazoFijo>({
@@ -15,7 +15,7 @@ const PlazoFijoSchema = new Schema<IPlazoFijo>({
   Vencimiento: { type: Date, required: false, default: new Date() },
   Capital: { type: Number, required: true },
   TNA: { type: Number, required: true},
-  Banco: { type: String, required: true},
+  Banco: { type: mongoose.Types.ObjectId, required: true},
 }, {
   timestamps: false,
   collection: 'plazosfijos'

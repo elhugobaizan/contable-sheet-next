@@ -13,7 +13,8 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
             return Res.json({ error: 'ID de banco no proporcionado' }, { status: 400 });
         }
         await connectDB();
-        const result = await PlazoFijo.find({ Banco: id });
+        const ObjectId = require('mongoose').Types.ObjectId;
+        const result = await PlazoFijo.find({ Banco: new ObjectId(id) });
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
