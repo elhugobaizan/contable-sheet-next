@@ -5,11 +5,19 @@ import DatosUsuario from '@/app/models/DatosUsuario';
 export const dynamic = 'force-dynamic';
 
 //List datosUsuario
-export async function GET() {
+export async function GET(req: Req) {
     console.log("listar datos Usuario");
     try {
         await connectDB();
-        const result = await DatosUsuario.find({});
+        
+        // Obtener el parámetro de consulta "Campo" si existe
+        const { searchParams } = new URL(req.url);
+        const campo = searchParams.get('Campo');
+        
+        // Si se proporciona Campo, filtrar por ese campo; si no, devolver todos
+        const query = campo ? { Campo: campo } : {};
+        const result = await DatosUsuario.find(query);
+        
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
