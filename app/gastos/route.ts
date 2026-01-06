@@ -10,7 +10,7 @@ export async function GET() {
     console.log("listar gastos");
     try {
         await connectDB();
-        const result = await Gasto.find({});
+        const result = await Gasto.find({ Fecha: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1) } });
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
