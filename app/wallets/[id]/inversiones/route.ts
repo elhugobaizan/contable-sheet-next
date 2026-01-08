@@ -6,22 +6,33 @@ import { TipoMoneda } from "@/app/models/Tipos";
 export const dynamic = 'force-dynamic';
 
 //List inversiones
-export async function GET() {
-    console.log("listar inversiones");
+export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    console.log("listar inversiones de la wallet ", id);
     try {
+        if (!id) {
+            return Res.json({ error: 'ID de wallet no proporcionado' }, { status: 400 });
+        }
         await connectDB();
-        const result = await Inversion.find({});
+        const ObjectId = require('mongoose').Types.ObjectId;
+        const result = await Inversion.find({ Ente: new ObjectId(id) });
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+        return Res.json({ error: `Error al listar inversiones de la wallet ${id}`,
+            message: err instanceof Error ? err.message : String(err)
+        }, { status: 500 });
     }
 }
 
 //Create inversion
-export async function POST(req: Req) {
-    console.log("crear nueva inversion(es)");
+    export async function POST(req: Req, { params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    console.log("crear nueva inversion(es) para la wallet ", id);
     try {
+        if (!id) {
+            return Res.json({ error: 'ID de wallet no proporcionado' }, { status: 400 });
+        }
         const mongooseConnection = await connectDB();
         
         // Verificar si la colección existe, si no, crearla
@@ -36,7 +47,7 @@ export async function POST(req: Req) {
         }
         
         const body = await req.json();
-
+        
         // Verificar si es un array
         if (Array.isArray(body)) {
             // Crear múltiples inversiones
@@ -44,6 +55,7 @@ export async function POST(req: Req) {
                 Nombre: inversion.Nombre,
                 Capital: inversion.Capital || 0,
                 Moneda: inversion.Moneda || TipoMoneda.Peso,
+                Ente: id
             }));
             
             const result = await Inversion.insertMany(inversiones);
@@ -56,16 +68,14 @@ export async function POST(req: Req) {
                 Nombre: Nombre,
                 Capital: Capital || 0,
                 Moneda: Moneda || TipoMoneda.Peso,
+                Ente: id
             });
 
             return Res.json(result);
         }
     } catch (err) {
         console.log("ERROR: ", err);
-        return Res.json({ 
-            error: 'Error al crear inversion(es)',
-            message: err instanceof Error ? err.message : String(err)
-        }, { status: 500 });
+        return Res.json({ error: `Error al crear inversion(es) para la wallet ${id}`, message: err instanceof Error ? err.message : String(err) }, { status: 500 });
     }
 }
 
