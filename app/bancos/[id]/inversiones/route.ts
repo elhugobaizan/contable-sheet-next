@@ -1,7 +1,7 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import Inversion from '@/app/models/Inversion';
-import { TipoMoneda } from "../models/Tipos";
+import { TipoMoneda } from "@/app/models/Tipos";
 
 export const dynamic = 'force-dynamic';
 
