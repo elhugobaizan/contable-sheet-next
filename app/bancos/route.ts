@@ -17,6 +17,14 @@ export async function GET() {
                     localField: '_id',
                     foreignField: 'Banco',
                 }
+            },
+            {
+                $lookup: {
+                    from: 'inversiones',
+                    as: 'inversiones',
+                    localField: '_id',
+                    foreignField: 'Ente',
+                }
             }
         ]);
         return Res.json(result);

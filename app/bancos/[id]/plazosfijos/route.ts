@@ -19,7 +19,7 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
-            error: 'Error al listar plazos fijos de un banco',
+            error: `Error al listar plazos fijos del banco ${id}`,
             message: err instanceof Error ? err.message : String(err)
         }, { status: 500 });
     }

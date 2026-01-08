@@ -9,7 +9,24 @@ export async function GET() {
     console.log("listar wallets");
     try {
         await connectDB();
-        const result = await Wallet.find({});
+        const result = await Wallet.aggregate([
+            {
+                $lookup: {
+                    from: 'criptos',
+                    as: 'criptos',
+                    localField: '_id',
+                    foreignField: 'Wallet',
+                }
+            },
+            {
+                $lookup: {
+                    from: 'inversiones',
+                    as: 'inversiones',
+                    localField: '_id',
+                    foreignField: 'Ente',
+                }
+            }
+        ]);
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);

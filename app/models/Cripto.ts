@@ -5,7 +5,8 @@ export interface ICripto extends Document {
   Cantidad: number,
   Logo: string,
   Sigla: string;
-  Hoy: number
+  Hoy: number;
+  Wallet: mongoose.Types.ObjectId;
 }
 
 const CriptoSchema = new Schema<ICripto>({
@@ -14,6 +15,7 @@ const CriptoSchema = new Schema<ICripto>({
   Logo: { type: String, required: false, default: '' },
   Sigla: { type: String, required: false, default: '' },
   Hoy: { type: Number, required: true },
+  Wallet: { type: mongoose.Types.ObjectId, required: true },
 }, {
   timestamps: false,
   collection: 'criptos'
