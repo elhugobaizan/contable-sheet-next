@@ -4,12 +4,12 @@ import Cripto from '@/app/models/Cripto';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Leer cripto");
+export async function GET(req: Req, { params }: { params: Promise<{ idCripto: string }> }) {
+    const { idCripto } = await params;
+    console.log("Leer cripto ", idCripto);
     try {
         await connectDB();
-        const id = (await params).id;
-        const result = await Cripto.findById(id);
+        const result = await Cripto.findById(idCripto);
         if (!result) {
             return Res.json({ error: 'Cripto no encontrado' }, { status: 404 });
         }
@@ -20,11 +20,11 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
     }
 }
 
-export async function PUT(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Actualizar cripto");
+export async function PUT(req: Req, { params }: { params: Promise<{ idCripto: string }> }) {
+    const { idCripto } = await params;
+    console.log("Actualizar cripto ", idCripto);
     try {
         await connectDB();
-        const id = (await params).id;
         const body = await req.json();
         const { Nombre, Cantidad, Logo, Sigla, Hoy } = body;
         
@@ -37,7 +37,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         };
         
         const result = await Cripto.findByIdAndUpdate(
-            id,
+            idCripto,
             updateData,
             { new: true, runValidators: true }
         );
@@ -53,12 +53,12 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
     }
 }
 
-export async function DELETE(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("borrar cripto");
+export async function DELETE(req: Req, { params }: { params: Promise<{ idCripto: string }> }) {
+        const { idCripto } = await params;
+    console.log("borrar cripto ", idCripto);
     try {
         await connectDB();
-        const id = (await params).id;
-        const result = await Cripto.findByIdAndDelete(id);
+        const result = await Cripto.findByIdAndDelete(idCripto);
         
         if (!result) {
             return Res.json({ error: 'Cripto no encontrado' }, { status: 404 });

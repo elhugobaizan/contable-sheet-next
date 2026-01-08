@@ -5,12 +5,12 @@ import { TipoMoneda } from "@/app/models/Tipos";
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Leer inversion");
+export async function GET(req: Req, { params }: { params: Promise<{ idInversion: string }> }) {
+    const { idInversion } = await params;
+    console.log("Leer inversion ", idInversion);
     try {
         await connectDB();
-        const id = (await params).id;
-        const result = await Inversion.findById(id);
+        const result = await Inversion.findById(idInversion);
         if (!result) {
             return Res.json({ error: 'Inversion no encontrada' }, { status: 404 });
         }
@@ -21,20 +21,21 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
     }
 }
 
-export async function PUT(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Actualizar inversion");
+export async function PUT(req: Req, { params }: { params: Promise<{ idInversion: string }> }) {
+    const { idInversion } = await params;
+    console.log("Actualizar inversion ", idInversion);
     try {
         await connectDB();
-        const id = (await params).id;
         const body = await req.json();
-        const { Nombre, Capital, Moneda } = body;
+        const { Nombre, Capital, Moneda, Ente } = body;
 
         const result = await Inversion.findByIdAndUpdate(
-            id,
+            idInversion,
             {
                 Nombre: Nombre,
                 Capital: Capital || 0,
                 Moneda: Moneda || TipoMoneda.Peso,
+                Ente: Ente
             },
             { new: true, runValidators: true }
         );
@@ -50,12 +51,12 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
     }
 }
 
-export async function DELETE(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("borrar inversion");
+export async function DELETE(req: Req, { params }: { params: Promise<{ idInversion: string }> }) {
+    const { idInversion } = await params;
+    console.log("borrar inversion ", idInversion);
     try {
         await connectDB();
-        const id = (await params).id;
-        const result = await Inversion.findByIdAndDelete(id);
+        const result = await Inversion.findByIdAndDelete(idInversion);
         
         if (!result) {
             return Res.json({ error: 'Inversion no encontrada' }, { status: 404 });
