@@ -4,7 +4,8 @@ export enum TipoGasto {
   Salud = 3,
   Ocio = 4,
   Servicios = 5,
-  Varios = 6
+  Varios = 6,
+  Impuestos = 7,
 }
 
 export enum TipoMoneda {
