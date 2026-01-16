@@ -14,7 +14,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
 
         const updateData: any = {
             Deuda: 0,
-            Vencimiento: new Date(1970, 1, 1),
+            Vencimiento: new Date("1970-01-01T03:00:00.000+00:0"),
         };
         
 
