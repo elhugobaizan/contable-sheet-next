@@ -6,11 +6,12 @@ import { TipoGasto } from '@/app/models/Tipos';
 export const dynamic = 'force-dynamic';
 
 //List gastos
-export async function GET() {
+export async function GET(req: Req) {
     console.log("listar gastos");
+    const all = req.nextUrl.searchParams.get('all') || false;
     try {
         await connectDB();
-        const result = await Gasto.find({ Fecha: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1) } });
+        const result = await Gasto.find(all ? {} : { Fecha: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1) } });
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
