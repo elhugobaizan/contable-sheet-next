@@ -1,3 +1,24 @@
+// Mock de mongoose antes de importar cualquier cosa que lo use
+jest.mock('mongoose', () => {
+  const actualMongoose = jest.requireActual('mongoose');
+  return {
+    ...actualMongoose,
+    Schema: jest.fn().mockImplementation(() => ({
+      index: jest.fn(),
+      pre: jest.fn(),
+      post: jest.fn(),
+      methods: {},
+      statics: {},
+      virtuals: {},
+      paths: {},
+    })),
+    model: jest.fn(),
+    Types: {
+      ObjectId: jest.fn((id) => ({ toString: () => id || 'mockId' })),
+    },
+  };
+});
+
 import { GET, POST } from '@/app/bancos/route';
 import { NextRequest } from 'next/server';
 import Banco from '@/app/models/Banco';
@@ -5,7 +26,15 @@ import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Banco');
+jest.mock('@/app/models/Banco', () => ({
+  __esModule: true,
+  default: {
+    aggregate: jest.fn(),
+    find: jest.fn(),
+    create: jest.fn(),
+    insertMany: jest.fn(),
+  },
+}));
 
 const mockConnectDB = connectDB as jest.MockedFunction<typeof connectDB>;
 const mockBanco = Banco as jest.Mocked<typeof Banco>;
@@ -26,6 +55,8 @@ describe('Bancos API - Route /bancos', () => {
           Alias: 'Banco 1',
           Efectivo: 0,
           URL: '',
+          plazosfijos: [],
+          inversiones: [],
         },
         {
           _id: '507f1f77bcf86cd799439012',
@@ -34,10 +65,12 @@ describe('Bancos API - Route /bancos', () => {
           Alias: 'Banco 2',
           Efectivo: 5,
           URL: 'https://www.banco2.com',
+          plazosfijos: [],
+          inversiones: [],
         },
       ];
 
-      (mockBanco.find as jest.Mock).mockResolvedValue(mockBancos);
+      (mockBanco.aggregate as jest.Mock).mockResolvedValue(mockBancos);
 
       const response = await GET();
       const data = await response.json();
@@ -45,12 +78,12 @@ describe('Bancos API - Route /bancos', () => {
       expect(response.status).toBe(200);
       expect(data).toEqual(mockBancos);
       expect(mockConnectDB).toHaveBeenCalledTimes(1);
-      expect(mockBanco.find).toHaveBeenCalledWith({});
+      expect(mockBanco.aggregate).toHaveBeenCalled();
     });
 
     it('debe manejar errores al listar bancos', async () => {
       const errorMessage = 'Error de conexión';
-      (mockBanco.find as jest.Mock).mockRejectedValue(new Error(errorMessage));
+      (mockBanco.aggregate as jest.Mock).mockRejectedValue(new Error(errorMessage));
 
       const response = await GET();
       const data = await response.json();

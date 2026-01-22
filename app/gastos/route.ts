@@ -2,6 +2,7 @@ import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import Gasto from '@/app/models/Gasto';
 import { TipoGasto } from '@/app/models/Tipos';
+import { DateTime } from "luxon";
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +12,26 @@ export async function GET(req: Req) {
     const all = req.nextUrl.searchParams.get('all') || false;
     try {
         await connectDB();
-        const result = await Gasto.find(all ? {} : { Fecha: { $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1) } });
+        
+        let query = {};
+        if (!all) {
+            // Get current month start and next month start as strings (yyyy-MM-dd format)
+            const now = DateTime.now();
+            const startOfMonth = now.startOf('month').toFormat('yyyy-MM-dd');
+            const startOfNextMonth = now.plus({ months: 1 }).startOf('month').toFormat('yyyy-MM-dd');
+            
+            // Since Fecha is a string in yyyy-MM-dd format, we can use string comparison
+            // The format is lexicographically sortable, so >= and < work correctly
+            query = {
+                Fecha: {
+                    $gte: startOfMonth,
+                    $lt: startOfNextMonth
+                }
+            };
+        }
+        
+        const result = await Gasto.find(query);
+        console.log('Encontrados: ',result?.length);
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);

@@ -2,6 +2,7 @@ import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import Gasto from '@/app/models/Gasto';
 import { TipoGasto } from '@/app/models/Tipos';
+import { DateTime } from "luxon";
 
 export const dynamic = 'force-dynamic';
 
@@ -31,7 +32,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         
         // Validate and parse Vencimiento date
         const updateData: any = {
-            Fecha: new Date(Fecha),
+            Fecha: Fecha || DateTime.now().toFormat('yyyy-MM-dd'),
             Monto: Monto || 0,
             Tipo: Tipo || TipoGasto.Varios,
             Donde: Donde || '',

@@ -1,3 +1,24 @@
+// Mock de mongoose antes de importar cualquier cosa que lo use
+jest.mock('mongoose', () => {
+  const actualMongoose = jest.requireActual('mongoose');
+  return {
+    ...actualMongoose,
+    Schema: jest.fn().mockImplementation(() => ({
+      index: jest.fn(),
+      pre: jest.fn(),
+      post: jest.fn(),
+      methods: {},
+      statics: {},
+      virtuals: {},
+      paths: {},
+    })),
+    model: jest.fn(),
+    Types: {
+      ObjectId: jest.fn((id) => ({ toString: () => id || 'mockId' })),
+    },
+  };
+});
+
 import { GET, PUT, DELETE } from '@/app/fijos/[id]/route';
 import { NextRequest } from 'next/server';
 import Fijo from '@/app/models/Fijo';
@@ -5,7 +26,14 @@ import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Fijo');
+jest.mock('@/app/models/Fijo', () => ({
+  __esModule: true,
+  default: {
+    findById: jest.fn(),
+    findByIdAndUpdate: jest.fn(),
+    findByIdAndDelete: jest.fn(),
+  },
+}));
 
 const mockConnectDB = connectDB as jest.MockedFunction<typeof connectDB>;
 const mockFijo = Fijo as jest.Mocked<typeof Fijo>;

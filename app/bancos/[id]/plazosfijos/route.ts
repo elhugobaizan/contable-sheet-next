@@ -1,8 +1,25 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
 import PlazoFijo from '@/app/models/PlazoFijo';
+import { DateTime } from "luxon";
 
 export const dynamic = 'force-dynamic';
+
+// Helper function to convert date to string format yyyy-MM-dd
+function formatVencimiento(vencimiento: any): string {
+    if (!vencimiento) {
+        return DateTime.now().toFormat('yyyy-MM-dd');
+    }
+    
+    if (typeof vencimiento === 'string') {
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (dateRegex.test(vencimiento)) {
+            return vencimiento;
+        }
+    }
+    
+    return DateTime.fromISO(vencimiento).toFormat('yyyy-MM-dd');
+}
 
 //List wallets
 export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
@@ -54,7 +71,7 @@ export async function POST(req: Req, { params }: { params: Promise<{ id: string 
             const fijos = body.map((fijo: any) => ({
                 Nombre: fijo.Nombre || '',
                 Periodo: new Date(fijo.Periodo),
-                Vencimiento: new Date(fijo.Vencimiento),
+                Vencimiento: formatVencimiento(fijo.Vencimiento),
                 Capital: fijo.Capital || 0,
                 TNA: fijo.TNA || '',
                 Banco: id || ''
@@ -69,7 +86,7 @@ export async function POST(req: Req, { params }: { params: Promise<{ id: string 
             const result = await PlazoFijo.create({
                 Nombre: Nombre,
                 Periodo: new Date(Periodo),
-                Vencimiento: new Date(Vencimiento),
+                Vencimiento: formatVencimiento(Vencimiento),
                 Capital: Capital,
                 TNA: TNA,
                 Banco: id

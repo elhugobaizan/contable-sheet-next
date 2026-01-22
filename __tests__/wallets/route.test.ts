@@ -1,3 +1,24 @@
+// Mock de mongoose antes de importar cualquier cosa que lo use
+jest.mock('mongoose', () => {
+  const actualMongoose = jest.requireActual('mongoose');
+  return {
+    ...actualMongoose,
+    Schema: jest.fn().mockImplementation(() => ({
+      index: jest.fn(),
+      pre: jest.fn(),
+      post: jest.fn(),
+      methods: {},
+      statics: {},
+      virtuals: {},
+      paths: {},
+    })),
+    model: jest.fn(),
+    Types: {
+      ObjectId: jest.fn((id) => ({ toString: () => id || 'mockId' })),
+    },
+  };
+});
+
 import { GET, POST } from '@/app/wallets/route';
 import { NextRequest } from 'next/server';
 import Wallet from '@/app/models/Wallet';
@@ -5,7 +26,15 @@ import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Wallet');
+jest.mock('@/app/models/Wallet', () => ({
+  __esModule: true,
+  default: {
+    aggregate: jest.fn(),
+    find: jest.fn(),
+    create: jest.fn(),
+    insertMany: jest.fn(),
+  },
+}));
 
 const mockConnectDB = connectDB as jest.MockedFunction<typeof connectDB>;
 const mockWallet = Wallet as jest.Mocked<typeof Wallet>;
@@ -28,6 +57,8 @@ describe('Wallets API - Route /wallets', () => {
           Logo: '',
           CVU: '',
           Alias: '',
+          criptos: [],
+          inversiones: [],
         },
         {
           _id: '507f1f77bcf86cd799439012',
@@ -38,10 +69,12 @@ describe('Wallets API - Route /wallets', () => {
           Logo: 'logo.png',
           CVU: '123456789',
           Alias: 'wallet2',
+          criptos: [],
+          inversiones: [],
         },
       ];
 
-      (mockWallet.find as jest.Mock).mockResolvedValue(mockWallets);
+      (mockWallet.aggregate as jest.Mock).mockResolvedValue(mockWallets);
 
       const response = await GET();
       const data = await response.json();
@@ -49,12 +82,12 @@ describe('Wallets API - Route /wallets', () => {
       expect(response.status).toBe(200);
       expect(data).toEqual(mockWallets);
       expect(mockConnectDB).toHaveBeenCalledTimes(1);
-      expect(mockWallet.find).toHaveBeenCalledWith({});
+      expect(mockWallet.aggregate).toHaveBeenCalled();
     });
 
     it('debe manejar errores al listar wallets', async () => {
       const errorMessage = 'Error de conexión';
-      (mockWallet.find as jest.Mock).mockRejectedValue(new Error(errorMessage));
+      (mockWallet.aggregate as jest.Mock).mockRejectedValue(new Error(errorMessage));
 
       const response = await GET();
       const data = await response.json();

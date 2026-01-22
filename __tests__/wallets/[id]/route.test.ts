@@ -1,3 +1,24 @@
+// Mock de mongoose antes de importar cualquier cosa que lo use
+jest.mock('mongoose', () => {
+  const actualMongoose = jest.requireActual('mongoose');
+  return {
+    ...actualMongoose,
+    Schema: jest.fn().mockImplementation(() => ({
+      index: jest.fn(),
+      pre: jest.fn(),
+      post: jest.fn(),
+      methods: {},
+      statics: {},
+      virtuals: {},
+      paths: {},
+    })),
+    model: jest.fn(),
+    Types: {
+      ObjectId: jest.fn((id) => ({ toString: () => id || 'mockId' })),
+    },
+  };
+});
+
 import { GET, PUT, DELETE } from '@/app/wallets/[id]/route';
 import { NextRequest } from 'next/server';
 import Wallet from '@/app/models/Wallet';
@@ -5,7 +26,14 @@ import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Wallet');
+jest.mock('@/app/models/Wallet', () => ({
+  __esModule: true,
+  default: {
+    findById: jest.fn(),
+    findByIdAndUpdate: jest.fn(),
+    findByIdAndDelete: jest.fn(),
+  },
+}));
 
 const mockConnectDB = connectDB as jest.MockedFunction<typeof connectDB>;
 const mockWallet = Wallet as jest.Mocked<typeof Wallet>;
@@ -19,16 +47,16 @@ describe('Wallets API - Route /wallets/[id]', () => {
   });
 
   describe('GET /wallets/[id]', () => {
-    it('debe obtener un wallet por ID exitosamente', async () => {
+    it('debe obtener una wallet por ID exitosamente', async () => {
       const mockWalletData = {
         _id: mockWalletId,
-        Nombre: 'Wallet Test',
-        Inicio: '2024-01-01T00:00:00.000Z',
-        Interes: 3,
-        Efectivo: 1500,
-        Logo: 'logo.png',
-        CVU: '123456789',
-        Alias: 'wallet-test',
+        Nombre: 'Wallet 1',
+        Inicio: new Date('2024-01-01'),
+        Interes: 0,
+        Efectivo: 1000,
+        Logo: '',
+        CVU: '',
+        Alias: '',
       };
 
       (mockWallet.findById as jest.Mock).mockResolvedValue(mockWalletData);
@@ -38,11 +66,14 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual(mockWalletData);
+      expect(data).toEqual({
+        ...mockWalletData,
+        Inicio: mockWalletData.Inicio.toISOString(),
+      });
       expect(mockWallet.findById).toHaveBeenCalledWith(mockWalletId);
     });
 
-    it('debe retornar 404 cuando el wallet no existe', async () => {
+    it('debe retornar 404 cuando la wallet no existe', async () => {
       (mockWallet.findById as jest.Mock).mockResolvedValue(null);
 
       const params = Promise.resolve({ id: mockWalletId });
@@ -68,21 +99,26 @@ describe('Wallets API - Route /wallets/[id]', () => {
   });
 
   describe('PUT /wallets/[id]', () => {
-    it('debe actualizar un wallet exitosamente', async () => {
+    it('debe actualizar una wallet exitosamente', async () => {
       const updateData = {
-        Nombre: 'Wallet Actualizado',
-        Inicio: '2024-02-01',
+        Nombre: 'Wallet Actualizada',
+        Inicio: '2024-01-15',
         Interes: 5,
         Efectivo: 2000,
         Logo: 'new-logo.png',
         CVU: '987654321',
-        Alias: 'wallet-updated',
+        Alias: 'wallet-actualizada',
       };
 
       const updatedWallet = {
         _id: mockWalletId,
-        ...updateData,
-        Inicio: '2024-02-01T00:00:00.000Z',
+        Nombre: updateData.Nombre,
+        Inicio: new Date(updateData.Inicio),
+        Interes: updateData.Interes,
+        Efectivo: updateData.Efectivo,
+        Logo: updateData.Logo,
+        CVU: updateData.CVU,
+        Alias: updateData.Alias,
       };
 
       (mockWallet.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedWallet);
@@ -98,7 +134,10 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual(updatedWallet);
+      expect(data).toEqual({
+        ...updatedWallet,
+        Inicio: updatedWallet.Inicio.toISOString(),
+      });
       expect(mockWallet.findByIdAndUpdate).toHaveBeenCalledWith(
         mockWalletId,
         {
@@ -117,13 +156,13 @@ describe('Wallets API - Route /wallets/[id]', () => {
     it('debe usar valores por defecto para campos opcionales al actualizar', async () => {
       const updateData = {
         Nombre: 'Wallet Parcial',
-        Inicio: '2024-02-01',
+        Inicio: '2024-01-01',
       };
 
       const updatedWallet = {
         _id: mockWalletId,
         Nombre: updateData.Nombre,
-        Inicio: '2024-02-01T00:00:00.000Z',
+        Inicio: new Date(updateData.Inicio),
         Interes: 0,
         Efectivo: 0,
         Logo: '',
@@ -158,10 +197,12 @@ describe('Wallets API - Route /wallets/[id]', () => {
       );
     });
 
-    it('debe retornar 404 cuando el wallet a actualizar no existe', async () => {
+    it('debe retornar 404 cuando la wallet a actualizar no existe', async () => {
       const updateData = {
         Nombre: 'Wallet No Existe',
-        Inicio: '2024-02-01',
+        Inicio: '2024-01-01',
+        Interes: 3,
+        Efectivo: 1500,
       };
 
       (mockWallet.findByIdAndUpdate as jest.Mock).mockResolvedValue(null);
@@ -183,7 +224,9 @@ describe('Wallets API - Route /wallets/[id]', () => {
     it('debe manejar errores al actualizar wallet', async () => {
       const updateData = {
         Nombre: 'Wallet Error',
-        Inicio: '2024-02-01',
+        Inicio: '2024-01-01',
+        Interes: 3,
+        Efectivo: 1500,
       };
 
       const errorMessage = 'Error de validación';
@@ -205,11 +248,11 @@ describe('Wallets API - Route /wallets/[id]', () => {
   });
 
   describe('DELETE /wallets/[id]', () => {
-    it('debe eliminar un wallet exitosamente', async () => {
+    it('debe eliminar una wallet exitosamente', async () => {
       const deletedWallet = {
         _id: mockWalletId,
-        Nombre: 'Wallet a Eliminar',
-        Inicio: '2024-01-01T00:00:00.000Z',
+        Nombre: 'Wallet 1',
+        Inicio: new Date('2024-01-01'),
         Interes: 0,
         Efectivo: 1000,
         Logo: '',
@@ -228,11 +271,14 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual(deletedWallet);
+      expect(data).toEqual({
+        ...deletedWallet,
+        Inicio: deletedWallet.Inicio.toISOString(),
+      });
       expect(mockWallet.findByIdAndDelete).toHaveBeenCalledWith(mockWalletId);
     });
 
-    it('debe retornar 404 cuando el wallet a eliminar no existe', async () => {
+    it('debe retornar 404 cuando la wallet a eliminar no existe', async () => {
       (mockWallet.findByIdAndDelete as jest.Mock).mockResolvedValue(null);
 
       const params = Promise.resolve({ id: mockWalletId });
@@ -264,4 +310,3 @@ describe('Wallets API - Route /wallets/[id]', () => {
     });
   });
 });
-

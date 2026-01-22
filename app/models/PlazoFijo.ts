@@ -1,9 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
+import { DateTime } from 'luxon';
 
 export interface IPlazoFijo extends Document {
   Nombre:string,
   Periodo:Date,
-  Vencimiento:Date,
+  Vencimiento:string,
   Capital: number,
   TNA: number,
   Banco: mongoose.Types.ObjectId
@@ -12,7 +13,7 @@ export interface IPlazoFijo extends Document {
 const PlazoFijoSchema = new Schema<IPlazoFijo>({
   Nombre: { type: String, required: false, default: '' },
   Periodo: { type: Date, required: false, default: new Date() },
-  Vencimiento: { type: Date, required: false, default: new Date() },
+  Vencimiento: { type: String, required: false, default: DateTime.now().toFormat('yyyy-MM-dd') },
   Capital: { type: Number, required: true },
   TNA: { type: Number, required: true},
   Banco: { type: mongoose.Types.ObjectId, required: true},

@@ -1,9 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { TipoGasto } from './Tipos';
+import { DateTime } from 'luxon';
 
 export interface IGasto extends Document {
   Concepto: string;
-  Fecha: Date;
+  Fecha: string;
   Monto: number;
   Tipo: number;
   Donde: string;
@@ -11,12 +12,12 @@ export interface IGasto extends Document {
 
 const GastoSchema = new Schema<IGasto>({
   Concepto: { type: String, required: true },
-  Fecha: { type: Date, required: false, default: new Date() },
+  Fecha: { type: String, required: false, default: DateTime.now().toFormat('yyyy-MM-dd') },
   Monto: { type: Number, required: true },
   Tipo: { type: Number, required: false, default: TipoGasto.Varios },
-  Donde: { type: String, required: false, default: '' }
+  Donde: { type: String, required: false, default: '' },
 }, {
-  timestamps: false,
+  timestamps: true,
   collection: 'gastos'
 });
 

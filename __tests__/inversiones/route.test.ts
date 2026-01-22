@@ -1,0 +1,301 @@
+// Mock de mongoose antes de importar cualquier cosa que lo use
+jest.mock('mongoose', () => {
+  const actualMongoose = jest.requireActual('mongoose');
+  return {
+    ...actualMongoose,
+    Schema: jest.fn().mockImplementation(() => ({
+      index: jest.fn(),
+      pre: jest.fn(),
+      post: jest.fn(),
+      methods: {},
+      statics: {},
+      virtuals: {},
+      paths: {},
+    })),
+    model: jest.fn(),
+    Types: {
+      ObjectId: jest.fn((id) => ({ toString: () => id || 'mockId' })),
+    },
+  };
+});
+
+import { GET, POST } from '@/app/inversiones/route';
+import { NextRequest } from 'next/server';
+import Inversion from '@/app/models/Inversion';
+import connectDB from '@/db';
+
+// Mock de las dependencias
+jest.mock('@/db');
+jest.mock('@/app/models/Inversion', () => ({
+  __esModule: true,
+  default: {
+    find: jest.fn(),
+    create: jest.fn(),
+    insertMany: jest.fn(),
+  },
+}));
+
+const mockConnectDB = connectDB as jest.MockedFunction<typeof connectDB>;
+const mockInversion = Inversion as jest.Mocked<typeof Inversion>;
+
+describe('Inversiones API - Route /inversiones', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockConnectDB.mockResolvedValue({} as any);
+  });
+
+  describe('GET /inversiones', () => {
+    it('debe listar todas las inversiones exitosamente', async () => {
+      const mockInversiones = [
+        {
+          _id: '507f1f77bcf86cd799439011',
+          Nombre: 'Inversion 1',
+          Capital: 10000,
+          Moneda: 1,
+          Ente: '507f1f77bcf86cd799439020',
+        },
+        {
+          _id: '507f1f77bcf86cd799439012',
+          Nombre: 'Inversion 2',
+          Capital: 20000,
+          Moneda: 2,
+          Ente: '507f1f77bcf86cd799439021',
+        },
+      ];
+
+      (mockInversion.find as jest.Mock).mockResolvedValue(mockInversiones);
+
+      const response = await GET();
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data).toEqual(mockInversiones);
+      expect(mockConnectDB).toHaveBeenCalledTimes(1);
+      expect(mockInversion.find).toHaveBeenCalledWith({});
+    });
+
+    it('debe manejar errores al listar inversiones', async () => {
+      const errorMessage = 'Error de conexión';
+      (mockInversion.find as jest.Mock).mockRejectedValue(new Error(errorMessage));
+
+      const response = await GET();
+      const data = await response.json();
+
+      expect(response.status).toBe(500);
+      expect(data.error).toBe(errorMessage);
+    });
+  });
+
+  describe('POST /inversiones', () => {
+    it('debe crear una inversión exitosamente', async () => {
+      const inversionData = {
+        Nombre: 'Nueva Inversion',
+        Capital: 15000,
+        Moneda: 1,
+      };
+
+      const createdInversion = {
+        _id: '507f1f77bcf86cd799439013',
+        Nombre: inversionData.Nombre,
+        Capital: inversionData.Capital,
+        Moneda: inversionData.Moneda,
+        Ente: '507f1f77bcf86cd799439020',
+      };
+
+      const mockConnection = {
+        connection: {
+          db: {
+            listCollections: jest.fn().mockReturnValue({
+              toArray: jest.fn().mockResolvedValue([{ name: 'inversiones' }]),
+            }),
+          },
+        },
+      };
+
+      mockConnectDB.mockResolvedValue(mockConnection as any);
+      (mockInversion.create as jest.Mock).mockResolvedValue(createdInversion);
+
+      const req = new NextRequest('http://localhost:3000/api/inversiones', {
+        method: 'POST',
+        body: JSON.stringify(inversionData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const response = await POST(req);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data).toEqual(createdInversion);
+      expect(mockInversion.create).toHaveBeenCalledWith({
+        Nombre: inversionData.Nombre,
+        Capital: inversionData.Capital,
+        Moneda: inversionData.Moneda,
+      });
+    });
+
+    it('debe crear múltiples inversiones cuando se envía un array', async () => {
+      const inversionesData = [
+        {
+          Nombre: 'Inversion 1',
+          Capital: 10000,
+          Moneda: 1,
+        },
+        {
+          Nombre: 'Inversion 2',
+          Capital: 20000,
+          Moneda: 2,
+        },
+      ];
+
+      const createdInversiones = inversionesData.map((inv, i) => ({
+        _id: `507f1f77bcf86cd79943901${i}`,
+        Nombre: inv.Nombre,
+        Capital: inv.Capital,
+        Moneda: inv.Moneda,
+        Ente: `507f1f77bcf86cd79943902${i}`,
+      }));
+
+      const mockConnection = {
+        connection: {
+          db: {
+            listCollections: jest.fn().mockReturnValue({
+              toArray: jest.fn().mockResolvedValue([{ name: 'inversiones' }]),
+            }),
+          },
+        },
+      };
+
+      mockConnectDB.mockResolvedValue(mockConnection as any);
+      (mockInversion.insertMany as jest.Mock).mockResolvedValue(createdInversiones);
+
+      const req = new NextRequest('http://localhost:3000/api/inversiones', {
+        method: 'POST',
+        body: JSON.stringify(inversionesData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const response = await POST(req);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data).toEqual(createdInversiones);
+      expect(mockInversion.insertMany).toHaveBeenCalled();
+      expect(mockInversion.create).not.toHaveBeenCalled();
+    });
+
+    it('debe usar valores por defecto para campos opcionales', async () => {
+      const inversionData = {
+        Nombre: 'Inversion Simple',
+      };
+
+      const createdInversion = {
+        _id: '507f1f77bcf86cd799439014',
+        Nombre: inversionData.Nombre,
+        Capital: 0,
+        Moneda: 1, // TipoMoneda.Peso
+        Ente: '507f1f77bcf86cd799439020',
+      };
+
+      const mockConnection = {
+        connection: {
+          db: {
+            listCollections: jest.fn().mockReturnValue({
+              toArray: jest.fn().mockResolvedValue([{ name: 'inversiones' }]),
+            }),
+          },
+        },
+      };
+
+      mockConnectDB.mockResolvedValue(mockConnection as any);
+      (mockInversion.create as jest.Mock).mockResolvedValue(createdInversion);
+
+      const req = new NextRequest('http://localhost:3000/api/inversiones', {
+        method: 'POST',
+        body: JSON.stringify(inversionData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const response = await POST(req);
+
+      expect(response.status).toBe(200);
+      expect(mockInversion.create).toHaveBeenCalledWith({
+        Nombre: inversionData.Nombre,
+        Capital: 0,
+        Moneda: 1,
+      });
+    });
+
+    it('debe crear la colección si no existe', async () => {
+      const inversionData = {
+        Nombre: 'Inversion Nueva',
+        Capital: 5000,
+        Moneda: 1,
+      };
+
+      const mockDb = {
+        listCollections: jest.fn().mockReturnValue({
+          toArray: jest.fn().mockResolvedValue([]),
+        }),
+        createCollection: jest.fn().mockResolvedValue(undefined),
+      };
+
+      const mockConnection = {
+        connection: {
+          db: mockDb,
+        },
+      };
+
+      mockConnectDB.mockResolvedValue(mockConnection as any);
+      (mockInversion.create as jest.Mock).mockResolvedValue({
+        _id: '507f1f77bcf86cd799439015',
+        ...inversionData,
+        Ente: '507f1f77bcf86cd799439020',
+      });
+
+      const req = new NextRequest('http://localhost:3000/api/inversiones', {
+        method: 'POST',
+        body: JSON.stringify(inversionData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      await POST(req);
+
+      expect(mockDb.createCollection).toHaveBeenCalledWith('inversiones');
+    });
+
+    it('debe manejar errores al crear inversión', async () => {
+      const inversionData = {
+        Nombre: 'Inversion Error',
+        Capital: 5000,
+        Moneda: 1,
+      };
+
+      const errorMessage = 'Error de validación';
+      const mockConnection = {
+        connection: {
+          db: {
+            listCollections: jest.fn().mockReturnValue({
+              toArray: jest.fn().mockResolvedValue([{ name: 'inversiones' }]),
+            }),
+          },
+        },
+      };
+
+      mockConnectDB.mockResolvedValue(mockConnection as any);
+      (mockInversion.create as jest.Mock).mockRejectedValue(new Error(errorMessage));
+
+      const req = new NextRequest('http://localhost:3000/api/inversiones', {
+        method: 'POST',
+        body: JSON.stringify(inversionData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const response = await POST(req);
+      const data = await response.json();
+
+      expect(response.status).toBe(500);
+      expect(data.error).toBe('Error al crear inversion(es)');
+      expect(data.message).toBe(errorMessage);
+    });
+  });
+});
