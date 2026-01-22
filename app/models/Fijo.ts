@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IFijo extends Document {
   Detalle: string;
-  Vencimiento: Date;
+  Vencimiento: string;
   Deuda: number;
   Datos: string;
   Logo: string;
@@ -11,7 +11,7 @@ export interface IFijo extends Document {
 
 const FijoSchema = new Schema<IFijo>({
   Detalle: { type: String, required: true },
-  Vencimiento: { type: Date, required: false, default: null },
+  Vencimiento: { type: String, required: false, default: '' },
   Deuda: { type: Number, required: false, default: 0 },
   Datos: { type: String, required: false, default: '' },
   Logo: { type: String, required: false, default: '' },

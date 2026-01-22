@@ -3,8 +3,25 @@ import connectDB from '@/db';
 import Fijo from '@/app/models/Fijo';
 import Gasto from '@/app/models/Gasto';
 import { TipoGasto } from "@/app/models/Tipos";
+import { DateTime } from "luxon";
 
 export const dynamic = 'force-dynamic';
+
+export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
+    console.log("Leer fijo");
+    try {
+        await connectDB();
+        const id = (await params).id;
+        const result = await Fijo.findById(id);
+        if (!result) {
+            return Res.json({ error: 'Fijo no encontrado' }, { status: 404 });
+        }
+        return Res.json(result);
+    } catch (err) {
+        console.log("ERROR: ", err);
+        return Res.json({ error: err instanceof Error ? err.message : String(err) }, { status: 500 });
+    }
+}
 
 export async function PUT(req: Req, { params }: { params: Promise<{ id: string }> }) {
     console.log("Pagar fijo");
@@ -14,7 +31,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
 
         const updateData: any = {
             Deuda: 0,
-            Vencimiento: new Date("1970-01-01T00:00:00.000+00:00"),
+            Vencimiento: '',
         };
         
 
@@ -33,7 +50,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         
             await Gasto.create({
                 Concepto: `Pago de fijo ${fijo.Detalle}`,
-                Fecha: new Date(),
+                Fecha: DateTime.now().toFormat('yyyy-MM-dd'),
                 Monto: Monto,
                 Tipo: TipoGasto.Impuestos,
                 Donde: ''
