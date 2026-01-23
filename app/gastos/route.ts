@@ -31,7 +31,7 @@ export async function GET(req: Req) {
         }
         
         const result = await Gasto.find(query);
-        console.log('Encontrados: ',result?.length);
+        console.log(`Encontrados: ${result?.length} gastos`);
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
@@ -66,7 +66,7 @@ export async function POST(req: Req) {
             // Crear múltiples gastos
             const gastos = body.map((fijo: any) => ({
                 Concepto: fijo.Concepto,
-                Fecha: new Date(fijo.Fecha),
+                Fecha: fijo.Fecha,
                 Monto: fijo.Monto || 0,
                 Tipo: fijo.Tipo || TipoGasto.Varios,
                 Donde: fijo.Donde || ''
@@ -80,12 +80,12 @@ export async function POST(req: Req) {
             
             const result = await Gasto.create({
                 Concepto: Concepto,
-                Fecha: new Date(Fecha),
+                Fecha: Fecha,
                 Monto: Monto || 0,
                 Tipo: Tipo || TipoGasto.Varios,
                 Donde: Donde || ''
             });
-
+            console.log("Gasto creado: ", result);
             return Res.json(result);
         }
     } catch (err) {
