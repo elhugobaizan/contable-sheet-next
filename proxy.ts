@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const allowedOrigins = new Set(['http://localhost:8081', 'https://hb-sheet-contable.vercel.app', 'http://localhost:8082'])
+const allowedOrigins = new Set(['http://localhost:8081', 'https://hb-sheet-contable.vercel.app', 'http://localhost:8082', 'http://localhost:8083'])
 
 const corsOptions = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
