@@ -19,7 +19,7 @@ jest.mock('mongoose', () => {
   };
 });
 
-import { GET, POST } from '@/app/bancos/[id]/plazosfijos/route';
+import { GET, POST, formatVencimiento } from '@/app/bancos/[id]/plazosfijos/route';
 import { NextRequest } from 'next/server';
 import PlazoFijo from '@/app/models/PlazoFijo';
 import connectDB from '@/db';
@@ -52,7 +52,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
         {
           _id: '507f1f77bcf86cd799439011',
           Nombre: 'Plazo Fijo 1',
-          Periodo: new Date('2024-01-01'),
+          Periodo: '2024-01-01',
           Vencimiento: '2024-12-31',
           Capital: 100000,
           TNA: 35,
@@ -61,7 +61,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
         {
           _id: '507f1f77bcf86cd799439012',
           Nombre: 'Plazo Fijo 2',
-          Periodo: new Date('2024-02-01'),
+          Periodo: '2024-02-01',
           Vencimiento: '2025-01-31',
           Capital: 200000,
           TNA: 30,
@@ -79,7 +79,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
       // JSON serialization converts Date to string
       expect(data).toEqual(mockPlazosFijos.map(p => ({
         ...p,
-        Periodo: p.Periodo.toISOString(),
+        Periodo: p.Periodo,
       })));
       expect(mockConnectDB).toHaveBeenCalledTimes(1);
       expect(mockPlazoFijo.find).toHaveBeenCalled();
@@ -122,7 +122,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
       const createdPlazoFijo = {
         _id: '507f1f77bcf86cd799439013',
         Nombre: plazoFijoData.Nombre,
-        Periodo: new Date(plazoFijoData.Periodo),
+        Periodo: formatVencimiento(plazoFijoData.Periodo),
         Vencimiento: '2024-12-31',
         Capital: plazoFijoData.Capital,
         TNA: plazoFijoData.TNA,
@@ -156,11 +156,11 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
       // JSON serialization converts Date to string
       expect(data).toEqual({
         ...createdPlazoFijo,
-        Periodo: createdPlazoFijo.Periodo.toISOString(),
+        Periodo: formatVencimiento(createdPlazoFijo.Periodo),
       });
       expect(mockPlazoFijo.create).toHaveBeenCalledWith({
         Nombre: plazoFijoData.Nombre,
-        Periodo: new Date(plazoFijoData.Periodo),
+        Periodo: formatVencimiento(plazoFijoData.Periodo),
         Vencimiento: '2024-12-31',
         Capital: plazoFijoData.Capital,
         TNA: plazoFijoData.TNA,
@@ -189,7 +189,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
       const createdPlazosFijos = plazosFijosData.map((p, i) => ({
         _id: `507f1f77bcf86cd79943901${i}`,
         Nombre: p.Nombre,
-        Periodo: new Date(p.Periodo),
+        Periodo: formatVencimiento(p.Periodo),
         Vencimiento: p.Vencimiento,
         Capital: p.Capital,
         TNA: p.TNA,
@@ -223,7 +223,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
       // JSON serialization converts Date to string
       expect(data).toEqual(createdPlazosFijos.map(p => ({
         ...p,
-        Periodo: p.Periodo.toISOString(),
+        Periodo: formatVencimiento(p.Periodo),
       })));
       expect(mockPlazoFijo.insertMany).toHaveBeenCalled();
       expect(mockPlazoFijo.create).not.toHaveBeenCalled();
@@ -234,12 +234,12 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos', () => {
           expect.objectContaining({
             Nombre: plazosFijosData[0].Nombre,
             Vencimiento: '2024-12-31',
-            Periodo: expect.any(Date),
+            Periodo: formatVencimiento(plazosFijosData[0].Periodo),
           }),
           expect.objectContaining({
             Nombre: plazosFijosData[1].Nombre,
             Vencimiento: '2025-01-31',
-            Periodo: expect.any(Date),
+            Periodo: formatVencimiento(plazosFijosData[1].Periodo),
           }),
         ])
       );

@@ -106,13 +106,13 @@ describe('Fijos API - Route /fijos/[id]/pay', () => {
         mockFijoId,
         {
           Deuda: 0,
-          Vencimiento: new Date('1970-01-01T00:00:00.000+00:00'),
+          Vencimiento: '',
         },
         { new: true, runValidators: true }
       );
       expect(mockGasto.create).toHaveBeenCalledWith({
         Concepto: `Pago de fijo ${mockFijoData.Detalle}`,
-        Fecha: expect.any(Date),
+        Fecha: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
         Monto: mockFijoData.Deuda,
         Tipo: 7, // TipoGasto.Impuestos
         Donde: '',
@@ -227,7 +227,7 @@ describe('Fijos API - Route /fijos/[id]/pay', () => {
 
       expect(mockGasto.create).toHaveBeenCalledWith({
         Concepto: `Pago de fijo ${mockFijoData.Detalle}`,
-        Fecha: expect.any(Date),
+        Fecha: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
         Monto: mockFijoData.Deuda,
         Tipo: 7, // TipoGasto.Impuestos
         Donde: '',

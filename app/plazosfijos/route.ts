@@ -61,7 +61,7 @@ export async function POST(req: Req) {
             // Crear múltiples fijos
             const fijos = body.map((fijo: any) => ({
                 Nombre: fijo.Nombre || '',
-                Periodo: new Date(fijo.Periodo),
+                Periodo: formatVencimiento(fijo.Periodo),
                 Vencimiento: formatVencimiento(fijo.Vencimiento),
                 Capital: fijo.Capital || 0,
                 TNA: fijo.TNA || '',

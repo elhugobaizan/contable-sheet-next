@@ -134,7 +134,7 @@ describe('Fijos API - Route /fijos', () => {
       expect(data).toEqual(createdFijo);
       expect(mockFijo.create).toHaveBeenCalledWith({
         Detalle: fijoData.Detalle,
-        Vencimiento: new Date(fijoData.Vencimiento),
+        Vencimiento: fijoData.Vencimiento,
         Deuda: fijoData.Deuda,
         Datos: fijoData.Datos,
         Logo: fijoData.Logo,
@@ -199,16 +199,16 @@ describe('Fijos API - Route /fijos', () => {
       expect(mockFijo.insertMany).toHaveBeenCalled();
       expect(mockFijo.create).not.toHaveBeenCalled();
       
-      // Verificar que insertMany recibe objetos Date
+      // Verificar que insertMany recibe Vencimiento como string (yyyy-MM-dd)
       expect(mockFijo.insertMany).toHaveBeenCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             Detalle: fijosData[0].Detalle,
-            Vencimiento: expect.any(Date),
+            Vencimiento: fijosData[0].Vencimiento,
           }),
           expect.objectContaining({
             Detalle: fijosData[1].Detalle,
-            Vencimiento: expect.any(Date),
+            Vencimiento: fijosData[1].Vencimiento,
           }),
         ])
       );
@@ -254,7 +254,7 @@ describe('Fijos API - Route /fijos', () => {
       expect(response.status).toBe(200);
       expect(mockFijo.create).toHaveBeenCalledWith({
         ...fijoData,
-        Vencimiento: new Date(fijoData.Vencimiento),
+        Vencimiento: fijoData.Vencimiento,
       });
     });
 

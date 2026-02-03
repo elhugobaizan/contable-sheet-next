@@ -112,7 +112,7 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos/[idPlazoFijo]', () =
       const updatedPlazoFijo = {
         _id: mockPlazoFijoId,
         Nombre: updateData.Nombre,
-        Periodo: new Date(updateData.Periodo),
+        Periodo: updateData.Periodo,
         Vencimiento: '2025-01-31',
         Capital: updateData.Capital,
         TNA: updateData.TNA,
@@ -132,16 +132,12 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos/[idPlazoFijo]', () =
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      // JSON serialization converts Date to string
-      expect(data).toEqual({
-        ...updatedPlazoFijo,
-        Periodo: updatedPlazoFijo.Periodo.toISOString(),
-      });
+      expect(data).toEqual(updatedPlazoFijo);
       expect(mockPlazoFijo.findByIdAndUpdate).toHaveBeenCalledWith(
         mockPlazoFijoId,
         expect.objectContaining({
           Nombre: updateData.Nombre,
-          Periodo: expect.any(Date),
+          Periodo: updateData.Periodo,
           Vencimiento: '2025-01-31',
           Capital: updateData.Capital,
           TNA: updateData.TNA,

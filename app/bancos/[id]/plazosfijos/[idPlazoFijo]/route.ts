@@ -49,7 +49,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ idPlazoFijo:
         const updateData: any = {};
         
         if (Nombre !== undefined) updateData.Nombre = Nombre;
-        if (Periodo !== undefined) updateData.Periodo = new Date(Periodo);
+        if (Periodo !== undefined) updateData.Periodo = formatVencimiento(Periodo);
         if (Vencimiento !== undefined) updateData.Vencimiento = formatVencimiento(Vencimiento);
         if (Capital !== undefined) updateData.Capital = Capital;
         if (TNA !== undefined) updateData.TNA = TNA;

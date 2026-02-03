@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 export interface IPlazoFijo extends Document {
   Nombre:string,
-  Periodo:Date,
+  Periodo:string,
   Vencimiento:string,
   Capital: number,
   TNA: number,
@@ -12,7 +12,7 @@ export interface IPlazoFijo extends Document {
 
 const PlazoFijoSchema = new Schema<IPlazoFijo>({
   Nombre: { type: String, required: false, default: '' },
-  Periodo: { type: Date, required: false, default: new Date() },
+  Periodo: { type: String, required: false, default: DateTime.now().toFormat('yyyy-MM-dd') },
   Vencimiento: { type: String, required: false, default: DateTime.now().toFormat('yyyy-MM-dd') },
   Capital: { type: Number, required: true },
   TNA: { type: Number, required: true},

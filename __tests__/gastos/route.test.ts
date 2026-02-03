@@ -168,7 +168,7 @@ describe('Gastos API - Route /gastos', () => {
       expect(data).toEqual(createdGasto);
       expect(mockGasto.create).toHaveBeenCalledWith({
         Concepto: gastoData.Concepto,
-        Fecha: expect.any(Date),
+        Fecha: gastoData.Fecha,
         Monto: gastoData.Monto,
         Tipo: gastoData.Tipo,
         Donde: gastoData.Donde,
@@ -233,14 +233,14 @@ describe('Gastos API - Route /gastos', () => {
         expect.arrayContaining([
           expect.objectContaining({
             Concepto: gastosData[0].Concepto,
-            Fecha: expect.any(Date),
+            Fecha: gastosData[0].Fecha,
             Monto: gastosData[0].Monto,
             Tipo: gastosData[0].Tipo,
             Donde: gastosData[0].Donde,
           }),
           expect.objectContaining({
             Concepto: gastosData[1].Concepto,
-            Fecha: expect.any(Date),
+            Fecha: gastosData[1].Fecha,
             Monto: gastosData[1].Monto,
             Tipo: gastosData[1].Tipo,
             Donde: gastosData[1].Donde,
@@ -288,7 +288,7 @@ describe('Gastos API - Route /gastos', () => {
       expect(response.status).toBe(200);
       expect(mockGasto.create).toHaveBeenCalledWith({
         Concepto: gastoData.Concepto,
-        Fecha: expect.any(Date),
+        Fecha: gastoData.Fecha,
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',

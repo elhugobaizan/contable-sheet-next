@@ -108,7 +108,7 @@ describe('Fijos API - Route /fijos/[id]', () => {
       const updatedFijo = {
         _id: mockFijoId,
         Detalle: updateData.Detalle,
-        Vencimiento: new Date(updateData.Vencimiento),
+        Vencimiento: updateData.Vencimiento,
         Deuda: updateData.Deuda,
         Datos: updateData.Datos,
         Logo: updateData.Logo,
@@ -128,20 +128,16 @@ describe('Fijos API - Route /fijos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      // JSON serialization converts Date to string
-      expect(data).toEqual({
-        ...updatedFijo,
-        Vencimiento: updatedFijo.Vencimiento.toISOString(),
-      });
+      expect(data).toEqual(updatedFijo);
       expect(mockFijo.findByIdAndUpdate).toHaveBeenCalledWith(
         mockFijoId,
         {
           Detalle: updateData.Detalle,
-          Vencimiento: new Date(updateData.Vencimiento),
           Deuda: updateData.Deuda,
           Datos: updateData.Datos,
           Logo: updateData.Logo,
           URL: updateData.URL,
+          Vencimiento: updateData.Vencimiento || '',
         },
         { new: true, runValidators: true }
       );
@@ -160,7 +156,7 @@ describe('Fijos API - Route /fijos/[id]', () => {
       const updatedFijo = {
         _id: mockFijoId,
         Detalle: updateData.Detalle,
-        Vencimiento: null,
+        Vencimiento: '',
         Deuda: 0,
         Datos: '',
         Logo: '',
@@ -183,11 +179,11 @@ describe('Fijos API - Route /fijos/[id]', () => {
         mockFijoId,
         {
           Detalle: updateData.Detalle,
-          Vencimiento: null,
           Deuda: 0,
           Datos: '',
           Logo: '',
           URL: '',
+          Vencimiento: '',
         },
         { new: true, runValidators: true }
       );

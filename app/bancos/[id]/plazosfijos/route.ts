@@ -6,7 +6,7 @@ import { DateTime } from "luxon";
 export const dynamic = 'force-dynamic';
 
 // Helper function to convert date to string format yyyy-MM-dd
-function formatVencimiento(vencimiento: any): string {
+export function formatVencimiento(vencimiento: any): string {
     if (!vencimiento) {
         return DateTime.now().toFormat('yyyy-MM-dd');
     }
@@ -70,7 +70,7 @@ export async function POST(req: Req, { params }: { params: Promise<{ id: string 
             // Crear múltiples fijos
             const fijos = body.map((fijo: any) => ({
                 Nombre: fijo.Nombre || '',
-                Periodo: new Date(fijo.Periodo),
+                Periodo: formatVencimiento(fijo.Periodo),
                 Vencimiento: formatVencimiento(fijo.Vencimiento),
                 Capital: fijo.Capital || 0,
                 TNA: fijo.TNA || '',
@@ -85,7 +85,7 @@ export async function POST(req: Req, { params }: { params: Promise<{ id: string 
             
             const result = await PlazoFijo.create({
                 Nombre: Nombre,
-                Periodo: new Date(Periodo),
+                Periodo: formatVencimiento(Periodo),
                 Vencimiento: formatVencimiento(Vencimiento),
                 Capital: Capital,
                 TNA: TNA,
