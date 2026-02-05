@@ -57,6 +57,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: false,
       };
 
       (mockWallet.findById as jest.Mock).mockResolvedValue(mockWalletData);
@@ -119,6 +120,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
         Logo: updateData.Logo,
         CVU: updateData.CVU,
         Alias: updateData.Alias,
+        EsMetodo: false,
       };
 
       (mockWallet.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedWallet);
@@ -148,6 +150,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
           Logo: updateData.Logo,
           CVU: updateData.CVU,
           Alias: updateData.Alias,
+          EsMetodo: false,
         },
         { new: true, runValidators: true }
       );
@@ -162,12 +165,13 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const updatedWallet = {
         _id: mockWalletId,
         Nombre: updateData.Nombre,
-        Inicio: new Date(updateData.Inicio),
+        Inicio: '2024-02-01',
         Interes: 0,
         Efectivo: 0,
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: false,
       };
 
       (mockWallet.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedWallet);
@@ -192,6 +196,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
           Logo: '',
           CVU: '',
           Alias: '',
+          EsMetodo: false,
         },
         { new: true, runValidators: true }
       );
@@ -252,12 +257,13 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const deletedWallet = {
         _id: mockWalletId,
         Nombre: 'Wallet 1',
-        Inicio: new Date('2024-01-01'),
+        Inicio: '2024-01-01',
         Interes: 0,
         Efectivo: 1000,
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: false,
       };
 
       (mockWallet.findByIdAndDelete as jest.Mock).mockResolvedValue(deletedWallet);
@@ -272,8 +278,7 @@ describe('Wallets API - Route /wallets/[id]', () => {
 
       expect(response.status).toBe(200);
       expect(data).toEqual({
-        ...deletedWallet,
-        Inicio: deletedWallet.Inicio.toISOString(),
+        ...deletedWallet
       });
       expect(mockWallet.findByIdAndDelete).toHaveBeenCalledWith(mockWalletId);
     });

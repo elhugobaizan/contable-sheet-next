@@ -26,7 +26,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const { Nombre, Inicio, Interes, Efectivo, Logo, CVU, Alias } = body;
+        const { Nombre, Inicio, Interes, Efectivo, Logo, CVU, Alias, EsMetodo } = body;
         
         const result = await Wallet.findByIdAndUpdate(
             id,
@@ -37,7 +37,8 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
                 Efectivo: Efectivo || 0,
                 Logo: Logo || '',
                 CVU: CVU || '',
-                Alias: Alias || ''
+                Alias: Alias || '',
+                EsMetodo: EsMetodo || false
             },
             { new: true, runValidators: true }
         );

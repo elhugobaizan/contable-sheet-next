@@ -64,21 +64,23 @@ export async function POST(req: Req) {
                 CBU: banco.CBU,
                 Alias: banco.Alias,
                 Logo: banco.Logo || '',
-                Efectivo: banco.Efectivo || 0
+                Efectivo: banco.Efectivo || 0,
+                EsMetodo: banco.EsMetodo || false
             }));
             
             const result = await Banco.insertMany(bancos);
             return Res.json(result);
         } else {
             // Crear un solo banco (comportamiento original)
-            const { Nombre, CBU, Alias, Logo, Efectivo } = body;
+            const { Nombre, CBU, Alias, Logo, Efectivo, EsMetodo } = body;
             
             const result = await Banco.create({
                 Nombre: Nombre,
                 CBU: CBU,
                 Alias: Alias || '',
                 Logo: Logo || '',
-                Efectivo: Efectivo || 0
+                Efectivo: Efectivo || 0,
+                EsMetodo: EsMetodo || false
             });
 
             return Res.json(result);

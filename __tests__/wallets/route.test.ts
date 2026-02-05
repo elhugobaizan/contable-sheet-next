@@ -57,6 +57,7 @@ describe('Wallets API - Route /wallets', () => {
           Logo: '',
           CVU: '',
           Alias: '',
+          EsMetodo: false,
           criptos: [],
           inversiones: [],
         },
@@ -69,6 +70,7 @@ describe('Wallets API - Route /wallets', () => {
           Logo: 'logo.png',
           CVU: '123456789',
           Alias: 'wallet2',
+          EsMetodo: false,
           criptos: [],
           inversiones: [],
         },
@@ -108,6 +110,7 @@ describe('Wallets API - Route /wallets', () => {
         Logo: 'new-logo.png',
         CVU: '987654321',
         Alias: 'nueva-wallet',
+        EsMetodo: false,
       };
 
       const createdWallet = {
@@ -148,6 +151,7 @@ describe('Wallets API - Route /wallets', () => {
         Logo: walletData.Logo,
         CVU: walletData.CVU,
         Alias: walletData.Alias,
+        EsMetodo: walletData.EsMetodo,
       });
     });
 
@@ -158,12 +162,14 @@ describe('Wallets API - Route /wallets', () => {
           Inicio: '2024-01-01',
           Interes: 0,
           Efectivo: 1000,
+          EsMetodo: false,
         },
         {
           Nombre: 'Wallet 2',
           Inicio: '2024-01-02',
           Interes: 5,
           Efectivo: 2000,
+          EsMetodo: false,
         },
       ];
 
@@ -176,6 +182,7 @@ describe('Wallets API - Route /wallets', () => {
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: w.EsMetodo,
       }));
 
       const mockConnection = {
@@ -235,6 +242,7 @@ describe('Wallets API - Route /wallets', () => {
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: false,
       };
 
       const mockConnection = {
@@ -267,6 +275,7 @@ describe('Wallets API - Route /wallets', () => {
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: false,
       });
     });
 
@@ -299,6 +308,7 @@ describe('Wallets API - Route /wallets', () => {
         Logo: '',
         CVU: '',
         Alias: '',
+        EsMetodo: false,
       });
 
       const req = new NextRequest('http://localhost:3000/api/wallets', {

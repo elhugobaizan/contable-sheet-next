@@ -63,6 +63,7 @@ describe('Bancos API - Route /bancos/[id]', () => {
         Alias: 'Banco Test',
         Logo: 'Logo de prueba',
         Efectivo: 0,
+        EsMetodo: false,
       };
 
       const mockPlazosFijos: any[] = [];
@@ -152,6 +153,7 @@ describe('Bancos API - Route /bancos/[id]', () => {
           Alias: updateData.Alias,
           Efectivo: updateData.Efectivo,
           Logo: updateData.Logo,
+          EsMetodo: false,
         },
         { new: true, runValidators: true }
       );
@@ -195,6 +197,7 @@ describe('Bancos API - Route /bancos/[id]', () => {
           Alias: '',
           Efectivo: 0,
           Logo: 'Logo de prueba',
+          EsMetodo: false,
         },
         { new: true, runValidators: true }
       );
@@ -207,6 +210,7 @@ describe('Bancos API - Route /bancos/[id]', () => {
         Alias: 'Banco No Existe',
         Efectivo: 0,
         Logo: 'Logo de prueba',
+        EsMetodo: false,
       };
 
       (mockBanco.findByIdAndUpdate as jest.Mock).mockResolvedValue(null);
@@ -232,6 +236,7 @@ describe('Bancos API - Route /bancos/[id]', () => {
         Alias: 'Banco Error',
         Efectivo: 0,
         Logo: 'Logo de prueba',
+        EsMetodo: false,
       };
 
       const errorMessage = 'Error de validación';
@@ -261,6 +266,7 @@ describe('Bancos API - Route /bancos/[id]', () => {
         Alias: 'Banco a Eliminar',
         Efectivo: 0,
         Logo: 'Logo de prueba',
+        EsMetodo: false,
       };
       (mockBanco.findByIdAndDelete as jest.Mock).mockResolvedValue(deletedBanco);
       const params = Promise.resolve({ id: mockBancoId });

@@ -8,6 +8,7 @@ export interface IWallet extends Document {
   Logo: string;
   CVU: string;
   Alias: string;
+  EsMetodo: boolean;
 }
 
 const WalletSchema = new Schema<IWallet>({
@@ -18,6 +19,7 @@ const WalletSchema = new Schema<IWallet>({
   Logo: { type: String, required: false, default: '' },
   CVU: { type: String, required: false, default: '' },
   Alias: { type: String, required: false, default: '' },
+  EsMetodo: { type: Boolean, required: false, default: false },
 }, {
   timestamps: false,
   collection: 'wallets'

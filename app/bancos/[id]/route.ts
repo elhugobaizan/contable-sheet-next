@@ -32,7 +32,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const { Nombre, CBU, Alias, Logo, Efectivo } = body;
+        const { Nombre, CBU, Alias, Logo, Efectivo, EsMetodo } = body;
         
         const result = await Banco.findByIdAndUpdate(
             id,
@@ -41,7 +41,8 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
                 CBU: CBU,
                 Alias: Alias || '',
                 Logo: Logo || '',
-                Efectivo: Efectivo || 0
+                Efectivo: Efectivo || 0,
+                EsMetodo: EsMetodo || false
             },
             { new: true, runValidators: true }
         );

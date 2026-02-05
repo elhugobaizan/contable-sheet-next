@@ -55,6 +55,7 @@ describe('Bancos API - Route /bancos', () => {
           Alias: 'Banco 1',
           Efectivo: 0,
           URL: '',
+          EsMetodo: false,
           plazosfijos: [],
           inversiones: [],
         },
@@ -65,6 +66,7 @@ describe('Bancos API - Route /bancos', () => {
           Alias: 'Banco 2',
           Efectivo: 5,
           URL: 'https://www.banco2.com',
+          EsMetodo: false,
           plazosfijos: [],
           inversiones: [],
         },
@@ -102,6 +104,7 @@ describe('Bancos API - Route /bancos', () => {
         Alias: 'Nuevo Banco',
         Logo: 'new-logo.png',
         Efectivo: 0,
+        EsMetodo: false,
       };
 
       const createdBanco = {
@@ -140,6 +143,7 @@ describe('Bancos API - Route /bancos', () => {
         Alias: bancoData.Alias,
         Logo: bancoData.Logo,
         Efectivo: bancoData.Efectivo,
+        EsMetodo: bancoData.EsMetodo,
       });
     });
 
@@ -151,6 +155,7 @@ describe('Bancos API - Route /bancos', () => {
           Efectivo: 0,
           Alias: '',
           Logo: '',
+          EsMetodo: false,
         },
         {
           Nombre: 'Banco 2',
@@ -158,6 +163,7 @@ describe('Bancos API - Route /bancos', () => {
           Efectivo: 5,
           Alias: '',
           Logo: '',
+          EsMetodo: false,
         },
       ];
 
@@ -168,6 +174,7 @@ describe('Bancos API - Route /bancos', () => {
         Efectivo: b.Efectivo,
         Alias: b.Alias,
         Logo: b.Logo,
+        EsMetodo: b.EsMetodo,
       }));
 
       const mockConnection = {
@@ -225,6 +232,7 @@ describe('Bancos API - Route /bancos', () => {
         Efectivo: 0,
         Alias: '',
         Logo: '',
+        EsMetodo: false,
       };
 
       const createdBanco = {
@@ -266,6 +274,7 @@ describe('Bancos API - Route /bancos', () => {
         CBU: '1234567890',
         Efectivo: 0,
         Alias: '',
+        EsMetodo: false,
       };
 
       const mockDb = {
@@ -305,6 +314,7 @@ describe('Bancos API - Route /bancos', () => {
         CBU: '1234567890',
         Efectivo: 0,
         Alias: '',
+        EsMetodo: false,
       };
 
       const errorMessage = 'Error de validación';

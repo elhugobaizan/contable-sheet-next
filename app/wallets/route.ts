@@ -66,14 +66,15 @@ export async function POST(req: Req) {
                 Efectivo: wallet.Efectivo || 0,
                 Logo: wallet.Logo || '',
                 CVU: wallet.CVU || '',
-                Alias: wallet.Alias || ''
+                Alias: wallet.Alias || '',
+                EsMetodo: wallet.EsMetodo || false
             }));
             
             const result = await Wallet.insertMany(wallets);
             return Res.json(result);
         } else {
             // Crear un solo wallet (comportamiento original)
-            const { Nombre, Inicio, Interes, Efectivo, Logo, CVU, Alias } = body;
+            const { Nombre, Inicio, Interes, Efectivo, Logo, CVU, Alias, EsMetodo } = body;
             
             const result = await Wallet.create({
                 Nombre: Nombre,
@@ -82,7 +83,8 @@ export async function POST(req: Req) {
                 Efectivo: Efectivo || 0,
                 Logo: Logo || '',
                 CVU: CVU || '',
-                Alias: Alias || ''
+                Alias: Alias || '',
+                EsMetodo: EsMetodo || false
             });
 
             return Res.json(result);
