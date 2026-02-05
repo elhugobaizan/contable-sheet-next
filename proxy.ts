@@ -26,6 +26,11 @@ export default function proxy(request: NextRequest) {
   // Handle simple requests
   const response = NextResponse.next()
 
+  // Prevent API response caching
+  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+  response.headers.set('Pragma', 'no-cache')
+  response.headers.set('Expires', '0')
+
   if (isAllowedOrigin) {
     response.headers.set('Access-Control-Allow-Origin', origin)
   }
@@ -38,6 +43,11 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/:path*',
+  matcher: [
+    /*
+     * Match all request paths except static files and _next
+     */
+    String.raw`/((?!_next/static|_next/image|favicon.ico|.*\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)`,
+  ],
 }
 

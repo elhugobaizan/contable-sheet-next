@@ -53,7 +53,8 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
                 Fecha: DateTime.now().toFormat('yyyy-MM-dd'),
                 Monto: Monto,
                 Tipo: TipoGasto.Impuestos,
-                Donde: ''
+                Donde: '',
+                Metodo: ''
             });
             
             return Res.json(result);
