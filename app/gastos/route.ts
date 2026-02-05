@@ -64,26 +64,28 @@ export async function POST(req: Req) {
         // Verificar si es un array
         if (Array.isArray(body)) {
             // Crear múltiples gastos
-            const gastos = body.map((fijo: any) => ({
-                Concepto: fijo.Concepto,
-                Fecha: fijo.Fecha,
-                Monto: fijo.Monto || 0,
-                Tipo: fijo.Tipo || TipoGasto.Varios,
-                Donde: fijo.Donde || ''
+            const gastos = body.map((gasto: any) => ({
+                Concepto: gasto.Concepto,
+                Fecha: gasto.Fecha,
+                Monto: gasto.Monto || 0,
+                Tipo: gasto.Tipo || TipoGasto.Varios,
+                Donde: gasto.Donde || '',
+                Metodo: gasto.Metodo || ''
             }));
             
             const result = await Gasto.insertMany(gastos);
             return Res.json(result);
         } else {
             // Crear un solo fijo (comportamiento original)
-            const { Concepto, Fecha, Monto, Tipo, Donde } = body;
+            const { Concepto, Fecha, Monto, Tipo, Donde, Metodo } = body;
             
             const result = await Gasto.create({
                 Concepto: Concepto,
                 Fecha: Fecha,
                 Monto: Monto || 0,
                 Tipo: Tipo || TipoGasto.Varios,
-                Donde: Donde || ''
+                Donde: Donde || '',
+                Metodo: Metodo || ''
             });
             console.log("Gasto creado: ", result);
             return Res.json(result);

@@ -28,7 +28,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         await connectDB();
         const id = (await params).id;
         const body = await req.json();
-        const { Fecha, Monto, Tipo, Donde, Concepto } = body;
+        const { Fecha, Monto, Tipo, Donde, Concepto, Metodo } = body;
         
         // Validate and parse Vencimiento date
         const updateData: any = {
@@ -36,7 +36,8 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
             Monto: Monto || 0,
             Tipo: Tipo || TipoGasto.Varios,
             Donde: Donde || '',
-            Concepto: Concepto || ''
+            Concepto: Concepto || '',
+            Metodo: Metodo || ''
         };
         
         const result = await Gasto.findByIdAndUpdate(

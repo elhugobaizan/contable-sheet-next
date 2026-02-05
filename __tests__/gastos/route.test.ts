@@ -55,6 +55,7 @@ describe('Gastos API - Route /gastos', () => {
           Monto: 1000,
           Tipo: TipoGasto.Comida,
           Donde: 'Restaurante',
+          Metodo: 'Efectivo',
         },
         {
           _id: '507f1f77bcf86cd799439012',
@@ -63,6 +64,7 @@ describe('Gastos API - Route /gastos', () => {
           Monto: 500,
           Tipo: TipoGasto.Salud,
           Donde: 'Farmacia',
+          Metodo: 'Efectivo',
         },
       ];
 
@@ -87,6 +89,7 @@ describe('Gastos API - Route /gastos', () => {
           Monto: 1000,
           Tipo: TipoGasto.Comida,
           Donde: 'Restaurante',
+          Metodo: 'Efectivo',
         },
         {
           _id: '507f1f77bcf86cd799439012',
@@ -95,6 +98,7 @@ describe('Gastos API - Route /gastos', () => {
           Monto: 500,
           Tipo: TipoGasto.Salud,
           Donde: 'Farmacia',
+          Metodo: 'Tarjeta',
         },
       ];
 
@@ -130,7 +134,8 @@ describe('Gastos API - Route /gastos', () => {
         Fecha: '2024-01-15',
         Monto: 1000,
         Tipo: TipoGasto.Comida,
-        Donde: 'Restaurante',
+        Donde: 'Restaurante', 
+        Metodo: 'Efectivo',
       };
 
       const createdGasto = {
@@ -139,7 +144,8 @@ describe('Gastos API - Route /gastos', () => {
         Fecha: gastoData.Fecha,
         Monto: gastoData.Monto,
         Tipo: gastoData.Tipo,
-        Donde: gastoData.Donde,
+        Donde: gastoData.Donde, 
+        Metodo: gastoData.Metodo,
       };
 
       const mockConnection = {
@@ -172,6 +178,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: gastoData.Monto,
         Tipo: gastoData.Tipo,
         Donde: gastoData.Donde,
+        Metodo: gastoData.Metodo,
       });
     });
 
@@ -183,6 +190,7 @@ describe('Gastos API - Route /gastos', () => {
           Monto: 1000,
           Tipo: TipoGasto.Comida,
           Donde: 'Restaurante',
+          Metodo: 'Tarjeta',
         },
         {
           Concepto: 'Gasto 2',
@@ -190,6 +198,7 @@ describe('Gastos API - Route /gastos', () => {
           Monto: 500,
           Tipo: TipoGasto.Salud,
           Donde: 'Farmacia',
+          Metodo: 'Efectivo',
         },
       ];
 
@@ -200,6 +209,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: g.Monto,
         Tipo: g.Tipo,
         Donde: g.Donde,
+        Metodo: g.Metodo,
       }));
 
       const mockConnection = {
@@ -237,6 +247,7 @@ describe('Gastos API - Route /gastos', () => {
             Monto: gastosData[0].Monto,
             Tipo: gastosData[0].Tipo,
             Donde: gastosData[0].Donde,
+            Metodo: gastosData[0].Metodo,
           }),
           expect.objectContaining({
             Concepto: gastosData[1].Concepto,
@@ -244,6 +255,7 @@ describe('Gastos API - Route /gastos', () => {
             Monto: gastosData[1].Monto,
             Tipo: gastosData[1].Tipo,
             Donde: gastosData[1].Donde,
+            Metodo: gastosData[1].Metodo,
           }),
         ])
       );
@@ -262,6 +274,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',
+        Metodo: 'Efectivo',
       };
 
       const mockConnection = {
@@ -292,6 +305,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',
+        Metodo: '',
       });
     });
 
@@ -302,6 +316,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: 1000,
         Tipo: TipoGasto.Comida,
         Donde: 'Restaurante',
+        Metodo: 'Efectivo',
       };
 
       const mockDb = {
@@ -341,6 +356,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: 1000,
         Tipo: TipoGasto.Comida,
         Donde: 'Restaurante',
+        Metodo: 'Efectivo',
       };
 
       const errorMessage = 'Error de validación';

@@ -8,6 +8,7 @@ export interface IGasto extends Document {
   Monto: number;
   Tipo: number;
   Donde: string;
+  Metodo: string;
 }
 
 const GastoSchema = new Schema<IGasto>({
@@ -16,6 +17,7 @@ const GastoSchema = new Schema<IGasto>({
   Monto: { type: Number, required: true },
   Tipo: { type: Number, required: false, default: TipoGasto.Varios },
   Donde: { type: String, required: false, default: '' },
+  Metodo: { type: String, required: true, default: '' },
 }, {
   timestamps: true,
   collection: 'gastos'

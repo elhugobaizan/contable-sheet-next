@@ -56,6 +56,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Monto: 1000,
         Tipo: TipoGasto.Comida,
         Donde: 'Restaurante',
+        Metodo: 'Efectivo',
       };
 
       (mockGasto.findById as jest.Mock).mockResolvedValue(mockGastoData);
@@ -102,6 +103,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Monto: 1500,
         Tipo: TipoGasto.Salud,
         Donde: 'Farmacia',
+        Metodo: 'Efectivo',
       };
 
       const updatedGasto = {
@@ -111,6 +113,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Monto: updateData.Monto,
         Tipo: updateData.Tipo,
         Donde: updateData.Donde,
+        Metodo: updateData.Metodo,
       };
 
       (mockGasto.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedGasto);
@@ -134,7 +137,8 @@ describe('Gastos API - Route /gastos/[id]', () => {
           Fecha: updateData.Fecha,
           Monto: updateData.Monto,
           Tipo: updateData.Tipo,
-          Donde: updateData.Donde,
+          Donde: updateData.Donde,  
+          Metodo: updateData.Metodo,
         }),
         { new: true, runValidators: true }
       );
@@ -152,6 +156,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',
+        Metodo: '',
       };
 
       (mockGasto.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedGasto);
@@ -173,6 +178,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
           Monto: 0,
           Tipo: TipoGasto.Varios,
           Donde: '',
+          Metodo: '',
         }),
         { new: true, runValidators: true }
       );
@@ -234,7 +240,8 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Fecha: '2024-01-15',
         Monto: 1000,
         Tipo: TipoGasto.Comida,
-        Donde: 'Restaurante',
+        Donde: 'Restaurante', 
+        Metodo: 'Efectivo',
       };
 
       (mockGasto.findByIdAndDelete as jest.Mock).mockResolvedValue(deletedGasto);
