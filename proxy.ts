@@ -7,47 +7,39 @@ const corsOptions = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 }
 
+const STATIC_PATH = /^\/_next\/static|^\/_next\/image|^\/favicon\.ico$|\.(?:svg|png|jpg|jpeg|gif|webp|ico)$/
+
 export default function proxy(request: NextRequest) {
-  // Check the origin from the request
-  const origin = request.headers.get('origin') ?? ''
-  const isAllowedOrigin = allowedOrigins.has(origin);
-
-  // Handle preflighted requests
-  const isPreflight = request.method === 'OPTIONS';
-
-  if (isPreflight) {
-    const preflightHeaders = {
-      ...(isAllowedOrigin && { 'Access-Control-Allow-Origin': origin }),
-      ...corsOptions,
-    }
-    return NextResponse.json({}, { headers: preflightHeaders });
+  const pathname = request.nextUrl.pathname
+  if (STATIC_PATH.test(pathname)) {
+    return NextResponse.next()
   }
 
-  // Handle simple requests
-  const response = NextResponse.next()
+  const origin = request.headers.get('origin') ?? ''
+  const isAllowedOrigin = allowedOrigins.has(origin)
 
-  // Prevent API response caching
+  if (request.method === 'OPTIONS') {
+    return NextResponse.json(
+      {},
+      {
+        headers: {
+          ...(isAllowedOrigin && { 'Access-Control-Allow-Origin': origin }),
+          ...corsOptions,
+        },
+      }
+    )
+  }
+
+  const response = NextResponse.next()
   response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
   response.headers.set('Pragma', 'no-cache')
   response.headers.set('Expires', '0')
-
   if (isAllowedOrigin) {
     response.headers.set('Access-Control-Allow-Origin', origin)
   }
-
   Object.entries(corsOptions).forEach(([key, value]) => {
     response.headers.set(key, value)
   })
-
   return response
-}
-
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except static files and _next
-     */
-    String.raw`/((?!_next/static|_next/image|favicon.ico|.*\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)`,
-  ],
 }
 
