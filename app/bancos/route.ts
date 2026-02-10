@@ -27,7 +27,10 @@ export async function GET() {
                 }
             }
         ]);
-        return Res.json(result);
+        return Res.json(result.map((banco: any) => ({
+            ...banco,
+            EsMetodo: banco.EsMetodo || false
+        })));
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 

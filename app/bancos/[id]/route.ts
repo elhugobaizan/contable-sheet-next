@@ -17,6 +17,7 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
         const pf = await PlazoFijo.find({ Banco: result._id })
         return Res.json({
             ...result,
+            EsMetodo: result.EsMetodo || false,
             plazosfijos: pf
         });
 
