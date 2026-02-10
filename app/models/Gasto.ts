@@ -17,7 +17,7 @@ const GastoSchema = new Schema<IGasto>({
   Monto: { type: Number, required: true },
   Tipo: { type: Number, required: false, default: TipoGasto.Varios },
   Donde: { type: String, required: false, default: '' },
-  Metodo: { type: String, required: true, default: '' },
+  Metodo: { type: String, required: false, default: '' },
 }, {
   timestamps: true,
   collection: 'gastos'
