@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { TipoGasto } from './Tipos';
 import { DateTime } from 'luxon';
+import './Wallet'; // register Wallet so populate('Metodo') can resolve ref: 'Wallet'
 
 export interface IGasto extends Document {
   Concepto: string;
