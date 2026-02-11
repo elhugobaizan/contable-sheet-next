@@ -37,7 +37,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
             Tipo: Tipo || TipoGasto.Varios,
             Donde: Donde || '',
             Concepto: Concepto || '',
-            Metodo: Metodo || null
+            Metodo: Metodo || ''
         };
         
         let result = await Gasto.findByIdAndUpdate(
@@ -48,9 +48,6 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         
         if (!result) {
             return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
-        }
-        if (typeof (result as any).populate === 'function') {
-            await (result as any).populate('Metodo');
         }
         return Res.json(result);
     } catch (err) {

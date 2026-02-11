@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { TipoGasto } from './Tipos';
 import { DateTime } from 'luxon';
-import './Wallet'; // register Wallet so populate('Metodo') can resolve ref: 'Wallet'
+
 
 export interface IGasto extends Document {
   Concepto: string;
@@ -9,7 +9,7 @@ export interface IGasto extends Document {
   Monto: number;
   Tipo: number;
   Donde: string;
-  Metodo?: mongoose.Types.ObjectId;
+  Metodo: string;
 }
 
 const GastoSchema = new Schema<IGasto>({
@@ -18,7 +18,7 @@ const GastoSchema = new Schema<IGasto>({
   Monto: { type: Number, required: true },
   Tipo: { type: Number, required: false, default: TipoGasto.Varios },
   Donde: { type: String, required: false, default: '' },
-  Metodo: { type: Schema.Types.ObjectId, ref: 'Wallet', required: false },
+  Metodo: { type: String, required: false, default: '' },
 }, {
   timestamps: true,
   collection: 'gastos'

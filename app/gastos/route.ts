@@ -86,11 +86,8 @@ export async function POST(req: Req) {
                 Monto: Monto || 0,
                 Tipo: Tipo || TipoGasto.Varios,
                 Donde: Donde || '',
-                Metodo: Metodo || null
+                Metodo: Metodo || ''
             });
-            if (result && typeof (result).populate === 'function') {
-                await (result).populate('Metodo');
-            }
             console.log("Gasto creado: ", result);
             return Res.json(result);
         }
