@@ -30,7 +30,7 @@ export async function GET(req: Req) {
             };
         }
         
-        const result = await Gasto.find(query);
+        const result = await Gasto.find(query).populate('Metodo');
         console.log(`Encontrados: ${result?.length} gastos`);
         return Res.json(result);
     } catch (err) {
@@ -70,11 +70,12 @@ export async function POST(req: Req) {
                 Monto: gasto.Monto || 0,
                 Tipo: gasto.Tipo || TipoGasto.Varios,
                 Donde: gasto.Donde || '',
-                Metodo: gasto.Metodo || ''
+                Metodo: gasto.Metodo || null
             }));
             
             const result = await Gasto.insertMany(gastos);
-            return Res.json(result);
+            const populated = await Gasto.find({ _id: { $in: result.map((r: any) => r._id) } }).populate('Metodo');
+            return Res.json(populated);
         } else {
             // Crear un solo fijo (comportamiento original)
             const { Concepto, Fecha, Monto, Tipo, Donde, Metodo } = body;
@@ -85,8 +86,11 @@ export async function POST(req: Req) {
                 Monto: Monto || 0,
                 Tipo: Tipo || TipoGasto.Varios,
                 Donde: Donde || '',
-                Metodo: Metodo || ''
+                Metodo: Metodo || null
             });
+            if (result && typeof (result).populate === 'function') {
+                await (result).populate('Metodo');
+            }
             console.log("Gasto creado: ", result);
             return Res.json(result);
         }

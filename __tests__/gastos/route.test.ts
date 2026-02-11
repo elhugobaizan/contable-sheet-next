@@ -224,6 +224,9 @@ describe('Gastos API - Route /gastos', () => {
 
       mockConnectDB.mockResolvedValue(mockConnection as any);
       (mockGasto.insertMany as jest.Mock).mockResolvedValue(createdGastos);
+      (mockGasto.find as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockResolvedValue(createdGastos),
+      });
 
       const req = new NextRequest('http://localhost:3000/api/gastos', {
         method: 'POST',
@@ -305,7 +308,7 @@ describe('Gastos API - Route /gastos', () => {
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',
-        Metodo: '',
+        Metodo: null,
       });
     });
 

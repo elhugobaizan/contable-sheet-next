@@ -54,7 +54,7 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
                 Monto: Monto,
                 Tipo: TipoGasto.Impuestos,
                 Donde: '',
-                Metodo: ''
+                Metodo: null
             });
             
             return Res.json(result);

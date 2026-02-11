@@ -8,7 +8,7 @@ export interface IGasto extends Document {
   Monto: number;
   Tipo: number;
   Donde: string;
-  Metodo: string;
+  Metodo?: mongoose.Types.ObjectId;
 }
 
 const GastoSchema = new Schema<IGasto>({
@@ -17,7 +17,7 @@ const GastoSchema = new Schema<IGasto>({
   Monto: { type: Number, required: true },
   Tipo: { type: Number, required: false, default: TipoGasto.Varios },
   Donde: { type: String, required: false, default: '' },
-  Metodo: { type: String, required: false, default: '' },
+  Metodo: { type: Schema.Types.ObjectId, ref: 'Wallet', required: false },
 }, {
   timestamps: true,
   collection: 'gastos'

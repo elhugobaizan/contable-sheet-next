@@ -156,7 +156,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',
-        Metodo: '',
+        Metodo: null,
       };
 
       (mockGasto.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedGasto);
@@ -178,7 +178,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
           Monto: 0,
           Tipo: TipoGasto.Varios,
           Donde: '',
-          Metodo: '',
+          Metodo: null,
         }),
         { new: true, runValidators: true }
       );

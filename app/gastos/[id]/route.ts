@@ -11,7 +11,7 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
     try {
         await connectDB();
         const id = (await params).id;
-        const result = await Gasto.findById(id);
+        const result = await Gasto.findById(id).populate('Metodo');
         if (!result) {
             return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
         }
@@ -37,10 +37,10 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
             Tipo: Tipo || TipoGasto.Varios,
             Donde: Donde || '',
             Concepto: Concepto || '',
-            Metodo: Metodo || ''
+            Metodo: Metodo || null
         };
         
-        const result = await Gasto.findByIdAndUpdate(
+        let result = await Gasto.findByIdAndUpdate(
             id,
             updateData,
             { new: true, runValidators: true }
@@ -49,7 +49,9 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
         if (!result) {
             return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
         }
-        
+        if (typeof (result as any).populate === 'function') {
+            await (result as any).populate('Metodo');
+        }
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
