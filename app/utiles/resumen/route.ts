@@ -33,14 +33,7 @@ async function ensureMonthlySnapshot(data: any) {
 export async function POST(request: Request) {
   const { data } = await request.json()
 
-  const snapshot = await ensureMonthlySnapshot(data)
+  const snapshot = await ensureMonthlySnapshot(data);
 
-  snapshot.PatrimonioNeto = data.PatrimonioNeto
-  snapshot.Liquidez = data.Liquidez
-  snapshot.Inversiones = data.Inversiones
-  snapshot.Deuda = data.Deuda
-  snapshot.Moneda = data.Moneda
-  snapshot.Fecha = new Date()
-
-  return Res.json({ message: "Resumen creado" });
+  return Res.json({ message: "Resumen creado ", snapshot });
 }
