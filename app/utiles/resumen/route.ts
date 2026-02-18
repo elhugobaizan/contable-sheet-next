@@ -9,8 +9,8 @@ async function ensureMonthlySnapshot(data: any) {
   const period = `${year}-${String(month).padStart(2, "0")}`
 
   const existing = await Snapshot.findOne({
-    year,
-    month
+    Annio: year,
+    Mes: month,
   })
 
   if (existing) return existing
