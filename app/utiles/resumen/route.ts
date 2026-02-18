@@ -14,16 +14,18 @@ async function ensureMonthlySnapshot(data: any) {
 
   if (existing) return existing
 
+  const netoActual = data?.netoActual
+  const cotizacionVenta = data?.cotizacionesOficial?.venta
   const snapshot = {
     Annio: year,
     Mes: month,
     period,
-    PatrimonioNetoARS: data.netoActual,
-    PatrimonioNetoUSD: data.netoActual / data.cotizacionesOficial.venta,
-    Liquidez: data.disponible,
-    Inversiones: data.totalPlazosFijos + data.totalCriptos + data.fondos,
-    Deuda: data.deudaAFavor,
-    TasaDeCambio: data.cotizacionesOficial.venta,
+    PatrimonioNetoARS: netoActual,
+    PatrimonioNetoUSD: cotizacionVenta ? netoActual / cotizacionVenta : 0,
+    Liquidez: data?.disponible,
+    Inversiones: (data?.totalPlazosFijos + data?.totalCriptos + data?.fondos),
+    Deuda: data?.deudaAFavor,
+    TasaDeCambio: cotizacionVenta,
     Fecha: new Date()
   }
 
@@ -31,8 +33,24 @@ async function ensureMonthlySnapshot(data: any) {
 }
 
 export async function POST(request: Request) {
-  const { data } = await request.json()
+  let body: { data?: any };
+  try {
+    body = await request.json();
+  } catch {
+    return Res.json(
+      { error: "Cuerpo de la petición inválido o vacío" },
+      { status: 400 }
+    );
+  }
+  const data = body?.data ?? body;
+  if (data == null || typeof data !== "object") {
+    return Res.json(
+      { error: "Se requiere un objeto 'data' con netoActual y demás campos" },
+      { status: 400 }
+    );
+  }
 
+  console.log("data: ", data);
   const snapshot = await ensureMonthlySnapshot(data);
 
   return Res.json({ message: "Resumen creado ", snapshot });
