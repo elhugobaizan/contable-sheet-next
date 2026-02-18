@@ -10,7 +10,6 @@ export interface ISnapshot extends Document {
   Inversiones: number
   Deuda: number
   TasaDeCambio: number
-  MonedaBase: string
 }
 
 
@@ -24,7 +23,6 @@ const SnapshotSchema = new Schema<ISnapshot>({
   Inversiones: { type: Number, required: true },
   Deuda: { type: Number, required: true },
   TasaDeCambio: { type: Number, required: true },
-  MonedaBase: { type: String, required: true, default: "ARS" },
 }, {
   timestamps: true,
   collection: 'snapshots'

@@ -20,14 +20,13 @@ async function ensureMonthlySnapshot(data: any) {
   const snapshot = {
     Annio: year,
     Mes: month,
-    period,
+    Periodo: period,
     PatrimonioNetoARS: netoActual,
     PatrimonioNetoUSD: cotizacionVenta ? netoActual / cotizacionVenta : 0,
     Liquidez: data?.disponible,
     Inversiones: (data?.totalPlazosFijos + data?.totalCriptos + data?.fondos),
     Deuda: data?.deudaAFavor,
     TasaDeCambio: cotizacionVenta,
-    Fecha: new Date()
   }
 
   return await Snapshot.create(snapshot)
