@@ -1,4 +1,5 @@
 import { NextResponse as Res } from "next/server";
+import connectDB from "@/db";
 import Snapshot from "@/app/models/Snapshot";
 
 async function ensureMonthlySnapshot(data: any) {
@@ -50,7 +51,14 @@ export async function POST(request: Request) {
     );
   }
 
-  console.log("data: ", data);
+  try {
+    await connectDB();
+  } catch (err) {
+    return Res.json(
+      { error: "Error al conectar con la base de datos", message: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
+  }
   const snapshot = await ensureMonthlySnapshot(data);
 
   return Res.json({ message: "Resumen creado ", snapshot });
