@@ -63,3 +63,19 @@ export async function POST(request: Request) {
 
   return Res.json({ message: "Resumen creado ", snapshot });
 }
+
+export async function GET() {
+  try {
+    await connectDB();
+  } catch (err) {
+    return Res.json(
+      { error: "Error al conectar con la base de datos", message: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
+  }
+  const snapshots = await Snapshot.find({
+    Annio: { $eq: new Date().getFullYear() },
+    Mes: { $eq: new Date().getMonth() + 1 }
+  });
+  return Res.json({ snapshots });
+}
