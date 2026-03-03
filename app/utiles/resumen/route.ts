@@ -27,6 +27,7 @@ async function ensureMonthlySnapshot(data: any) {
     Inversiones: (data?.totalPlazosFijos + data?.totalCriptos + data?.fondos),
     Deuda: data?.deudaAFavor,
     TasaDeCambio: cotizacionVenta,
+    DisponibleDiarioARS: data?.gastoMaxDiario
   }
 
   return await Snapshot.create(snapshot)
