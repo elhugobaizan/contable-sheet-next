@@ -30,23 +30,7 @@ async function ensureMonthlySnapshot(data: any) {
     DisponibleDiarioARS: data?.gastoMaxDiario
   }
 
-  return await Snapshot.create(snapshot)
-}
-
-export async function GET(request: Request) {
-  try {
-
-    const body = await request.json();
-    const { Annio, Mes } = body;
-    if (!Annio || !Mes) {
-      return Res.json({ error: "Annio y Mes son requeridos" }, { status: 400 });
-    }
-    await connectDB();
-    const snapshot = await Snapshot.find({ Annio, Mes }).sort({ Annio: -1, Mes: -1 });
-    return Res.json(snapshot);
-  } catch (err) {
-    return Res.json({ error: "Error al conectar con la base de datos", message: err instanceof Error ? err.message : String(err) }, { status: 500 });
-  }
+  return await Snapshot.create(snapshot);
 }
 
 export async function POST(request: Request) {
