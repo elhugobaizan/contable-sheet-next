@@ -27,6 +27,7 @@ async function ensureMonthlySnapshot(data: any) {
     Inversiones: (data?.totalPlazosFijos + data?.totalCriptos + data?.fondos),
     Deuda: data?.deudaAFavor,
     TasaDeCambio: cotizacionVenta,
+    DisponibleDiarioARS: data?.gastoMaxDiario
   }
 
   return await Snapshot.create(snapshot)
@@ -77,4 +78,20 @@ export async function POST(request: Request) {
   const snapshot = await ensureMonthlySnapshot(data);
 
   return Res.json({ message: "Resumen creado ", snapshot });
+}
+
+export async function GET() {
+  try {
+    await connectDB();
+  } catch (err) {
+    return Res.json(
+      { error: "Error al conectar con la base de datos", message: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
+  }
+  const snapshots = await Snapshot.find({
+    Annio: { $eq: new Date().getFullYear() },
+    Mes: { $eq: new Date().getMonth() + 1 }
+  });
+  return Res.json({ snapshots });
 }
