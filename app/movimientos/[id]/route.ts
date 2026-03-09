@@ -1,19 +1,19 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
-import Gasto from '@/app/models/Gasto';
+import Movimiento from '@/app/models/Movimiento';
 import { TipoGasto } from '@/app/models/Tipos';
 import { DateTime } from "luxon";
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Leer gasto");
+    console.log("Leer movimiento");
     try {
         await connectDB();
         const id = (await params).id;
-        const result = await Gasto.findById(id).populate('Metodo');
+        const result = await Movimiento.findById(id).populate('Metodo');
         if (!result) {
-            return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
+            return Res.json({ error: 'Movimiento no encontrado' }, { status: 404 });
         }
         return Res.json(result);
     } catch (err) {
@@ -23,7 +23,7 @@ export async function GET(req: Req, { params }: { params: Promise<{ id: string }
 }
 
 export async function PUT(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("Actualizar gasto");
+    console.log("Actualizar movimiento");
     try {
         await connectDB();
         const id = (await params).id;
@@ -40,14 +40,14 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
             Metodo: Metodo || ''
         };
         
-        let result = await Gasto.findByIdAndUpdate(
+        let result = await Movimiento.findByIdAndUpdate(
             id,
             updateData,
             { new: true, runValidators: true }
         );
         
         if (!result) {
-            return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
+            return Res.json({ error: 'Movimiento no encontrado' }, { status: 404 });
         }
         return Res.json(result);
     } catch (err) {
@@ -57,14 +57,14 @@ export async function PUT(req: Req, { params }: { params: Promise<{ id: string }
 }
 
 export async function DELETE(req: Req, { params }: { params: Promise<{ id: string }> }) {
-    console.log("borrar gasto");
+    console.log("borrar movimiento");
     try {
         await connectDB();
         const id = (await params).id;
-        const result = await Gasto.findByIdAndDelete(id);
+        const result = await Movimiento.findByIdAndDelete(id);
         
         if (!result) {
-            return Res.json({ error: 'Gasto no encontrado' }, { status: 404 });
+            return Res.json({ error: 'Movimiento no encontrado' }, { status: 404 });
         }
         
         return Res.json(result);

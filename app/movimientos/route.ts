@@ -1,14 +1,14 @@
 import { NextRequest as Req, NextResponse as Res } from "next/server";
 import connectDB from '@/db';
-import Gasto from '@/app/models/Gasto';
-import { TipoGasto } from '@/app/models/Tipos';
+import Movimiento from '@/app/models/Movimiento';
+import { TipoGasto, TipoMovimiento } from '@/app/models/Tipos';
 import { DateTime } from "luxon";
 
 export const dynamic = 'force-dynamic';
 
 //List gastos
 export async function GET(req: Req) {
-    console.log("listar gastos");
+    console.log("listar movimientos");
     const all = req.nextUrl.searchParams.get('all') || false;
     try {
         await connectDB();
@@ -30,13 +30,13 @@ export async function GET(req: Req) {
             };
         }
         
-        const result = await Gasto.find(query).populate('Metodo');
-        console.log(`Encontrados: ${result?.length} gastos`);
+        const result = await Movimiento.find(query).populate('Metodo');
+        console.log(`Encontrados: ${result?.length} movimientos`);
         return Res.json(result);
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
-            error: 'Error al listar gastos',
+            error: 'Error al listar movimientos',
             message: err instanceof Error ? err.message : String(err)
         }, { status: 500 });
     }
@@ -44,18 +44,18 @@ export async function GET(req: Req) {
 
 //Create gasto(s)
 export async function POST(req: Req) {
-    console.log("crear nuevo gasto(s)");
+    console.log("crear nuevo movimiento(s)");
     try {
         const mongooseConnection = await connectDB();
         
         // Verificar si la colección existe, si no, crearla
         const db = mongooseConnection.connection.db;
         if (db) {
-            const collections = await db.listCollections({ name: 'gastos' }).toArray();
+            const collections = await db.listCollections({ name: 'movimientos' }).toArray();
             if (collections.length === 0) {
-                console.log("Creando colección 'gastos'...");
-                await db.createCollection('gastos');
-                console.log("Colección 'gastos' creada exitosamente");
+                console.log("Creando colección 'movimientos'...");
+                await db.createCollection('movimientos');
+                console.log("Colección 'movimientos' creada exitosamente");
             }
         }
         
@@ -64,37 +64,39 @@ export async function POST(req: Req) {
         // Verificar si es un array
         if (Array.isArray(body)) {
             // Crear múltiples gastos
-            const gastos = body.map((gasto: any) => ({
-                Concepto: gasto.Concepto,
-                Fecha: gasto.Fecha,
-                Monto: gasto.Monto || 0,
-                Tipo: gasto.Tipo || TipoGasto.Varios,
-                Donde: gasto.Donde || '',
-                Metodo: gasto.Metodo || null
+            const movimientos = body.map((movimiento: any) => ({
+                Concepto: movimiento.Concepto,
+                Fecha: movimiento.Fecha,
+                Monto: movimiento.Monto || 0,
+                Tipo: movimiento.Tipo || TipoGasto.Varios,
+                Donde: movimiento.Donde || '',
+                Metodo: movimiento.Metodo || null,
+                Codigo: movimiento.Codigo || TipoMovimiento.Gasto
             }));
             
-            const result = await Gasto.insertMany(gastos);
-            const populated = await Gasto.find({ _id: { $in: result.map((r: any) => r._id) } }).populate('Metodo');
+            const result = await Movimiento.insertMany(movimientos);
+            const populated = await Movimiento.find({ _id: { $in: result.map((r: any) => r._id) } }).populate('Metodo');
             return Res.json(populated);
         } else {
             // Crear un solo fijo (comportamiento original)
-            const { Concepto, Fecha, Monto, Tipo, Donde, Metodo } = body;
+            const { Concepto, Fecha, Monto, Tipo, Donde, Metodo, Codigo } = body;
             
-            const result = await Gasto.create({
+            const result = await Movimiento.create({
                 Concepto: Concepto,
                 Fecha: Fecha,
                 Monto: Monto || 0,
                 Tipo: Tipo || TipoGasto.Varios,
                 Donde: Donde || '',
-                Metodo: Metodo || ''
+                Metodo: Metodo || '',
+                Codigo: Codigo || TipoMovimiento.Gasto
             });
-            console.log("Gasto creado: ", result);
+            console.log("Movimiento creado: ", result);
             return Res.json(result);
         }
     } catch (err) {
         console.log("ERROR: ", err);
         return Res.json({ 
-            error: 'Error al crear gasto(s)',
+            error: 'Error al crear movimiento(s)',
             message: err instanceof Error ? err.message : String(err)
         }, { status: 500 });
     }

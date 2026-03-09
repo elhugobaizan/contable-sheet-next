@@ -19,15 +19,15 @@ jest.mock('mongoose', () => {
   };
 });
 
-import { GET, PUT, DELETE } from '@/app/gastos/[id]/route';
+import { GET, PUT, DELETE } from '@/app/movimientos/[id]/route';
 import { NextRequest } from 'next/server';
-import Gasto from '@/app/models/Gasto';
+import Gasto from '@/app/models/Movimiento';
 import { TipoGasto } from '@/app/models/Tipos';
 import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Gasto', () => ({
+jest.mock('@/app/models/Movimiento', () => ({
   __esModule: true,
   default: {
     findById: jest.fn(),
@@ -82,7 +82,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(404);
-      expect(data.error).toBe('Gasto no encontrado');
+      expect(data.error).toBe('Movimiento no encontrado');
       expect(mockGasto.findById).toHaveBeenCalledWith(mockGastoId);
     });
 
@@ -214,7 +214,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(404);
-      expect(data.error).toBe('Gasto no encontrado');
+      expect(data.error).toBe('Movimiento no encontrado');
     });
 
     it('debe manejar errores al actualizar gasto', async () => {
@@ -281,7 +281,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(404);
-      expect(data.error).toBe('Gasto no encontrado');
+      expect(data.error).toBe('Movimiento no encontrado');
     });
 
     it('debe manejar errores al eliminar gasto', async () => {
