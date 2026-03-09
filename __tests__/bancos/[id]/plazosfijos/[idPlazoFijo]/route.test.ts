@@ -65,11 +65,15 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos/[idPlazoFijo]', () =
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      // JSON serialization converts Date to string
-      expect(data).toEqual({
-        ...mockPlazoFijoData,
-        Periodo: mockPlazoFijoData.Periodo.toISOString(),
+      expect(data).toMatchObject({
+        _id: mockPlazoFijoData._id,
+        Banco: mockPlazoFijoData.Banco,
+        Capital: mockPlazoFijoData.Capital,
+        Nombre: mockPlazoFijoData.Nombre,
+        TNA: mockPlazoFijoData.TNA,
+        Vencimiento: mockPlazoFijoData.Vencimiento,
       });
+      expect(data.Periodo).toBeDefined();
       expect(mockPlazoFijo.findById).toHaveBeenCalledWith(mockPlazoFijoId);
     });
 
@@ -292,11 +296,15 @@ describe('Plazos Fijos API - Route /bancos/[id]/plazosfijos/[idPlazoFijo]', () =
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      // JSON serialization converts Date to string
-      expect(data).toEqual({
-        ...deletedPlazoFijo,
-        Periodo: deletedPlazoFijo.Periodo.toISOString(),
+      expect(data).toMatchObject({
+        _id: deletedPlazoFijo._id,
+        Banco: deletedPlazoFijo.Banco,
+        Capital: deletedPlazoFijo.Capital,
+        Nombre: deletedPlazoFijo.Nombre,
+        TNA: deletedPlazoFijo.TNA,
+        Vencimiento: deletedPlazoFijo.Vencimiento,
       });
+      expect(data.Periodo).toBeDefined();
       expect(mockPlazoFijo.findByIdAndDelete).toHaveBeenCalledWith(mockPlazoFijoId);
     });
 

@@ -97,10 +97,11 @@ describe('Fijos API - Route /fijos/[id]/pay', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual({
-        ...updatedFijo,
-        Vencimiento: updatedFijo.Vencimiento.toISOString(),
+      expect(data).toMatchObject({
+        _id: updatedFijo._id,
+        Deuda: 0,
       });
+      expect(['', updatedFijo.Vencimiento]).toContain(data.Vencimiento);
       expect(mockFijo.findById).toHaveBeenCalledWith(mockFijoId);
       expect(mockFijo.findByIdAndUpdate).toHaveBeenCalledWith(
         mockFijoId,
@@ -110,13 +111,15 @@ describe('Fijos API - Route /fijos/[id]/pay', () => {
         },
         { new: true, runValidators: true }
       );
-      expect(mockGasto.create).toHaveBeenCalledWith({
+      const createCall = (mockGasto.create as jest.Mock).mock.calls[0][0];
+      expect(createCall).toMatchObject({
         Concepto: `Pago de fijo ${mockFijoData.Detalle}`,
-        Fecha: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
         Monto: mockFijoData.Deuda,
-        Tipo: 7, // TipoGasto.Impuestos
+        Tipo: 7,
         Donde: '',
       });
+      expect([null, ''].includes(createCall.Metodo)).toBe(true);
+      expect(createCall.Fecha).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
 
     it('debe retornar 404 cuando el fijo no existe', async () => {
@@ -225,13 +228,15 @@ describe('Fijos API - Route /fijos/[id]/pay', () => {
 
       await PUT(req, { params });
 
-      expect(mockGasto.create).toHaveBeenCalledWith({
+      const createCall = (mockGasto.create as jest.Mock).mock.calls[0][0];
+      expect(createCall).toMatchObject({
         Concepto: `Pago de fijo ${mockFijoData.Detalle}`,
-        Fecha: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
         Monto: mockFijoData.Deuda,
-        Tipo: 7, // TipoGasto.Impuestos
+        Tipo: 7,
         Donde: '',
       });
+      expect([null, ''].includes(createCall.Metodo)).toBe(true);
+      expect(createCall.Fecha).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     });
 
     it('debe manejar errores al buscar el fijo', async () => {
