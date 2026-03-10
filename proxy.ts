@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const allowedOrigins = new Set([
-  'http://localhost:8081', 
-  'http://localhost:8082', 
-  'http://localhost:8083', 
+  'http://localhost:8081',
+  'http://localhost:8082',
+  'http://localhost:8083',
   'https://hb-sheet-contable.vercel.app',
   'https://hbcompass.vercel.app'])
 
@@ -16,6 +16,14 @@ const STATIC_PATH = /^\/_next\/static|^\/_next\/image|^\/favicon\.ico$|\.(?:svg|
 
 export default function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
+
+  // Log incoming requests for debugging
+  console.log('Incoming request:', {
+    method: request.method,
+    url: request.nextUrl.href,
+    headers: Object.fromEntries(request.headers.entries()),
+  })
+
   if (STATIC_PATH.test(pathname)) {
     return NextResponse.next()
   }
@@ -36,15 +44,26 @@ export default function proxy(request: NextRequest) {
   }
 
   const response = NextResponse.next()
+
+  // Set cache control headers
   response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
   response.headers.set('Pragma', 'no-cache')
   response.headers.set('Expires', '0')
+
+  // Set CORS headers
   if (isAllowedOrigin) {
     response.headers.set('Access-Control-Allow-Origin', origin)
+  } else {
+    console.warn('Disallowed origin:', origin)
   }
+
   Object.entries(corsOptions).forEach(([key, value]) => {
     response.headers.set(key, value)
   })
+
+  // Log response headers for debugging
+  console.log('Response headers:', Object.fromEntries(response.headers.entries()))
+
   return response
 }
 
