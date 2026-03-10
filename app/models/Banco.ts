@@ -17,7 +17,7 @@ const BancoSchema = new Schema<IBanco>({
   Efectivo: { type: Number, required: false, default: 0 },
   EsMetodo: { type: Boolean, required: false, default: false },
 }, {
-  timestamps: false,
+  timestamps: true,
   collection: 'bancos'
 });
 

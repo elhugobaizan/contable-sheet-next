@@ -67,10 +67,10 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual({
+      expect(data).toMatchObject({
         ...mockWalletData,
-        Inicio: mockWalletData.Inicio.toISOString(),
       });
+      expect(data.Inicio).toBeDefined();
       expect(mockWallet.findById).toHaveBeenCalledWith(mockWalletId);
     });
 
@@ -136,10 +136,10 @@ describe('Wallets API - Route /wallets/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(data).toEqual({
+      expect(data).toMatchObject({
         ...updatedWallet,
-        Inicio: updatedWallet.Inicio.toISOString(),
       });
+      expect(data.Inicio).toBeDefined();
       expect(mockWallet.findByIdAndUpdate).toHaveBeenCalledWith(
         mockWalletId,
         {

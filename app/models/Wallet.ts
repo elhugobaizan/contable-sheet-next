@@ -21,7 +21,7 @@ const WalletSchema = new Schema<IWallet>({
   Alias: { type: String, required: false, default: '' },
   EsMetodo: { type: Boolean, required: false, default: false },
 }, {
-  timestamps: false,
+  timestamps: true,
   collection: 'wallets'
 });
 

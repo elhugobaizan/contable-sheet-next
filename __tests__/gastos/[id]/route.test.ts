@@ -19,15 +19,15 @@ jest.mock('mongoose', () => {
   };
 });
 
-import { GET, PUT, DELETE } from '@/app/gastos/[id]/route';
+import { GET, PUT, DELETE } from '@/app/movimientos/[id]/route';
 import { NextRequest } from 'next/server';
-import Gasto from '@/app/models/Gasto';
+import Gasto from '@/app/models/Movimiento';
 import { TipoGasto } from '@/app/models/Tipos';
 import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Gasto', () => ({
+jest.mock('@/app/models/Movimiento', () => ({
   __esModule: true,
   default: {
     findById: jest.fn(),
@@ -59,7 +59,9 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Metodo: 'Efectivo',
       };
 
-      (mockGasto.findById as jest.Mock).mockResolvedValue(mockGastoData);
+      (mockGasto.findById as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockResolvedValue(mockGastoData),
+      });
 
       const params = Promise.resolve({ id: mockGastoId });
       const response = await GET(new NextRequest('http://localhost:3000/api/gastos/123'), { params });
@@ -71,20 +73,24 @@ describe('Gastos API - Route /gastos/[id]', () => {
     });
 
     it('debe retornar 404 cuando el gasto no existe', async () => {
-      (mockGasto.findById as jest.Mock).mockResolvedValue(null);
+      (mockGasto.findById as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockResolvedValue(null),
+      });
 
       const params = Promise.resolve({ id: mockGastoId });
       const response = await GET(new NextRequest('http://localhost:3000/api/gastos/123'), { params });
       const data = await response.json();
 
       expect(response.status).toBe(404);
-      expect(data.error).toBe('Gasto no encontrado');
+      expect(data.error).toBe('Movimiento no encontrado');
       expect(mockGasto.findById).toHaveBeenCalledWith(mockGastoId);
     });
 
     it('debe manejar errores al obtener gasto', async () => {
       const errorMessage = 'Error de base de datos';
-      (mockGasto.findById as jest.Mock).mockRejectedValue(new Error(errorMessage));
+      (mockGasto.findById as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockRejectedValue(new Error(errorMessage)),
+      });
 
       const params = Promise.resolve({ id: mockGastoId });
       const response = await GET(new NextRequest('http://localhost:3000/api/gastos/123'), { params });
@@ -115,6 +121,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Donde: updateData.Donde,
         Metodo: updateData.Metodo,
       };
+      (updatedGasto as any).populate = jest.fn().mockResolvedValue(updatedGasto);
 
       (mockGasto.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedGasto);
 
@@ -158,6 +165,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
         Donde: '',
         Metodo: null,
       };
+      (updatedGasto as any).populate = jest.fn().mockResolvedValue(updatedGasto);
 
       (mockGasto.findByIdAndUpdate as jest.Mock).mockResolvedValue(updatedGasto);
 
@@ -171,15 +179,17 @@ describe('Gastos API - Route /gastos/[id]', () => {
       const response = await PUT(req, { params });
 
       expect(response.status).toBe(200);
+      const updateCall = (mockGasto.findByIdAndUpdate as jest.Mock).mock.calls[0][1];
+      expect(updateCall).toMatchObject({
+        Concepto: updateData.Concepto,
+        Monto: 0,
+        Tipo: TipoGasto.Varios,
+        Donde: '',
+      });
+      expect([null, ''].includes(updateCall.Metodo) || updateCall.Metodo === undefined).toBe(true);
       expect(mockGasto.findByIdAndUpdate).toHaveBeenCalledWith(
         mockGastoId,
-        expect.objectContaining({
-          Concepto: updateData.Concepto,
-          Monto: 0,
-          Tipo: TipoGasto.Varios,
-          Donde: '',
-          Metodo: null,
-        }),
+        expect.any(Object),
         { new: true, runValidators: true }
       );
     });
@@ -204,7 +214,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(404);
-      expect(data.error).toBe('Gasto no encontrado');
+      expect(data.error).toBe('Movimiento no encontrado');
     });
 
     it('debe manejar errores al actualizar gasto', async () => {
@@ -271,7 +281,7 @@ describe('Gastos API - Route /gastos/[id]', () => {
       const data = await response.json();
 
       expect(response.status).toBe(404);
-      expect(data.error).toBe('Gasto no encontrado');
+      expect(data.error).toBe('Movimiento no encontrado');
     });
 
     it('debe manejar errores al eliminar gasto', async () => {

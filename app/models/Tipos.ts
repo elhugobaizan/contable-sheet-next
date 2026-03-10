@@ -12,3 +12,11 @@ export enum TipoMoneda {
   Peso = 1,
   Dolar = 2
 }
+
+export enum TipoMovimiento {
+  Gasto = 1,
+  Ingreso = 2,
+  Transferencia_Entrada = 3,
+  Transferencia_Salida = 4,
+  Ajuste = 5
+}

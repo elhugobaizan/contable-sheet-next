@@ -5,6 +5,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    '^next/server$': '<rootDir>/__mocks__/next/server.js',
   },
   testMatch: [
     '**/__tests__/**/*.test.[jt]s?(x)',

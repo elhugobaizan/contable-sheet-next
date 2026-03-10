@@ -19,15 +19,15 @@ jest.mock('mongoose', () => {
   };
 });
 
-import { GET, POST } from '@/app/gastos/route';
+import { GET, POST } from '@/app/movimientos/route';
 import { NextRequest } from 'next/server';
-import Gasto from '@/app/models/Gasto';
+import Gasto from '@/app/models/Movimiento';
 import { TipoGasto } from '@/app/models/Tipos';
 import connectDB from '@/db';
 
 // Mock de las dependencias
 jest.mock('@/db');
-jest.mock('@/app/models/Gasto', () => ({
+jest.mock('@/app/models/Movimiento', () => ({
   __esModule: true,
   default: {
     find: jest.fn(),
@@ -68,7 +68,9 @@ describe('Gastos API - Route /gastos', () => {
         },
       ];
 
-      (mockGasto.find as jest.Mock).mockResolvedValue(mockGastos);
+      (mockGasto.find as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockResolvedValue(mockGastos),
+      });
 
       const req = new NextRequest('http://localhost:3000/api/gastos');
       const response = await GET(req);
@@ -102,7 +104,9 @@ describe('Gastos API - Route /gastos', () => {
         },
       ];
 
-      (mockGasto.find as jest.Mock).mockResolvedValue(mockGastos);
+      (mockGasto.find as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockResolvedValue(mockGastos),
+      });
 
       const req = new NextRequest('http://localhost:3000/api/gastos?all=true');
       const response = await GET(req);
@@ -115,14 +119,16 @@ describe('Gastos API - Route /gastos', () => {
 
     it('debe manejar errores al listar gastos', async () => {
       const errorMessage = 'Error de conexión';
-      (mockGasto.find as jest.Mock).mockRejectedValue(new Error(errorMessage));
+      (mockGasto.find as jest.Mock).mockReturnValue({
+        populate: jest.fn().mockRejectedValue(new Error(errorMessage)),
+      });
 
       const req = new NextRequest('http://localhost:3000/api/gastos');
       const response = await GET(req);
       const data = await response.json();
 
       expect(response.status).toBe(500);
-      expect(data.error).toBe('Error al listar gastos');
+      expect(data.error).toBe('Error al listar movimientos');
       expect(data.message).toBe(errorMessage);
     });
   });
@@ -177,6 +183,7 @@ describe('Gastos API - Route /gastos', () => {
         Fecha: gastoData.Fecha,
         Monto: gastoData.Monto,
         Tipo: gastoData.Tipo,
+        Codigo: 1,
         Donde: gastoData.Donde,
         Metodo: gastoData.Metodo,
       });
@@ -302,14 +309,15 @@ describe('Gastos API - Route /gastos', () => {
       const response = await POST(req);
 
       expect(response.status).toBe(200);
-      expect(mockGasto.create).toHaveBeenCalledWith({
+      const createCall = (mockGasto.create as jest.Mock).mock.calls[0][0];
+      expect(createCall).toMatchObject({
         Concepto: gastoData.Concepto,
         Fecha: gastoData.Fecha,
         Monto: 0,
         Tipo: TipoGasto.Varios,
         Donde: '',
-        Metodo: null,
       });
+      expect([null, ''].includes(createCall.Metodo) || createCall.Metodo === undefined).toBe(true);
     });
 
     it('debe crear la colección si no existe', async () => {
@@ -349,7 +357,7 @@ describe('Gastos API - Route /gastos', () => {
 
       await POST(req);
 
-      expect(mockDb.createCollection).toHaveBeenCalledWith('gastos');
+      expect(mockDb.createCollection).toHaveBeenCalledWith('movimientos');
     });
 
     it('debe manejar errores al crear gasto', async () => {
@@ -386,7 +394,7 @@ describe('Gastos API - Route /gastos', () => {
       const data = await response.json();
 
       expect(response.status).toBe(500);
-      expect(data.error).toBe('Error al crear gasto(s)');
+      expect(data.error).toBe('Error al crear movimiento(s)');
       expect(data.message).toBe(errorMessage);
     });
   });

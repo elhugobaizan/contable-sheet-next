@@ -30,7 +30,7 @@ async function ensureMonthlySnapshot(data: any) {
     DisponibleDiarioARS: data?.gastoMaxDiario
   }
 
-  return await Snapshot.create(snapshot)
+  return await Snapshot.create(snapshot);
 }
 
 export async function POST(request: Request) {
