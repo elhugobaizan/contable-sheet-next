@@ -50,11 +50,21 @@ export default function proxy(request: NextRequest) {
   response.headers.set('Pragma', 'no-cache')
   response.headers.set('Expires', '0')
 
-  // Set CORS headers
+  // Ensure CORS headers are always set
   if (isAllowedOrigin) {
     response.headers.set('Access-Control-Allow-Origin', origin)
   } else {
     console.warn('Disallowed origin:', origin)
+    return NextResponse.json(
+      { error: 'CORS policy does not allow this origin.' },
+      {
+        status: 403,
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsOptions,
+        },
+      }
+    )
   }
 
   Object.entries(corsOptions).forEach(([key, value]) => {
