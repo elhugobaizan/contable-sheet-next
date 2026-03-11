@@ -71,6 +71,13 @@ export default function proxy(request: NextRequest) {
     response.headers.set(key, value)
   })
 
+  // Handle redirects explicitly
+  if (request.headers.get('x-forwarded-proto') === 'http') {
+    const httpsUrl = request.nextUrl.clone()
+    httpsUrl.protocol = 'https'
+    return NextResponse.redirect(httpsUrl, 308)
+  }
+
   // Log response headers for debugging
   console.log('Response headers:', Object.fromEntries(response.headers.entries()))
 
