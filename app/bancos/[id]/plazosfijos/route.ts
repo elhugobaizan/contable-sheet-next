@@ -6,7 +6,7 @@ import { DateTime } from "luxon";
 export const dynamic = 'force-dynamic';
 
 // Helper function to convert date to string format yyyy-MM-dd
-export function formatVencimiento(vencimiento: any): string {
+function formatVencimiento(vencimiento: any): string {
     if (!vencimiento) {
         return DateTime.now().toFormat('yyyy-MM-dd');
     }
