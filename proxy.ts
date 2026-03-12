@@ -1,12 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const allowedOrigins = new Set([
-  'http://localhost:8081', 
-  'http://localhost:8082', 
-  'http://localhost:8083', 
-  'https://hb-sheet-contable.vercel.app',
-  'https://hbcompass.vercel.app'])
-
 const corsOptions = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -20,15 +13,15 @@ export default function proxy(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const origin = request.headers.get('origin') ?? ''
-  const isAllowedOrigin = allowedOrigins.has(origin)
+  const origin = request.headers.get('origin')
+  const accessControlOrigin = origin ?? '*'
 
   if (request.method === 'OPTIONS') {
     return NextResponse.json(
       {},
       {
         headers: {
-          ...(isAllowedOrigin && { 'Access-Control-Allow-Origin': origin }),
+          'Access-Control-Allow-Origin': accessControlOrigin,
           ...corsOptions,
         },
       }
@@ -39,9 +32,7 @@ export default function proxy(request: NextRequest) {
   response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
   response.headers.set('Pragma', 'no-cache')
   response.headers.set('Expires', '0')
-  if (isAllowedOrigin) {
-    response.headers.set('Access-Control-Allow-Origin', origin)
-  }
+  response.headers.set('Access-Control-Allow-Origin', accessControlOrigin)
   Object.entries(corsOptions).forEach(([key, value]) => {
     response.headers.set(key, value)
   })
